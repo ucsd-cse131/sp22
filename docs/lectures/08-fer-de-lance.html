@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 131">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="Ranjit Jhala, ranjitjhala, haskell, compilers, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://ucsd-cse131.github.io/sp21/static/img/ico.jpg" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse131</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="https://ucsd-cse131.github.io/sp21/static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 131" />
+    <meta property="og:site_name" content="UCSD CSE 131" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/ronacher.css" type="text/css">
+<!--    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/syntax.css">
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/liquid-light.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/prettify.css"-->
+<style>
+	header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	<div id="preloader">
+	    <div id="status">
+
+	    </div>
+
+	</div>  
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://ucsd-cse131.github.io/sp21" id="blog-title-left-top">cse131</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- <li class="dropdown">
+                    <a href="#portfolioModal2" data-toggle="modal"><i class="fa fa-random" id="icon-top"></i></a>
+                <ul class="dropdown-menu"></ul>
+                </li>-->
+                
+                <!-- <li><a href="https://ucsd-cse131.github.io/sp21/calendar.html">Calendar</a></li> -->
+                <li><a href="https://canvas.ucsd.edu/FIXME">Canvas</a></li>
+                <li><a href="https://discord.com/channels/826242480529211414/826242480957292557">Discord</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2021/cse131/home">Piazza</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/contact.html">Contact</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/grades.html">Grades</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/lectures.html">Lectures</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/assignments.html">Assignments</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/links.html">Links</a></li>
+
+                <!--
+                <li><a href="https://ucsd-cse131.github.io/sp21/archive.html">Archive</a></li>
+                <li><a href="https://www.twitter.com/ranjitjhala" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>RanjitJhala</a></li>
+                -->
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="https://ucsd-cse131.github.io/sp21/static/img/kc.jpg" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/ucsd-cse131/sp21" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                        <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow</a>. <br>
+                        <a href="https://www.github.com/ucsd-cse131/sp21" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                        <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>  <br>
+                    <li><a href="https://ucsd-cse131.github.io/sp21/">Home</a></li>
+                    <li><a href="https://ucsd-cse131.github.io/sp21/about.html">About Me</a></li>
+                    <li><a href="https://ucsd-cse131.github.io/sp21/archive.html/">Archive</a></li>
+                            </p>
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://ucsd-cse131.github.io/sp21/static/img/fer-de-lance.jpg')" alt title>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>First Class Functions</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<h2 id="functions-as-values">Functions as Values</h2>
+<p>Consider the following <code>egg</code> program</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">def</span> f(it):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  it(<span class="dv">5</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">def</span> incr(x):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>  x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>f(incr)</span></code></pre></div>
+<p>What will be the result of compiling/running?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>We have functions, but they are <em>second-class</em> entities in our languages: they don’t have the same <em>abilities</em> as other values.</p>
+<p>So, we get multiple error messages:</p>
+<pre><code>Errors found!
+tests/input/hof.diamond:(2:3)-(4:1): Function 'it' is not defined
+
+         2|    it(5)
+               ^^
+
+tests/input/hof.diamond:7:3-7: Unbound variable 'incr'
+
+         7|  f(incr)
+               ^^^^</code></pre>
+<p>This is because the <code>Env</code> only holds</p>
+<ul>
+<li>parameters, and</li>
+<li>let-bound variables</li>
+</ul>
+<p>and <strong>not</strong> function definitions.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="functions-as-values-1">Functions as Values</h2>
+<p>But for the many reasons we saw in CSE 130 – we <em>want</em> to treat functions like values. For example, if you run the above in Python you get:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> f(it): <span class="cf">return</span> it(<span class="dv">5</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> incr(x): <span class="cf">return</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> f(incr)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="dv">6</span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="flashback-how-do-we-compile-incr">Flashback: How do we <em>compile</em> <code>incr</code>?</h2>
+<p>We compile each function down into a sequence of instructions corresponding to its body.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="kw">def</span> incr(x):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>incr(<span class="dv">5</span>)</span></code></pre></div>
+<p>becomes, for <code>incr</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">label_def_incr_start:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>  <span class="kw">push</span> <span class="kw">rbp</span>                 # setup stack frame</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rbp</span>, <span class="kw">rsp</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rax</span>, <span class="kw">rdi</span>             # grab param</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>  <span class="kw">add</span> <span class="kw">rax</span>, <span class="dv">2</span>               # incr by <span class="dv">1</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rsp</span>, <span class="kw">rbp</span>             # undo stack frame</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>  <span class="kw">pop</span> <span class="kw">rbp</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>  <span class="kw">ret</span>                      # buh-bye</span></code></pre></div>
+<p>for the main expression</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="fu">our_code_starts_here:</span>         </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>  <span class="kw">push</span> <span class="kw">rbp</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rbp</span>, <span class="kw">rsp</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>  <span class="kw">mov</span>  <span class="kw">rdi</span> <span class="dv">10</span>                 # <span class="kw">push</span> arg <span class="st">'5'</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>  <span class="kw">call</span> label_def_incr_start   # <span class="kw">call</span> function</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rsp</span>, <span class="kw">rbp</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>  <span class="kw">pop</span>  <span class="kw">rbp</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>  <span class="kw">ret</span></span></code></pre></div>
+<h2 id="what-is-the-value-of-a-function">What is the <em>value</em> of a function?</h2>
+<p>So now, lets take a step back. Suppose we want to compile</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">def</span> f(it):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>  it(<span class="dv">5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">def</span> incr(x):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>  x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>f(incr)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="attempt-1-what-is-the-value-of-the-parameter-it">Attempt 1: What is the value of the parameter <code>it</code> ?</h2>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><strong>IDEA:</strong> Use the <strong>label</strong> where <code>incr</code> lives!</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="fu">label_def_f_start:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>  <span class="kw">push</span> <span class="kw">rbp</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>  <span class="kw">mov</span>  <span class="kw">rbp</span>, <span class="kw">rsp</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rax</span>, <span class="kw">rdi</span>       # grab function-address</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rdi</span>, <span class="dv">10</span>        # <span class="kw">push</span> arg <span class="st">'5'</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>  <span class="kw">call</span> <span class="kw">rax</span>           # <span class="kw">call</span> function!</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rsp</span>, <span class="kw">rbp</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>  <span class="kw">pop</span> <span class="kw">rbp</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>  <span class="kw">ret</span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="how-to-pass-the-value-of-the-parameter">How to pass the value of the parameter ?</h2>
+<p>So now the <code>main</code> expression</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>f(incr)</span></code></pre></div>
+<p>can be compiled to:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="fu">our_code_starts_here:</span>         </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>  <span class="kw">push</span> <span class="kw">rbp</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rbp</span>, <span class="kw">rsp</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rdi</span>, ?<span class="dv">1</span>     # <span class="kw">push</span> arg</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>  <span class="kw">call</span> ?<span class="dv">2</span>         # <span class="kw">call</span> function</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rsp</span>, <span class="kw">rbp</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>  <span class="kw">pop</span> <span class="kw">rbp</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a>  <span class="kw">ret</span></span></code></pre></div>
+<p><strong>QUIZ:</strong> What are suitable terms for <code>?1</code> and <code>?2</code> ?</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: left;"><code>?1</code></th>
+<th style="text-align: left;"><code>?2</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><strong>A</strong></td>
+<td style="text-align: left;"><code>label_def_incr_start</code></td>
+<td style="text-align: left;"><code>label_def_f_start</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>B</strong></td>
+<td style="text-align: left;"><code>label_def_f_start</code></td>
+<td style="text-align: left;"><code>label_def_incr_start</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><strong>C</strong></td>
+<td style="text-align: left;"><code>label_def_f_start</code></td>
+<td style="text-align: left;"><code>label_def_f_start</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>D</strong></td>
+<td style="text-align: left;"><code>label_def_incr_start</code></td>
+<td style="text-align: left;"><code>label_def_incr_start</code></td>
+</tr>
+</tbody>
+</table>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="strategy-progression">Strategy Progression</h2>
+<ol type="1">
+<li><strong>Representation</strong> = <code>Start-Label</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<pre><code>- **Problem:** How to do run-time checks of valid args?</code></pre>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="yay-that-was-easy-how-should-the-following-behave">Yay, that was easy! How should the following behave?</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">def</span> f(it):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  it(<span class="dv">5</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="kw">def</span> add(x, y):</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a>  x <span class="op">+</span> y</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a>f(incr)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>Lets see what Python does:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> f(it): <span class="cf">return</span> it(<span class="dv">5</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">def</span> add(x,y): <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> f(add)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>Traceback (most recent call last):</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a>  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a>  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> f</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true"></a><span class="pp">TypeError</span>: add() takes exactly <span class="dv">2</span> arguments (<span class="dv">1</span> given)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="problem-ensure-valid-number-of-arguments">Problem: Ensure Valid Number of Arguments?</h2>
+<p>How to make sure</p>
+<ul>
+<li><code>f(incr)</code> <strong>succeeds</strong>, but</li>
+<li><code>f(add)</code> <strong>fails</strong></li>
+</ul>
+<p>With <strong>proper run-time error</strong>?</p>
+<ol type="1">
+<li><strong>Where</strong> does the run-time check happen?</li>
+<li><strong>What</strong> information is needed for the check?</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><strong>Key:</strong> Need to <em>also</em> store the function’s <strong>arity</strong></p>
+<ul>
+<li>The <strong>number of arguments</strong> required by the function</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="strategy-progression-1">Strategy Progression</h2>
+<ol type="1">
+<li><p><strong>Representation</strong> = <code>Start-Label</code></p>
+<ul>
+<li><strong>Problem:</strong> How to do run-time checks of valid args?</li>
+</ul></li>
+<li><p><strong>Representation</strong> = <code>(Arity, Start-Label)</code></p></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="attempt-2-what-is-the-value-of-the-parameter-it">Attempt 2: What is the value of the parameter <code>it</code> ?</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">def</span> f(it):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>  it(<span class="dv">5</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="kw">def</span> incr(x):</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>  x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>f(incr)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><strong>IDEA:</strong> Represent a <em>function</em> with a <strong>tuple of</strong></p>
+<pre><code>(arity, function_start_label)</code></pre>
+<p><br> <br> <br></p>
+<p>We can now compile a call</p>
+<pre><code>e(x1,...,xn)</code></pre>
+<p>via the following strategy:</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<ol type="1">
+<li><strong>Evaluate</strong> the tuple <code>e</code></li>
+<li><strong>Check</strong> that <code>e[0]</code> is equal to <code>n</code> (else arity mismatch error)</li>
+<li><strong>Call</strong> the function at <code>e[1]</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="example">Example</h3>
+<p>Lets see how we would compile this</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">def</span> f(it):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>  it(<span class="dv">5</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a><span class="kw">def</span> incr(x):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>  x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true"></a>f(incr)</span></code></pre></div>
+<p>We need to map <strong>the variable</strong></p>
+<p><code>incr</code></p>
+<p>to <strong>the tuple</strong></p>
+<p><code>(1, label_def_incr_start)</code></p>
+<p>But <strong>where</strong> will we store this information?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="strategy-progression-2">Strategy Progression</h2>
+<ol type="1">
+<li><p><strong>Representation</strong> = <code>Start-Label</code></p>
+<ul>
+<li><strong>Problem:</strong> How to do run-time checks of valid args?</li>
+</ul></li>
+<li><p><strong>Representation</strong> = <code>(Arity, Start-Label)</code></p>
+<ul>
+<li><strong>Problem:</strong> How to map function <strong>names</strong> to tuples?</li>
+</ul></li>
+<li><p><strong>Lambda Terms</strong> Make functions just another expression!</p></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="attempt-3-lambda-terms">Attempt 3: Lambda Terms</h2>
+<p>So far, we could only define functions at <strong>top-level</strong></p>
+<ul>
+<li><p>First-class functions are like <em>any</em> other expression,</p></li>
+<li><p>Can define a function, wherever you have any other expression.</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Language</strong></th>
+<th style="text-align: left;"><strong>Syntax</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Haskell</td>
+<td style="text-align: left;"><code>\(x1,...,xn) -&gt; e</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ocaml</td>
+<td style="text-align: left;"><code>fun (x1,...,xn) -&gt; e</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">JS</td>
+<td style="text-align: left;"><code>(x1,...,xn) =&gt; { return e }</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C++</td>
+<td style="text-align: left;"><code>[&amp;](x1,...,xn){ return e }</code></td>
+</tr>
+</tbody>
+</table>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="example-lambda-terms">Example: Lambda Terms</h3>
+<p>We can now replace <code>def</code> as:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>let f    <span class="op">=</span> (<span class="kw">lambda</span> (it): it(<span class="dv">5</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>  , incr <span class="op">=</span> (<span class="kw">lambda</span>  (x): x <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a>  f(incr)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="implementation">Implementation</h3>
+<p>As always, to the details! Lets figure out:</p>
+<p><strong>Representation</strong></p>
+<ol type="1">
+<li>How to store function-tuples</li>
+</ol>
+<p><strong>Types:</strong></p>
+<ol type="1">
+<li>Remove <code>Def</code></li>
+<li>Add <code>lambda</code> to <code>Expr</code></li>
+</ol>
+<p><strong>Transforms</strong></p>
+<ol type="1">
+<li>Update <code>tag</code> and <code>ANF</code></li>
+<li>Update <code>checker</code></li>
+<li>Update <code>compile</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="implementation-representation">Implementation: Representation</h3>
+<p>Represent <code>lambda-tuples'' or</code>function-tuples’’ via a special tag:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Type</th>
+<th style="text-align: right;">LSB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><code>number</code></td>
+<td style="text-align: right;">xx0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>boolean</code></td>
+<td style="text-align: right;">111</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>pointer</code></td>
+<td style="text-align: right;">001</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>function</code></td>
+<td style="text-align: right;">101</td>
+</tr>
+</tbody>
+</table>
+<p>In our code:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Ty</span> <span class="ot">=</span> <span class="op">...</span> <span class="op">|</span> <span class="dt">TClosure</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="ot">typeTag ::</span> <span class="dt">Ty</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a>typeTag <span class="dt">TTuple</span>    <span class="ot">=</span> <span class="dt">HexConst</span> <span class="bn">0x00000001</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a>typeTag <span class="dt">TClosure</span>  <span class="ot">=</span> <span class="dt">HexConst</span> <span class="bn">0x00000005</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true"></a><span class="ot">typeMask ::</span> <span class="dt">Ty</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true"></a>typeMask <span class="dt">TTuple</span>   <span class="ot">=</span> <span class="dt">HexConst</span> <span class="bn">0x00000007</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true"></a>typeMask <span class="dt">TClosure</span> <span class="ot">=</span> <span class="dt">HexConst</span> <span class="bn">0x00000007</span></span></code></pre></div>
+<p>So, <strong>Function Values</strong> represented just like a tuples</p>
+<ul>
+<li>padding, <code>ESI</code> etc.</li>
+<li>but with tag <code>101</code>.</li>
+</ul>
+<p>Crucially, we can <strong>get</strong> <code>0</code>-th, or <code>1</code>-st elements from tuple.</p>
+<p><strong>Question:</strong> Why not use <em>plain tuples</em>?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="implementation-types">Implementation: Types</h3>
+<p>First, lets look at the new <code>Expr</code> type</p>
+<ul>
+<li>No more <code>Def</code></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Expr</span> a</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">Lam</span>               [<span class="dt">Bind</span> a]   <span class="op">!</span>(<span class="dt">Expr</span> a) a      <span class="co">-- fun. definitions</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">App</span>     <span class="op">!</span>(<span class="dt">Expr</span> a) [<span class="dt">Expr</span> a]             a      <span class="co">-- fun. calls</span></span></code></pre></div>
+<p>So we represent a <strong>function-definition</strong> as:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="dt">Lam</span> [x1,<span class="op">...</span>,xn] e</span></code></pre></div>
+<p>and a <strong>function call</strong> as:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="dt">App</span> e [e1,<span class="op">...</span>,en]</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-tag">Transforms: Tag</h3>
+<p>This is pretty straight forward (do it yourself)</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-anf">Transforms: ANF</h3>
+<p>QUIZ:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>  (<span class="dt">App</span> e es)</span></code></pre></div>
+<p>Does <code>e</code> need to be</p>
+<ul>
+<li><strong>A</strong> Immediate<br />
+</li>
+<li><strong>B</strong> ANF</li>
+<li><strong>C</strong> None of the above</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-anf-1">Transforms: ANF</h3>
+<p>QUIZ:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true"></a>  (<span class="dt">App</span> e es)</span></code></pre></div>
+<p>Do <code>es</code> need to be</p>
+<ul>
+<li><strong>A</strong> Immediate<br />
+</li>
+<li><strong>B</strong> ANF</li>
+<li><strong>C</strong> None of the above</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-anf-2">Transforms: ANF</h3>
+<p>The <code>App</code> case, fun + args should be <strong>immediate</strong></p>
+<ul>
+<li><strong>Need the values to push on stack and make the call happen!</strong></li>
+</ul>
+<p>Just like function calls (in <code>diamondback</code>), except</p>
+<ul>
+<li>Must also handle the <strong>callee-expression</strong> (named <code>e</code> below)</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>anf i (<span class="dt">App</span> e es)   <span class="ot">=</span> (i', stitch bs (<span class="dt">App</span> v vs))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a>    (i', bs, v<span class="op">:</span>vs) <span class="ot">=</span> imms i (e<span class="op">:</span>es)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-anf-3">Transforms: ANF</h3>
+<p>QUIZ:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a>  (<span class="dt">Lam</span> xs e)</span></code></pre></div>
+<p>Does <code>e</code> need to be</p>
+<ul>
+<li><strong>A</strong> Immediate<br />
+</li>
+<li><strong>B</strong> ANF</li>
+<li><strong>C</strong> None of the above</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-anf-4">Transforms: ANF</h3>
+<p>The <code>Lam</code> case, the body will be <strong>executed</strong> (when called)</p>
+<ul>
+<li>So we just need to make sure its in ANF (like all the code!)</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>anf i (<span class="dt">Lam</span> xs e) <span class="ot">=</span> (i', <span class="dt">Lam</span> xs e')</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a>    (i', e')     <span class="ot">=</span> anf i e</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-checker">Transforms: Checker</h3>
+<p>We just have <code>Expr</code> (no <code>Def</code>) so there is a single function:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="ot">wellFormed ::</span> <span class="dt">BareExpr</span> <span class="ot">-&gt;</span> [<span class="dt">UserError</span>]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>wellFormed <span class="ot">=</span> go emptyEnv</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a>    gos                       <span class="ot">=</span> <span class="fu">concatMap</span> <span class="op">.</span> go</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a>    go _    (<span class="dt">Boolean</span> {})      <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>    go _    (<span class="dt">Number</span>  n     l) <span class="ot">=</span> largeNumberErrors      n l</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a>    go vEnv (<span class="dt">Id</span>      x     l) <span class="ot">=</span> unboundVarErrors  vEnv x l</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a>    go vEnv (<span class="dt">Prim1</span> _ e     _) <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a>    go vEnv (<span class="dt">Prim2</span> _ e1 e2 _) <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true"></a>    go vEnv (<span class="dt">If</span>   e1 e2 e3 _) <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true"></a>    go vEnv (<span class="dt">Let</span> x e1 e2   _) <span class="ot">=</span> <span class="op">...</span> <span class="op">++</span> go vEnv e1 <span class="op">++</span> go (addEnv x vEnv) e2</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true"></a>    go vEnv (<span class="dt">Tuple</span> es      _) <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true"></a>    go vEnv (<span class="dt">GetItem</span> e1 e2 _) <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true"></a>    go vEnv (<span class="dt">App</span> e es      _) <span class="ot">=</span> <span class="op">?</span><span class="dv">1</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true"></a>    go vEnv (<span class="dt">Lam</span> xs e      _) <span class="ot">=</span> <span class="op">?</span><span class="dv">2</span> <span class="op">++</span> go <span class="op">?</span><span class="dv">3</span> e</span></code></pre></div>
+<ul>
+<li><p>How shall we implement <code>?1</code> ?</p></li>
+<li><p>How shall we implement <code>?2</code> ?</p></li>
+<li><p>How shall we implement <code>?3</code> ?</p></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-compiler">Transforms: Compiler</h3>
+<p>Finally, lets see how to convert <code>Expr</code> into <code>Asm</code>, two separate cases:</p>
+<ul>
+<li><p><code>Lam</code> : definitions</p></li>
+<li><p><code>App</code> : calls</p></li>
+</ul>
+<h3 id="transforms-compiler-lam">Transforms: Compiler: <code>Lam</code></h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="ot">compileEnv ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">AExp</span> <span class="ot">-&gt;</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a>compileEnv env (<span class="dt">Lam</span> xs e l) </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a>  <span class="ot">=</span> <span class="dt">IJmp</span>   end              <span class="co">-- Why?</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true"></a>  <span class="op">:</span> <span class="dt">ILabel</span> start            <span class="co">-- Function start</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true"></a>  <span class="op">:</span> compileDecl l xs e      <span class="co">-- Function code (like Decl)</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true"></a> <span class="op">++</span> <span class="dt">ILabel</span> end              <span class="co">-- Function end</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true"></a>  <span class="op">:</span> lamTuple arity start    <span class="co">-- Compile fun-tuple into RAX</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true"></a>    arity <span class="ot">=</span> <span class="fu">length</span> xs</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true"></a>    start <span class="ot">=</span> <span class="dt">LamStart</span> l</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true"></a>    end   <span class="ot">=</span> <span class="dt">LamEnd</span>   l</span></code></pre></div>
+<p><strong>QUESTION:</strong> Why do we start with the <code>IJmp</code>?</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="ot">lamTuple ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Label</span> <span class="ot">-&gt;</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a>lamTuple arity start</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>  <span class="ot">=</span>  tupleAlloc  <span class="dv">2</span>                           <span class="co">-- alloc tuple size = 2  </span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a>  <span class="op">++</span> tupleWrites [ repr arity                <span class="co">-- fill arity</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a>                 , <span class="dt">CodePtr</span> start ]           <span class="co">-- fill code-ptr</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a>  <span class="op">++</span> [ <span class="dt">IOr</span>  (<span class="dt">Reg</span> <span class="dt">RAX</span>) (typeTag <span class="dt">TClosure</span>) ]   <span class="co">-- set the tag bits</span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-compiler-app">Transforms: Compiler: <code>App</code></h3>
+<p><strong>Recall! IDEA:</strong> Use a <strong>tuple of</strong> <code>(arity, label)</code></p>
+<p>We can now compile a call</p>
+<pre><code>  e(x1,...,xn)</code></pre>
+<p>via the following strategy:</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<ol type="1">
+<li><strong>Evaluate</strong> the tuple <code>e</code></li>
+<li><strong>Check</strong> that <code>e[0]</code> is equal to <code>n</code> (else arity mismatch error)</li>
+<li><strong>Call</strong> the function at <code>e[1]</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a>compileEnv env (<span class="dt">App</span> vE vXs)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a>  <span class="ot">=</span> assertType     env vE <span class="dt">TClosure</span>                    <span class="co">-- check vE is a function</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a> <span class="op">++</span> assertArity    env vE (<span class="fu">length</span> vXs)                <span class="co">-- check vE arity</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true"></a> <span class="op">++</span> tupleReadRaw   (immArg env vE) (repr (<span class="dv">1</span><span class="ot"> ::</span> <span class="dt">Int</span>))  <span class="co">-- load vE[1] into RAX</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true"></a> <span class="op">++</span> pushRegArgs   rArgs				      <span class="co">-- push reg args </span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true"></a> <span class="op">++</span> pushStackArgs sArgs				      <span class="co">-- push stack args</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true"></a> <span class="op">++</span> [<span class="dt">ICall</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>)]                                 <span class="co">-- call RAX</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true"></a> <span class="op">++</span> popStackArgs  (<span class="fu">length</span> sArgs)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true"></a>    (rArgs, sArgs) <span class="ot">=</span> <span class="fu">splitAt</span> <span class="dv">6</span> args</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="a-problem-scope">A Problem: Scope</h2>
+<p>Consider the following program:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true"></a><span class="kw">let</span> one <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true"></a>  , f   <span class="ot">=</span> (lambda (it)<span class="op">:</span> it(<span class="dv">5</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true"></a>  , inc <span class="ot">=</span> (lambda (n)<span class="op">:</span> n <span class="op">+</span> one)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true"></a>  f(inc)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="a-problem-magnified-dynamically-created-functions">A Problem Magnified: Dynamically Created Functions</h2>
+<p>Will it work? How about this variant:</p>
+<pre><code>lambda(m): n + m        ----&gt;   (1, label_lam_99, [n = ???])</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a><span class="kw">let</span> addition <span class="ot">=</span> (lambda (a, b)<span class="op">:</span> a <span class="op">+</span> b) </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="kw">let</span> add    <span class="ot">=</span> (lambda (n)<span class="op">:</span> (lambda (m)<span class="op">:</span> addition(n, m)))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a>  , f      <span class="ot">=</span> (lambda (it)<span class="op">:</span> it(<span class="dv">5</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true"></a>  , plus1  <span class="ot">=</span> add(<span class="dv">1</span>)                 <span class="co">-- &lt; 1, label_lam_99, [n := 1]&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true"></a>  , plus10 <span class="ot">=</span> add(<span class="dv">10</span>)                <span class="co">-- &lt; 1, label_lam_99, [n := 10]&gt;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true"></a>  (f(plus1), f(plus10))</span></code></pre></div>
+<ul>
+<li><code>add(1)</code> should evaluate to a <strong>function-that-adds-1</strong></li>
+<li><code>add(10)</code> should evaluate to a <strong>function-that-adds-10</strong></li>
+</ul>
+<p>Yet, its <strong>the same code</strong></p>
+<ul>
+<li>same arity</li>
+<li>same start-label</li>
+</ul>
+<p><strong>Problem:</strong> How can we represent <em>different behaviors?</em></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="free-and-bound-variables">Free and Bound Variables</h2>
+<p>A variable <code>x</code> is <strong>bound</strong> inside an expression <code>e</code> if</p>
+<ul>
+<li><code>x</code> is a let-bound variable inside <code>e</code>.</li>
+<li><code>x</code> is a formal parameter in <code>e</code>, OR</li>
+</ul>
+<p>A variable <code>x</code> is <strong>free</strong> inside an expression <code>e</code> if</p>
+<ul>
+<li><code>x</code> is <strong>not bound</strong> inside <code>e</code></li>
+</ul>
+<p>For example consider the expression <code>e</code> :</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="kw">lambda</span> (m):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a>  let t <span class="op">=</span> m <span class="kw">in</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a>    n <span class="op">+</span> t</span></code></pre></div>
+<ul>
+<li><code>m</code>, <code>t</code> are <strong>bound</strong> inside <code>e</code>, but,</li>
+<li><code>n</code> is <strong>free</strong> inside <code>e</code></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="computing-free-variables">Computing Free Variables</h2>
+<p>Lets write a function to <strong>compute</strong> the set of free variables.</p>
+<p><strong>Question</strong> Why <em>Set</em> ?</p>
+<pre><code>lambda(x): x + y
+
+let x = e1 in e2
+
+- free e1 + (free e2 - x) </code></pre>
+<pre><code>Bin Plus (Id x) (Id y)
+
+
+App (Id inc) [(Id x), (Id y), (Id z)]</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="ot">freeVars ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> [<span class="dt">Id</span>]</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true"></a>freeVars e <span class="ot">=</span> S.toList (go e)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true"></a><span class="ot">    go ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">S.Set</span> <span class="dt">Id</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true"></a>    go (<span class="dt">Id</span> x)        <span class="ot">=</span> S.singleton x</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true"></a>    go (<span class="dt">Number</span> _)    <span class="ot">=</span> S.empty</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true"></a>    go (<span class="dt">Boolean</span> _)   <span class="ot">=</span> S.empty</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true"></a>    go (<span class="dt">If</span> e e1 e2)  <span class="ot">=</span> S.unions [go e, go e1, go e2]</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true"></a>    go (<span class="dt">App</span> e es)    <span class="ot">=</span> S.unions (go e <span class="op">:</span> <span class="fu">map</span> go es) </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true"></a>    go (<span class="dt">Let</span> x e1 e2) <span class="ot">=</span> S.union (go e1) (S.minus (go e2) x)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true"></a>    go (<span class="dt">Lam</span> xs e)    <span class="ot">=</span> S.difference (go e) xs</span></code></pre></div>
+<p><strong>TODO-IN-CLASS</strong></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="free-variables-and-lambdas">Free Variables and Lambdas</h2>
+<p><strong>Free Variables</strong> of a <code>lambda</code></p>
+<ul>
+<li><p>Those whose values come from <em>outside</em></p></li>
+<li><p>Should use <em>the same</em> values whenever we “call” the <code>lambda</code>.</p></li>
+</ul>
+<p>For example:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="kw">let</span> add    <span class="ot">=</span> (lambda (n)<span class="op">:</span> (lambda (m)<span class="op">:</span> n <span class="op">+</span> m))</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a>  , f      <span class="ot">=</span> (lambda (it)<span class="op">:</span> it(<span class="dv">5</span>))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true"></a>  , plus1  <span class="ot">=</span> add(<span class="dv">1</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true"></a>  , plus10 <span class="ot">=</span> add(<span class="dv">10</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a>  (f(plus1), f(plus10), plus10(<span class="dv">20</span>))</span></code></pre></div>
+<p>should evaluate to <code>(6, 15, 30)</code></p>
+<ul>
+<li><code>plus1</code> be like <code>lambda (m): 1  + m</code></li>
+<li><code>plus10</code> be like <code>lambda (m): 10 + m</code></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="achieving-closure">Achieving Closure</h2>
+<p>(Recall from CSE 130)</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="kw">let</span> add    <span class="ot">=</span> (lambda (n)<span class="op">:</span> (lambda (m)<span class="op">:</span> n <span class="op">+</span> m))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a>  , f      <span class="ot">=</span> (lambda (it)<span class="op">:</span> it(<span class="dv">5</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a>  , plus1  <span class="ot">=</span> add(<span class="dv">1</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a>  , plus10 <span class="ot">=</span> add(<span class="dv">10</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a>  (f(plus1), f(plus10), plus10(<span class="dv">20</span>))</span></code></pre></div>
+<p>should evaluate to <code>(6, 15, 30)</code></p>
+<ul>
+<li><code>plus1</code> be like <code>lambda (m): 1  + m</code></li>
+<li><code>plus10</code> be like <code>lambda (m): 10 + m</code></li>
+</ul>
+<p><strong>Key Idea:</strong> Each function value must <strong>store its free variables</strong></p>
+<p>represent <code>plus1</code> as:</p>
+<pre><code>(arity, code-label, [n := 1])</code></pre>
+<p>represent <code>plus10</code> as:</p>
+<pre><code>(arity, code-label, [n := 10])</code></pre>
+<p>Same code, but different free variables.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="strategy-progression-3">Strategy Progression</h2>
+<ol type="1">
+<li><p><strong>Representation</strong> = <code>Start-Label</code></p>
+<ul>
+<li><strong>Problem:</strong> How to do run-time checks of valid args?</li>
+</ul></li>
+<li><p><strong>Representation</strong> = <code>(Arity, Start-Label)</code></p>
+<ul>
+<li><strong>Problem:</strong> How to map function <strong>names</strong> to tuples?</li>
+</ul></li>
+<li><p><strong>Lambda Terms</strong> Make functions just another expression!</p>
+<ul>
+<li><strong>Problem:</strong> How to store local variables?</li>
+</ul></li>
+<li><p><strong>Function Value</strong> <code>(Arity, Start-Label, Free_1, ... , Free_N)</code></p>
+<ul>
+<li><strong>Ta Da!</strong></li>
+</ul></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="closures-strategy">Closures: Strategy</h2>
+<p>What if we have <em>multiple</em> free variables?</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true"></a>let foo    <span class="op">=</span> (<span class="kw">lambda</span> (x, y):</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true"></a>                (<span class="kw">lambda</span> (z): x <span class="op">+</span> y <span class="op">+</span> z)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true"></a>             )</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true"></a>  , plus10 <span class="op">=</span> foo(<span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true"></a>  , plus20 <span class="op">=</span> foo(<span class="dv">7</span>, <span class="dv">13</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true"></a>  (plus10(<span class="dv">0</span>), plus20(<span class="dv">100</span>))</span></code></pre></div>
+<p>represent <code>plus10</code> as:</p>
+<pre><code>(arity, code-label, [x := 4], [y := 6])</code></pre>
+<p>represent <code>plus20</code> as:</p>
+<pre><code>(arity, code-label, [x := 7], [y := 13])</code></pre>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="example-1">Example</h3>
+<p>Lets see how to evaluate</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true"></a>let foo    <span class="op">=</span> (<span class="kw">lambda</span> (x, y):</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true"></a>                (<span class="kw">lambda</span> (z): x <span class="op">+</span> y <span class="op">+</span> z)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true"></a>             )</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true"></a>  , plus10 <span class="op">=</span> foo(<span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true"></a>  plus10(<span class="dv">0</span>)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="example-2">Example</h3>
+<p>Lets see how to evaluate</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true"></a>let foo    <span class="op">=</span> (<span class="kw">lambda</span> (x, y):</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true"></a>                (<span class="kw">lambda</span> (z): x <span class="op">+</span> y <span class="op">+</span> z)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true"></a>             )</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true"></a>  , plus10 <span class="op">=</span> foo(<span class="dv">4</span>, <span class="dv">6</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true"></a>  , f      <span class="op">=</span> (<span class="kw">lambda</span> (it): it(<span class="dv">5</span>))</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true"></a>  f(plus10)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="implementation-1">Implementation</h3>
+<p><strong>Representation</strong></p>
+<ol type="1">
+<li>How to store closures</li>
+</ol>
+<p><strong>Types:</strong></p>
+<ul>
+<li>Same as before</li>
+</ul>
+<p><strong>Transforms</strong></p>
+<ol type="1">
+<li><p>Update <code>tag</code> and <code>ANF</code></p>
+<ul>
+<li>as before</li>
+</ul></li>
+<li><p>Update <code>checker</code></p></li>
+<li><p>Update <code>compile</code></p></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="representation">Representation</h3>
+<p>We can represent a <strong>closure</strong> as a tuple of</p>
+<pre><code>(arity, code-ptr, free-var-1, ... free-var-N)</code></pre>
+<p>which means, following the convention for tuples, as:</p>
+<pre><code>------------------------------------------------
+| N + 2 | arity | code-ptr | var1 | ... | varN |
+------------------------------------------------</code></pre>
+<p>Where each cell represents 64-bits / 8-bytes / 1-(double)word.</p>
+<p><strong>Note:</strong> (As with all tuples) the first word contains the #elements of the tuple.</p>
+<ul>
+<li>In this case <code>N + 2</code></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-checker-1">Transforms: Checker</h3>
+<p>What environment should we use to check a <code>Lam</code> <strong>body</strong> ?</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true"></a><span class="ot">wellFormed ::</span> <span class="dt">BareExpr</span> <span class="ot">-&gt;</span> [<span class="dt">UserError</span>]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true"></a>wellFormed <span class="ot">=</span> go emptyEnv</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true"></a>    <span class="op">...</span>  </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true"></a>    go vEnv (<span class="dt">Lam</span> xs e _) <span class="ot">=</span> errDupParams xs</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true"></a>                        <span class="op">++</span> go <span class="op">?</span>vEnv e</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true"></a><span class="ot">addsEnv ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> [<span class="dt">BareBind</span>] <span class="ot">-&gt;</span> <span class="dt">Env</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true"></a>addsEnv env xs <span class="ot">=</span> <span class="fu">foldr</span> addEnv env xs</span></code></pre></div>
+<p><strong>QUIZ</strong> How shall we implement <code>?vEnv</code> ?</p>
+<p><strong>A.</strong> <code>addsEnv vEnv     []</code></p>
+<p><strong>B.</strong> <code>addsEnv vEnv     xs</code></p>
+<p><strong>C.</strong> <code>addsEnv emptyEnv xs</code></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-compile">Transforms: Compile</h3>
+<p><strong>Question</strong> How does the called function <strong>know</strong> the values of free vars?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<ul>
+<li>Needs to <strong>restore them</strong> from closure tuple</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<ul>
+<li>Needs to <strong>access</strong> the closure tuple!</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>… But how shall we give the called function <strong>access</strong> to the tuple?</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<p><strong>By passing the tuple as an <em>extra parameter</em></strong></p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-compile-1">Transforms: Compile</h3>
+<p><strong>Calls</strong> <code>App</code> (as before)</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<ol type="1">
+<li><strong>Push</strong> <em>closure-pointer</em> + parameters</li>
+<li><strong>Call</strong> code-label</li>
+<li><strong>Pop</strong> <em>closure-pointer</em> + params</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br></p>
+<p><strong>Definitions</strong> <code>Lam</code></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<ol type="1">
+<li><strong>Compute</strong> <em>free-vars</em> <code>x1</code>,…,<code>xn</code></li>
+<li><strong>Generate</strong> code-block</li>
+</ol>
+<ul>
+<li><strong>Restore</strong> free vars from closure-pointer-parameter <strong>New</strong></li>
+<li><strong>Execute</strong> function body (as before)</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Allocate</strong> tuple <code>(arity, code-label, x1, ... , xn)</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="transforms-compile-definitions">Transforms: Compile Definitions</h3>
+<ol type="1">
+<li><strong>Compute</strong> <em>free-vars</em> <code>y1</code>,…,<code>yn</code></li>
+<li><strong>Generate</strong> code-block</li>
+</ol>
+<ul>
+<li><strong>Restore</strong> free vars from closure-pointer-parameter</li>
+<li><strong>Execute</strong> function body (as before)</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Allocate</strong> tuple <code>(arity, code-label, y1, ... , yn)</code></li>
+</ol>
+<div class="sourceCode" id="cb52"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true"></a><span class="ot">compileEnv ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">AExp</span> <span class="ot">-&gt;</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true"></a>compileEnv env (<span class="dt">Lam</span> xs e l)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true"></a>  <span class="ot">=</span> <span class="dt">IJmp</span>   end                       <span class="co">-- Why?</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true"></a>  <span class="op">:</span> <span class="dt">ILabel</span> start                     <span class="co">-- Function start</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true"></a>  <span class="op">:</span> lambdaBody ys xs e               <span class="co">-- Function code (like Decl)</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true"></a> <span class="op">++</span> <span class="dt">ILabel</span> end                       <span class="co">-- Function end</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true"></a>  <span class="op">:</span> lamTuple arity start env ys      <span class="co">-- Compile closure-tuple into RAX</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true"></a>  <span class="kw">where</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true"></a>    ys    <span class="ot">=</span> freeVars (<span class="dt">Lam</span> xs e l)</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true"></a>    arity <span class="ot">=</span> <span class="fu">length</span> xs</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true"></a>    start <span class="ot">=</span> <span class="dt">LamStart</span> l</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true"></a>    end   <span class="ot">=</span> <span class="dt">LamEnd</span>   l</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="creating-closure-tuples">Creating Closure Tuples</h3>
+<p>To create the actual closure-tuple we need</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<ul>
+<li>the <strong>free-variables</strong> <code>ys</code></li>
+<li>the <code>env</code> from which to <strong>values</strong> of the free variables.</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true"></a><span class="ot">lamTuple ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Label</span> <span class="ot">-&gt;</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> [<span class="dt">Id</span>] <span class="ot">-&gt;</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true"></a>lamTuple arity start env ys</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true"></a>  <span class="ot">=</span>  tupleAlloc  (<span class="dv">2</span> <span class="op">+</span> <span class="fu">length</span> ys)                    <span class="co">-- alloc tuple 2 + |ys|  </span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true"></a>  <span class="op">++</span> tupleWrites ( repr arity                       <span class="co">-- fill arity</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true"></a>                 <span class="op">:</span> <span class="dt">CodePtr</span> start                    <span class="co">-- fill code-ptr</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true"></a>                 <span class="op">:</span> [immArg env (<span class="dt">Id</span> y) <span class="op">|</span> y <span class="ot">&lt;-</span> ys] )  <span class="co">-- fill free-vars</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true"></a>  <span class="op">++</span> [ <span class="dt">IOr</span>  (<span class="dt">Reg</span> <span class="dt">RAX</span>) (typeTag <span class="dt">TClosure</span>) ]          <span class="co">-- set the tag bits</span></span></code></pre></div>
+<h3 id="generating-code-block">Generating Code Block</h3>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true"></a><span class="ot">lambdaBody ::</span> [<span class="dt">Id</span>] <span class="ot">-&gt;</span> [<span class="dt">Id</span>] <span class="ot">-&gt;</span> <span class="dt">AExp</span> <span class="ot">-&gt;</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true"></a>lambdaBody ys xs e <span class="ot">=</span> </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true"></a>    funEntry n               <span class="co">-- 1. setup  stack frame RBP/RSP</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true"></a> <span class="op">++</span> copyArgs xs'             <span class="co">-- 2. copy parameters to stack slots</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true"></a> <span class="op">++</span> restore nXs ys           <span class="co">-- 3. copy (closure) free vars to stack slots</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true"></a> <span class="op">++</span> compileEnv env body      <span class="co">-- 4. execute 'body' with result in RAX</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true"></a> <span class="op">++</span> funExit n                <span class="co">-- 5. teardown stack frame &amp; return </span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>To <code>restore ys</code> we use the closure-ptr passed in at <code>[RDI]</code> – the special <strong>first</strong> parameter – to copy the free-vars <code>ys</code> onto the stack.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true"></a><span class="ot">restore ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> [<span class="dt">Id</span>] <span class="ot">-&gt;</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true"></a>restore base ys <span class="ot">=</span> </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true"></a>  <span class="fu">concat</span> [ copy i <span class="op">|</span> (_, i) <span class="ot">&lt;-</span> <span class="fu">zip</span> ys [<span class="dv">1</span><span class="op">..</span>]]</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true"></a>    <span class="kw">where</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true"></a>      closV  <span class="ot">=</span> <span class="dt">Reg</span> <span class="dt">RDI</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true"></a>      copy i <span class="ot">=</span> tupleReadRaw closV (repr (i<span class="op">+</span><span class="dv">1</span>))	       <span class="co">-- copy tuple-fld for y into RAX...</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true"></a>            <span class="op">++</span> [ <span class="dt">IMov</span> (stackVar (base<span class="op">+</span>i)) (<span class="dt">Reg</span> <span class="dt">RAX</span>) ]  <span class="co">-- ...write RAX into stackVar for y</span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="a-problem-recursion">A Problem: Recursion</h2>
+<p>Oops, how do we write:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true"></a><span class="kw">def</span> fac(n):</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true"></a>  <span class="cf">if</span> (n <span class="op">&gt;</span> <span class="dv">1</span>):</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true"></a>    n <span class="op">*</span> fac(n<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true"></a>  <span class="cf">else</span>:</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true"></a>    <span class="dv">1</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true"></a>fac(<span class="dv">5</span>)  </span></code></pre></div>
+<p>If we try</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true"></a>let fac <span class="op">=</span> (<span class="kw">lambda</span> (n):</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true"></a>             <span class="cf">if</span> (n <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true"></a>               <span class="dv">1</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true"></a>             <span class="cf">else</span>:</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true"></a>               n <span class="op">*</span> fac(n<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true"></a><span class="kw">in</span> fac(<span class="dv">5</span>)  </span></code></pre></div>
+<p>We get a variable unbound error!</p>
+<pre><code>Errors found!
+tests/input/fac-bad.fdl:5:20-23: Unbound variable 'fac'
+
+         5|                 n * fac(n-1))</code></pre>
+<p>We need to teach our compiler that its ok to use the name <code>fac</code> inside the body!</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="solution-named-functions">Solution: Named Functions</h3>
+<p>We have a new form of <strong>named functions</strong> which looks like this:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true"></a><span class="kw">def</span> fac(n):</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true"></a>  <span class="cf">if</span> (n <span class="op">&lt;</span> <span class="dv">1</span>):</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true"></a>    <span class="dv">1</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true"></a>  <span class="cf">else</span>:</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true"></a>    n <span class="op">*</span> fac(n <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true"></a>  fac(<span class="dv">5</span>)</span></code></pre></div>
+<h3 id="representing-named-functions">Representing Named Functions</h3>
+<p>We extend <code>Expr</code> to handle such functions as:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Expr</span> a</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">Fun</span>     (<span class="dt">Bind</span> a)      <span class="co">-- ^ name of function</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true"></a>            [<span class="dt">Bind</span> a]      <span class="co">-- ^ list of parameters  </span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true"></a>            (<span class="dt">Expr</span> a) a    <span class="co">-- ^ body of function</span></span></code></pre></div>
+<p>Note that we parse the code</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true"></a><span class="kw">def</span> foo(x1,...,xn):</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true"></a>  e</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true"></a>  e<span class="st">'</span></span></code></pre></div>
+<p>as the <code>Expr</code></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true"></a><span class="dt">Let</span> foo (<span class="dt">Fun</span> foo [x1,<span class="op">...</span>,xn] e) e'</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h3 id="compiling-named-functions">Compiling Named Functions</h3>
+<p>Mostly, this is left as an exercise to <em>you</em></p>
+<p><br> <br> <br> <br> <br></p>
+<p><strong>Non-Recursive</strong> functions</p>
+<p><br> <br> <br> <br> <br></p>
+<ul>
+<li>i.e. <code>f</code> <em>does not</em> appear inside <code>e</code> in <code>Fun f xs e</code></li>
+<li>Treat <code>Fun f xs e</code> as <code>Lam xs e</code> …</li>
+<li>… Everything should <em>just work</em>.</li>
+</ul>
+<p><strong>Recursive</strong></p>
+<p><br> <br> <br> <br> <br></p>
+<ul>
+<li>i.e. <code>f</code> <em>does</em> appear inside <code>e</code> in <code>Fun f xs e</code></li>
+<li>Can you think of a simple tweak to the <code>Lam</code> strategy that works?</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="recap-functions-as-values">Recap: Functions as Values</h2>
+<p>We had functions, but they were <em>second-class</em> entities…</p>
+<p>Now, they are <em>first-class</em> values</p>
+<ul>
+<li>passed around as parameters</li>
+<li>returned from functions</li>
+<li>stored in tuples etc.</li>
+</ul>
+<p>How?</p>
+<ol type="1">
+<li><p><strong>Representation</strong> = <code>Start-Label</code></p>
+<ul>
+<li><strong>Problem:</strong> How to do run-time checks of valid args?</li>
+</ul></li>
+<li><p><strong>Representation</strong> = <code>(Arity, Start-Label)</code></p>
+<ul>
+<li><strong>Problem:</strong> How to map function <strong>names</strong> to tuples?</li>
+</ul></li>
+<li><p><strong>Lambda Terms</strong> Make functions just another expression!</p>
+<ul>
+<li><strong>Problem:</strong> How to store local variables?</li>
+</ul></li>
+<li><p><strong>Function Value</strong> <code>(Arity, Start-Label, Free_1, ... , Free_N)</code></p>
+<ul>
+<li><strong>Ta Da!</strong></li>
+</ul></li>
+</ol>
+<p><strong>Next:</strong> Adding <strong>garbage collection</strong></p>
+<ul>
+<li><em>Reclaim!</em> Heap memory that is no longer in use</li>
+</ul>
+<p><strong>Next:</strong> Adding <strong>static type inference</strong></p>
+<ul>
+<li><em>Faster!</em> Gets rid of those annoying (and slow!) run-time checks</li>
+<li><em>Safer!</em> Catches problems at compile-time, when easiest to fix!</li>
+</ul>	
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://ucsd-cse131.github.io/sp21/feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ranjitjhala" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                     
+                     
+                    <li>
+                        <a href="https://github.com/ucsd-cse131/sp21" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Ranjit Jhala 2016-21. 
+      	        Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+		Please suggest fixes <a href="http://github.com/ucsd-cse131/sp21">here.</a><br><br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://ucsd-cse131.github.io/sp21/static/js/jquery.min.js"></script>
+<script src="https://ucsd-cse131.github.io/sp21/static/js/spaceg.stylesheets.min.js"></script> 
+<script src="https://ucsd-cse131.github.io/sp21/static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://ucsd-cse131.github.io/sp21/static/js/anim.js"></script>
+<script src="https://ucsd-cse131.github.io/sp21/static/js/scripts.js"></script>
+
+
+
+    </body>
+</html>

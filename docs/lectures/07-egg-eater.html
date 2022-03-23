@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <!--
+      loads the http over https ssl -
+      welcome to my website!
+
+	this theme is based off the Ice & Fire theme created by Lucas Gatsas
+      https://www.twitter.com/LucasGatsas
+      www.lucasgatsas.ch - switzerland.
+  -->
+
+
+<!-- Microsoft Internet Explorer documentMode compatMode setting IE Modus -->
+<script type="text/javascript">
+var IE = null;
+if (window.navigator.appName == "Microsoft Internet Explorer") {
+  if (document.documentMode) {
+
+    IE = document.documentMode;
+    } else {
+
+        IE = 5;
+          if (document.compatMode) {
+      if (document.compatMode == "CSS1Compat")
+      IE = 11;
+      }
+    }
+  }
+</script>
+
+    <meta charset="utf-8">
+    <!-- X-UA -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <link rel="author" title="Ranjit Jhala" href="http://ranjitjhala.github.io" />
+
+    <meta name="google" content="notranslate" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- index ROBOTS follow -->
+    <meta name="robots" content="index, follow" />
+    <!-- Site Desciption -->
+    <meta name="description" content="UCSD CSE 131">
+    <!-- Site Desciption -->
+    <meta name="keywords" content="Ranjit Jhala, ranjitjhala, haskell, compilers, type systems">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://ucsd-cse131.github.io/sp21/static/img/ico.jpg" type="image/x-icon" />
+    <!-- Blog Title -->
+    <title>cse131</title>
+
+    <!--     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+-->
+    <!-- Property Metas -->
+    <meta property="og:image" content="https://ucsd-cse131.github.io/sp21/static/img/ix.png" />
+    <meta property="og:title" content="UCSD CSE 131" />
+    <meta property="og:site_name" content="UCSD CSE 131" />
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/ronacher.css" type="text/css">
+<!--    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/spaceg.stylesheets.css"> -->
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/syntax.css">
+    <link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/liquid-light.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+	#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:url("/static/img/preloader.gif"); /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	ul, ol {margin-top: 0;margin-bottom: 10px;}
+	.navbar-inverse {background-color: #FFF;border-color: #FFFFFF;}
+</style>
+<!--link rel="stylesheet" href="https://ucsd-cse131.github.io/sp21/static/css/prettify.css"-->
+<style>
+	header.intro-header {background: #6f5499;background: no-repeat center center;background-attachment: scroll;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;}
+	/* Preloader */#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff; /* change if the mask should have another color then white */z-index:99; /* makes sure it stays on top */}
+	#status {width:200px;height:200px;position:absolute;left:50%; /* centers the loading animation horizontally one the screen */top:50%; /* centers the loading animation vertically one the screen */background-image:; /* path to your loading animation */background-repeat:no-repeat;background-position:center;margin:-100px 0 0 -100px; /* is width and height divided by two */}
+	li {list-style: none;}
+            body.modal-open
+            {overflow: hidden;padding-right: 0px;
+        }
+	article li {list-style: inherit;}
+	article .figure {text-align: center}
+    </style>
+    <!-- end Loading front stylesheet here -->
+    </head>
+
+    <body>
+	<div id="preloader">
+	    <div id="status">
+
+	    </div>
+
+	</div>  
+	<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://ucsd-cse131.github.io/sp21" id="blog-title-left-top">cse131</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- <li class="dropdown">
+                    <a href="#portfolioModal2" data-toggle="modal"><i class="fa fa-random" id="icon-top"></i></a>
+                <ul class="dropdown-menu"></ul>
+                </li>-->
+                
+                <!-- <li><a href="https://ucsd-cse131.github.io/sp21/calendar.html">Calendar</a></li> -->
+                <li><a href="https://canvas.ucsd.edu/FIXME">Canvas</a></li>
+                <li><a href="https://discord.com/channels/826242480529211414/826242480957292557">Discord</a></li>
+                <li><a href="https://www.piazza.com/ucsd/spring2021/cse131/home">Piazza</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/contact.html">Contact</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/grades.html">Grades</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/lectures.html">Lectures</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/assignments.html">Assignments</a></li>
+                <li><a href="https://ucsd-cse131.github.io/sp21/links.html">Links</a></li>
+
+                <!--
+                <li><a href="https://ucsd-cse131.github.io/sp21/archive.html">Archive</a></li>
+                <li><a href="https://www.twitter.com/ranjitjhala" id="roundbutton" target="_blank"><i class="fa fa-twitter"></i>RanjitJhala</a></li>
+                -->
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <img src="https://ucsd-cse131.github.io/sp21/static/img/kc.jpg" class="img-responsive img-centered" alt title>
+                            <p class="font-style-inline-small">
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow me</a>. <br>
+                                <a href="https://www.github.com/ucsd-cse131/sp21" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                                <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                                <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>
+                            </p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Menu Modals Add New Sa.21.Feb.2015 03:22:25 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right:0px; overflow: hidden;">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h1 class="font-style-inline-small-h1">Ranjit Jhala</h1>
+                            <hr class="star-primary">
+                            <p class="font-style-inline-small">
+                        <a href="https://www.twitter.com/ranjitjhala" target="_blank">follow</a>. <br>
+                        <a href="https://www.github.com/ucsd-cse131/sp21" target="_blank">    <i class="fa fa-github" id="spaceg-social-modal"></i> </a>
+                        <a href="https://www.twitter.com/ranjitjhala" target="_blank"><i class="fa fa-twitter" id="spaceg-social-modal"></i> </a>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" target="_blank"> <i class="fa fa-google-plus" id="spaceg-social-modal"></i></a>  <br>
+                    <li><a href="https://ucsd-cse131.github.io/sp21/">Home</a></li>
+                    <li><a href="https://ucsd-cse131.github.io/sp21/about.html">About Me</a></li>
+                    <li><a href="https://ucsd-cse131.github.io/sp21/archive.html/">Archive</a></li>
+                            </p>
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div id="content">
+            <!-- Post Header -->
+<header class="intro-header" style="background-image: url('https://ucsd-cse131.github.io/sp21/static/img/egg-eater.jpg')" alt title>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Data on the Heap</h1>
+                    
+                    <span class="meta">
+		    
+		    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<p>Next, lets add support for</p>
+<ul>
+<li><strong>Data Structures</strong></li>
+</ul>
+<p>In the process of doing so, we will learn about</p>
+<ul>
+<li><p><strong>Heap Allocation</strong></p></li>
+<li><p><strong>Run-time Tags</strong></p></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="creating-heap-data-structures">Creating Heap Data Structures</h2>
+<p>We have already support for <em>two</em> primitive data types</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Ty</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="dt">TNumber</span>     <span class="co">-- e.g. 0,1,2,3,...</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">TBoolean</span>    <span class="co">-- e.g. true, false</span></span></code></pre></div>
+<p>we could add several more of course, e.g.</p>
+<ul>
+<li><code>Char</code></li>
+<li><code>Double</code> or <code>Float</code></li>
+</ul>
+<p>etc. (you should do it!)</p>
+<p>However, for all of those, the same principle applies, more or less</p>
+<ul>
+<li>As long as the data fits into a single word (8-bytes)</li>
+</ul>
+<p>Instead, lets learn how to make <strong>unbounded data structures</strong></p>
+<ul>
+<li>Lists</li>
+<li>Trees</li>
+<li>…</li>
+</ul>
+<p>which require us to put data on the <strong>heap</strong></p>
+<blockquote>
+<p>not just the <em>stack</em> that we’ve used so far.</p>
+</blockquote>
+<figure>
+<img src="../static/img/memory-layout.png" alt /><figcaption>Stack vs. Heap</figcaption>
+</figure>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="pairs">Pairs</h2>
+<p>While our <em>goal</em> is to get to lists and trees, the journey of a thousand miles begins with a single step…</p>
+<p>So! we will <em>begin</em> with the humble <strong>pair</strong>.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="pairs-semantics-behavior">Pairs: Semantics (Behavior)</h2>
+<p>First, lets ponder what exactly we’re trying to achieve.</p>
+<p>We want to enrich our language with <em>two</em> new constructs:</p>
+<ul>
+<li><p><strong>Constructing</strong> pairs, with a new expression of the form <code>(e0, e1)</code> where <code>e0</code> and <code>e1</code> are expressions.</p></li>
+<li><p><strong>Accessing</strong> pairs, with new expressions of the form <code>e[0]</code> and <code>e[1]</code> which evaluate to the first and second element of the tuple <code>e</code> respectively.</p></li>
+</ul>
+<p>For example,</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">let</span> t <span class="ot">=</span> (<span class="dv">2</span>, <span class="dv">3</span>) <span class="kw">in</span>  </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  t[<span class="dv">0</span>] <span class="op">+</span> t[<span class="dv">1</span>]</span></code></pre></div>
+<p>should evaluate to <code>5</code>.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="strategy">Strategy</h2>
+<p>Next, lets informally develop a strategy for extending our language with pairs, implementing the above semantics. We need to work out strategies for:</p>
+<ol type="1">
+<li><strong>Representing</strong> pairs in the machine’s memory,</li>
+<li><strong>Constructing</strong> pairs (i.e. implementing <code>(e0, e1)</code> in assembly),</li>
+<li><strong>Accessing</strong> pairs (i.e. implementing <code>e[0]</code> and <code>e[1]</code> in assembly).</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="representation">1. Representation</h2>
+<p>Recall that we <a href="05-cobra.md/#option-2-use-a-tag-bit">represent all values:</a></p>
+<ul>
+<li><code>Number</code> like <code>0</code>, <code>1</code>, <code>2</code> …</li>
+<li><code>Boolean</code> like <code>true</code>, <code>false</code></li>
+</ul>
+<p>as a <strong>single word</strong> either</p>
+<ul>
+<li>8 bytes on the stack, or</li>
+<li>a single register <code>rax</code>, <code>rbx</code> etc.</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="exercise">EXERCISE</h2>
+<p>What kinds of problems do you think might arise if we represent a pair <code>(2, 3)</code> on the <em>stack</em> as:</p>
+<pre><code>|     |
+-------
+|  3  |
+-------
+|  2  |  
+-------
+| ... |
+-------</code></pre>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz">QUIZ</h2>
+<p>How many words would we need to store the tuple</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>(<span class="dv">3</span>, (<span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div>
+<ol type="1">
+<li><code>1</code> word</li>
+<li><code>2</code> words</li>
+<li><code>3</code> words</li>
+<li><code>4</code> words</li>
+<li><code>5</code> words</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<!--  
+### Pairs vs. Primitive Values
+
+The main difference between pairs and primitive values
+like `number` and `boolean` is that there is no _fixed_
+or _bounded_ amount of space we can give to a pair.
+For example:
+
+* `(4, 5)` takes at least 2 words,
+* `(3, (4, 5))` takes at least 3 words,
+* `(2, (3, (4, 5)))` takes at least 4 words  and so on.
+
+Thus, once you start _nesting_ pairs we can't neatly tuck
+all the data into a fixed number of 1- or 2- word slots.
+
+-->
+<h3 id="pointers">Pointers</h3>
+<blockquote>
+<p>Every problem in computing can be solved by adding a level of indirection.</p>
+</blockquote>
+<p>We will <strong>represent a pair</strong> by a <strong>pointer</strong> to a block of <strong>two adjacent words</strong> of memory.</p>
+<figure>
+<img src="../static/img/heap-pairs.png" alt /><figcaption>Pairs on the heap</figcaption>
+</figure>
+<p>The above shows how the pair <code>(2, (3, (4, 5)))</code> and its sub-pairs can be stored in the <strong>heap</strong> using pointers.</p>
+<p><code>(4, 5)</code> is stored by adjacent words storing</p>
+<ul>
+<li><code>4</code> and</li>
+<li><code>5</code></li>
+</ul>
+<p><code>(3, (4, 5))</code> is stored by adjacent words storing</p>
+<ul>
+<li><code>3</code> and</li>
+<li>a <strong>pointer</strong> to a heap location storing <code>(4, 5)</code></li>
+</ul>
+<p><code>(2, (3, (4, 5)))</code> is stored by adjacent words storing</p>
+<ul>
+<li><code>2</code> and</li>
+<li>a <strong>pointer</strong> to a heap location storing <code>(3, (4, 5))</code>.</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="a-problem-numbers-vs.-pointers">A Problem: Numbers vs. Pointers?</h2>
+<p>How will we tell the difference between <em>numbers</em> and <em>pointers</em>?</p>
+<p>That is, how can we tell the difference between</p>
+<ol type="1">
+<li>the <em>number</em> 5 and</li>
+<li>a <em>pointer</em> to a block of memory (with address <code>5</code>)?</li>
+</ol>
+<p>Each of the above corresponds to a <em>different</em> tuple</p>
+<ol type="1">
+<li><code>(4, 5)</code> or</li>
+<li><code>(4, (...))</code>.</li>
+</ol>
+<p>so its pretty crucial that we have a way of knowing <em>which</em> value it is.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="tagging-pointers">Tagging Pointers</h2>
+<p>As you might have guessed, we can extend our <a href="05-cobra.md/#option-2-use-a-tag-bit">tagging mechanism</a> to account for <em>pointers</em>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Type</th>
+<th style="text-align: right;">LSB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><code>number</code></td>
+<td style="text-align: right;">xx0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>boolean</code></td>
+<td style="text-align: right;">111</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>pointer</code></td>
+<td style="text-align: right;">001</td>
+</tr>
+</tbody>
+</table>
+<p>That is, for</p>
+<ul>
+<li><code>number</code> the <strong>last bit</strong> will be <code>0</code> (as before),</li>
+<li><code>boolean</code> the <strong>last 3 bits</strong> will be <code>111</code> (as before), and</li>
+<li><code>pointer</code> the <strong>last 3 bits</strong> will be <code>001</code>.</li>
+</ul>
+<p>(We have 3-bits worth for tags, so have wiggle room for other primitive types.)</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="address-alignment">Address Alignment</h2>
+<p>As we have a <strong>3 bit tag</strong></p>
+<ul>
+<li>leaving <strong>64 - 3 = 61 bits</strong> for the actual address</li>
+</ul>
+<p>So actual addresses, written in binary, omitting trailing zeros, are of the form</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Binary</th>
+<th style="text-align: right;">Decimal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><code>0b00000000</code></td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>0b00001000</code></td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>0b00010000</code></td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>0b00011000</code></td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>0b00100000</code></td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">…</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p>That is, the addresses are <strong>8-byte aligned</strong>.</p>
+<p>Which is great because at each address, we have a pair, i.e. a <strong>2-word = 16-byte block</strong>, so the <em>next</em> allocated address will <em>also</em> fall on an 8-byte boundary.</p>
+<ul>
+<li>But … what if we had 3-tuples? or 5-tuples? …</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="construction">2. Construction</h2>
+<p>Next, lets look at how to implement pair <strong>construction</strong> that is, generate the assembly for expressions like:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>(e1, e2)</span></code></pre></div>
+<p>To <strong>construct</strong> a pair <code>(e1, e2)</code> we</p>
+<ol type="1">
+<li><strong>Allocate</strong> a new 2-word block, and getting the starting address at <code>rax</code>,</li>
+<li><strong>Copy</strong> the value of <code>e1</code> (resp. <code>e2</code>) into <code>[rax]</code> (resp. <code>[rax + 8]</code>).</li>
+<li><strong>Tag</strong> the last bit of <code>rax</code> with <code>1</code>.</li>
+</ol>
+<p>The resulting <code>eax</code> is the <strong>value of the pair</strong></p>
+<ul>
+<li>The <em>last step</em> ensures that the value carries the proper tag.</li>
+</ul>
+<p>ANF will ensure that <code>e1</code> and <code>e2</code> are <a href="04-boa.md/#idea-immediate-expressions">immediate expressions</a></p>
+<ul>
+<li>will make the second step above straightforward.</li>
+</ul>
+<p><strong>EXERCISE</strong> How will we do ANF conversion for <code>(e1, e2)</code>?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="allocating-addresses">Allocating Addresses</h2>
+<p>Lets use a <strong>global</strong> register <code>r15</code> to maintain the address of the <strong>next free block</strong> on the heap.</p>
+<p>Every time we need a <em>new</em> block, we will:</p>
+<p><strong>1. Copy</strong> the current <code>r15</code> into <code>rax</code></p>
+<ul>
+<li>Set the last bit to <code>1</code> to ensure proper tagging.</li>
+<li><code>rax</code> will be used to fill in the values</li>
+</ul>
+<p><strong>2. Increment</strong> the value of <code>r15</code> by <code>16</code></p>
+<ul>
+<li>Thus <em>allocating</em> 8 bytes (= 2 words) at the address in <code>rax</code></li>
+</ul>
+<p>Note that addresses stay 8-byte aligned (last 3 bits = 0) if we</p>
+<ul>
+<li><em>Start</em> our blocks at an 8-byte boundary, and</li>
+<li><em>Allocate</em> 16 bytes at a time,</li>
+</ul>
+<p><strong>NOTE:</strong> Your assignment will have <em>blocks of varying sizes</em></p>
+<ul>
+<li>You will have to <em>maintain</em> the 8-byte alignment by <em>padding</em></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="example-allocation">Example: Allocation</h2>
+<p>In the figure below, we have</p>
+<ul>
+<li>a source program on the left,</li>
+<li>the ANF equivalent next to it.</li>
+</ul>
+<figure>
+<img src="../static/img/example-pair-code.png" alt /><figcaption>Example of Pairs</figcaption>
+</figure>
+<p>The figure below shows the how the heap and <code>r15</code> evolve at points 1, 2 and 3:</p>
+<figure>
+<img src="../static/img/example-pair-heaps.png" alt /><figcaption>Allocating Pairs on the Heap</figcaption>
+</figure>
+<h2 id="quiz-1">QUIZ</h2>
+<p>In the ANF version, <code>p</code> is the <em>second (local) variable</em> stored in the stack frame. What <em>value</em> gets moved into the <em>second stack slot</em> when evaluating the above program?</p>
+<ol type="1">
+<li><code>0x3</code></li>
+<li><code>(3, (4, 5))</code></li>
+<li><code>0x11</code></li>
+<li><code>0x9</code></li>
+<li><code>0x10</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="accessing">3. Accessing</h2>
+<p>Finally, to <strong>access</strong> the elements of a pair</p>
+<p>Lets compile <code>e[0]</code> to get the first or <code>e[1]</code> to get the second element</p>
+<ol type="1">
+<li><strong>Check</strong> that immediate value <code>e</code> is a pointer</li>
+<li><strong>Load</strong> <code>e</code> into <code>rbx</code></li>
+<li><strong>Remove</strong> the tag bit from <code>rbx</code></li>
+<li><strong>Copy</strong> the value in <code>[rbx]</code> (resp. <code>[rbx + 8]</code>) into <code>rbx</code>.</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="example-access">Example: Access</h2>
+<p>Here is a snapshot of the heap after the pair(s) are allocated.</p>
+<figure>
+<img src="../static/img/example-pair-heap.png" alt /><figcaption>Allocating Pairs on the Heap</figcaption>
+</figure>
+<p>Lets work out how the values corresponding to <code>x</code>, <code>y</code> and <code>z</code> in the example above get stored on the stack frame in the course of evaluation.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Variable</th>
+<th style="text-align: right;">Hex Value</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><code>anf0</code></td>
+<td style="text-align: right;"><code>0x001</code></td>
+<td style="text-align: right;"><code>ptr 0</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>p</code></td>
+<td style="text-align: right;"><code>0x011</code></td>
+<td style="text-align: right;"><code>ptr 16</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>x</code></td>
+<td style="text-align: right;"><code>0x006</code></td>
+<td style="text-align: right;"><code>num 3</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>anf1</code></td>
+<td style="text-align: right;"><code>0x001</code></td>
+<td style="text-align: right;"><code>ptr 0</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>y</code></td>
+<td style="text-align: right;"><code>0x008</code></td>
+<td style="text-align: right;"><code>num 4</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>z</code></td>
+<td style="text-align: right;"><code>0x00A</code></td>
+<td style="text-align: right;"><code>num 5</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>anf2</code></td>
+<td style="text-align: right;"><code>0x00E</code></td>
+<td style="text-align: right;"><code>num 7</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">result</td>
+<td style="text-align: right;"><code>0x018</code></td>
+<td style="text-align: right;"><code>num 12</code></td>
+</tr>
+</tbody>
+</table>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="plan">Plan</h2>
+<p>Pretty pictures are well and good, time to build stuff!</p>
+<p>As usual, lets continue with our recipe:</p>
+<ol type="1">
+<li>Run-time</li>
+<li>Types</li>
+<li>Transforms</li>
+</ol>
+<p>We’ve already built up intuition of the <em>strategy</em> for implementing tuples.</p>
+<p>Next, lets look at how to implement each of the above.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="run-time">Run-Time</h2>
+<p>We need to extend the run-time (<code>c-bits/main.c</code>) in two ways.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<ol type="1">
+<li><p><strong>Allocate</strong> a chunk of space on the heap and pass in start address to <code>our_code</code>.</p></li>
+<li><p><strong>Print</strong> pairs properly.</p></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="allocation">Allocation</h2>
+<p>The first step is quite easy we can use <code>calloc</code> as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span>** argv) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>  <span class="dt">int</span>* HEAP = calloc(HEAP_SIZE, <span class="kw">sizeof</span> (<span class="dt">int</span>));</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>  <span class="dt">long</span> result = our_code_starts_here(HEAP);</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>  print(result);</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>}</span></code></pre></div>
+<p>The above code,</p>
+<ol type="1">
+<li><strong>Allocates</strong> a big block of contiguous memory (starting at <code>HEAP</code>), and</li>
+<li><strong>Passes</strong> this address in to <code>our_code</code>.</li>
+</ol>
+<p>Now, <code>our_code</code> needs to, at the beginning start with instructions that</p>
+<ul>
+<li>copy the parameter (in <code>rdi</code>) into global pointer (<code>r15</code>)</li>
+<li>and then bump it up at each allocation.</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="printing">Printing</h2>
+<p>To print pairs, we must <strong>recursively traverse</strong> pointers</p>
+<ul>
+<li>until we hit <code>number</code> or <code>boolean</code>.</li>
+</ul>
+<p>We can check if a value is a pair by looking at its last 3 bits:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="dt">int</span> isPair(<span class="dt">int</span> p) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>  <span class="cf">return</span> (p &amp; <span class="bn">0x00000007</span>) == <span class="bn">0x00000001</span>;</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>}</span></code></pre></div>
+<p>We can use the above test to recursively print (word)-values:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="dt">void</span> print(<span class="dt">long</span> val) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>  <span class="cf">if</span>(val &amp; <span class="bn">0x1</span> == <span class="dv">0</span>) { <span class="co">// val is a number</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>    printf(<span class="st">&quot;%ld&quot;</span>, val &gt;&gt; <span class="dv">1</span>);</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>  }</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  <span class="cf">else</span> <span class="cf">if</span>(val == CONST_TRUE) {        <span class="co">// val is true</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a>    printf(<span class="st">&quot;true&quot;</span>);</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>  }</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>  <span class="cf">else</span> <span class="cf">if</span>(val == CONST_FALSE) {       <span class="co">// val is false</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>    printf(<span class="st">&quot;false&quot;</span>);</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>  }</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a>  <span class="cf">else</span> <span class="cf">if</span>(val &amp; <span class="dv">7</span> == <span class="dv">1</span>) {            </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true"></a>    <span class="dt">long</span>* valp = (<span class="dt">long</span> *) (val - <span class="dv">1</span>);  <span class="co">// extract address  </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true"></a>    printf(<span class="st">&quot;(&quot;</span>);</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true"></a>    print(*valp);                     <span class="co">// print first element</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true"></a>    printf(<span class="st">&quot;, &quot;</span>);</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true"></a>    print(*(valp + <span class="dv">1</span>));               <span class="co">// print second element</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true"></a>    printf(<span class="st">&quot;)&quot;</span>);</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true"></a>  }</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true"></a>  <span class="cf">else</span> {</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true"></a>    printf(<span class="st">&quot;Unknown value: %#010x&quot;</span>, val);</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true"></a>  }</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true"></a>}</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="types">Types</h2>
+<p>Next, lets move into our compiler, and see how the <strong>core types</strong> need to be extended.</p>
+<h3 id="source">Source</h3>
+<p>We need to extend the <em>source</em> <code>Expr</code> with support for tuples</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Expr</span> a</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">Pair</span>    (<span class="dt">Expr</span> a) (<span class="dt">Expr</span> a) a   <span class="co">-- ^ construct a pair</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">GetItem</span> (<span class="dt">Expr</span> a) <span class="dt">Field</span>    a   <span class="co">-- ^ access a pair's element</span></span></code></pre></div>
+<p>In the above, <code>Field</code> is</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Field</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="dt">First</span>     <span class="co">-- ^ access first element of pair</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">Second</span>    <span class="co">-- ^ access second element of pair</span></span></code></pre></div>
+<p><strong>NOTE:</strong> Your assignment will generalize pairs to <strong>n-ary tuples</strong> using</p>
+<ul>
+<li><code>Tuple [Expr a]</code> representing <code>(e1,...,en)</code></li>
+<li><code>GetItem (Expr a) (Expr a)</code> representing <code>e1[e2]</code></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="dynamic-types">Dynamic Types</h2>
+<p>Let us extend our <strong>dynamic types</strong> <code>Ty</code> <a href="05-cobra.md/#types">see</a> to include pairs:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Ty</span> <span class="ot">=</span> <span class="dt">TNumber</span> <span class="op">|</span> <span class="dt">TBoolean</span> <span class="op">|</span> <span class="dt">TPair</span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="assembly">Assembly</h2>
+<p>The assembly <code>Instruction</code> are changed minimally; we just need access to <code>r15</code> which will hold the value of the <em>next</em> available memory block:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Register</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">R15</span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="transforms">Transforms</h2>
+<p>Our code must take care of three things:</p>
+<ol type="1">
+<li><strong>Initialize</strong> <code>r15</code> to allow heap allocation,</li>
+<li><strong>Construct</strong> pairs,</li>
+<li><strong>Access</strong> pairs.</li>
+</ol>
+<p>The latter two will be pointed out as cases in <code>anf</code> and <code>compileEnv</code></p>
+<ul>
+<li><code>Tuple</code></li>
+<li><code>GetItem</code></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="initialize">Initialize</h2>
+<p>We need to <strong>initialize</strong> <code>r15</code> with the <strong>start position</strong> of the heap</p>
+<ul>
+<li>passed in as <code>rdi</code> by the run-time.</li>
+</ul>
+<p>How shall we get a hold of this position?</p>
+<p>To do so, <code>our_code</code> starts off with a <code>prelude</code></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="ot">prelude ::</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>prelude <span class="ot">=</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>  [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">R15</span>) (<span class="dt">Reg</span> <span class="dt">RDI</span>)    <span class="co">-- copy param (HEAP) off rdi</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>  ]</span></code></pre></div>
+<p>Is that it?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<p><strong>QUIZ</strong></p>
+<p>Is <code>r15</code> 8-byte aligned?</p>
+<ol type="A">
+<li>Yes</li>
+<li>No</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="ensuring-alignment">Ensuring alignment</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="ot">prelude ::</span> [<span class="dt">Instruction</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>prelude <span class="ot">=</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>  [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">HexConst</span> <span class="bn">0xFFFFFFFF</span>)      <span class="co">-- setup regMask</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>  , <span class="dt">IShl</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">32</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>  , <span class="dt">IOr</span>  (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">HexConst</span> <span class="bn">0xFFFFFFF8</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>  , <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">R15</span>) (<span class="dt">Reg</span> <span class="dt">RDI</span>)                  <span class="co">-- copy param (HEAP) off rdi</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a>  , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">R15</span>) (<span class="dt">Const</span> <span class="dv">8</span>)                  <span class="co">-- add 8 and mask 3 bits to ensure</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a>  , <span class="dt">IAnd</span> (<span class="dt">Reg</span> <span class="dt">R15</span>) (<span class="dt">Reg</span> <span class="dt">RAX</span>)                  <span class="co">-- 8-byte aligned</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a>  ]</span></code></pre></div>
+<ol type="1">
+<li><strong>Copy</strong> the value off the (parameter) stack, and</li>
+<li><strong>Adjust</strong> the value to ensure the value is <em>8-byte aligned</em>.</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-2">QUIZ</h2>
+<p>Why add <code>8</code> to <code>r15</code>? What would happen if we <em>removed</em> that operation?</p>
+<ol type="1">
+<li><code>r15</code> would not be 8-byte aligned?</li>
+<li><code>r15</code> would point into the stack?</li>
+<li><code>r15</code> would not point into the heap?</li>
+<li><code>r15</code> would not have enough space to write 2 bytes?</li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="construct">Construct</h2>
+<p>To <em>construct</em> a pair <code>(v1, v2)</code> we directly implement the <a href="07-egg-eater.md/#2-construction">above strategy</a>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>compileEnv env (<span class="dt">Tuple</span> v1 v2)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>  <span class="ot">=</span> pairAlloc                        <span class="co">-- 1. allocate pair, resulting addr in `rax`</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a> <span class="op">++</span> pairCopy <span class="dt">First</span>  (immArg env v1)  <span class="co">-- 2. copy first value into slots</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a> <span class="op">++</span> pairCopy <span class="dt">Second</span> (immArg env v2)  <span class="co">-- 3. copy second value into slot </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a> <span class="op">++</span> setTag   <span class="dt">RAX</span>     <span class="dt">TPair</span>           <span class="co">-- 3. set the tag-bits of `rax`</span></span></code></pre></div>
+<p>Lets look at each step in turn.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="allocate">Allocate</h2>
+<p>To allocate, we just copy the current pointer <code>r15</code> and increment by <code>16</code> bytes,</p>
+<ul>
+<li>accounting for two 8-byte blocks for each element.</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="ot">pairAlloc ::</span> <span class="dt">Asm</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a>pairAlloc</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Reg</span> <span class="dt">R15</span>)    <span class="co">-- copy current &quot;free address&quot; `esi` into `eax`</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a>    , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">16</span>)   <span class="co">-- increment `esi` by 8</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a>    ]</span></code></pre></div>
+<p><strong>Exercise</strong> How would you make this work for <code>n</code>-tuples?</p>
+<p><br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="copy">Copy</h2>
+<p>We copy an <code>Arg</code> into a <code>Field</code> by</p>
+<ul>
+<li><p>saving the <code>Arg</code> into a helper register <code>rbx</code>,</p></li>
+<li><p>copying <code>rbx</code> into the field’s slot on the heap.</p></li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="ot">pairCopy ::</span> <span class="dt">Field</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>pairCopy fld arg</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RBX</span>)      arg</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>    , <span class="dt">IMov</span> (pairAddr fld) (<span class="dt">Reg</span> <span class="dt">RBX</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>    ]</span></code></pre></div>
+<p>Recall, the field’s slot is either <code>[rax]</code> or <code>[rax + 8]</code> depending on whether the field is <code>First</code> or <code>Second</code>.</p>
+<h2 id="quiz-3">QUIZ</h2>
+<p>What shall we fill in for <code>_1</code> and <code>_2</code> ?</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="ot">pairAddr ::</span> <span class="dt">Field</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>pairAddr <span class="dt">First</span>  <span class="ot">=</span> <span class="dt">RegOffset</span> <span class="op">?</span><span class="dv">1</span> <span class="dt">RAX</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>pairAddr <span class="dt">Second</span> <span class="ot">=</span> <span class="dt">RegOffset</span> <span class="op">?</span><span class="dv">2</span> <span class="dt">RAX</span></span></code></pre></div>
+<p><strong>A.</strong> <code>0</code> and <code>1</code></p>
+<p><strong>B.</strong> <code>0</code> and <code>-1</code></p>
+<p><strong>C.</strong> <code>1</code> and <code>2</code></p>
+<p><strong>D.</strong> <code>-1</code> and <code>-2</code></p>
+<p><strong>E.</strong> huh?</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="tag">Tag</h2>
+<p>Finally, we set the tag bits of <code>rax</code> by using <code>typeTag TPair</code> which is defined</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="ot">setTag ::</span> <span class="dt">Register</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a>setTag r <span class="ot">=</span> [ <span class="dt">IAdd</span> (<span class="dt">Reg</span> r) (<span class="dt">HexConst</span> <span class="bn">0x1</span>) ]</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="access">Access</h2>
+<p>To access tuples, lets update <code>compileEnv</code> with the <a href="#3-accessing">strategy above</a>:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a>compileExpr env (<span class="dt">GetItem</span> e fld)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a>  <span class="ot">=</span> assertType env e <span class="dt">TPair</span>              <span class="co">-- 1. check that e is a (pair) pointer</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a> <span class="op">++</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (immArg env e) ]   <span class="co">-- 2. load pointer into eax</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a> <span class="op">++</span> unsetTag <span class="dt">RAX</span>                        <span class="co">-- 3. remove tag bit to get address</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a> <span class="op">++</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (pairAddr fld) ]   <span class="co">-- 4. copy value from resp. slot to eax</span></span></code></pre></div>
+<p>we remove the tag bits by doing the opposite of <code>setTag</code> namely:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="ot">unsetTag ::</span> <span class="dt">Register</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>unsetTag r <span class="ot">=</span> <span class="dt">ISub</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">HexConst</span> <span class="bn">0x1</span>)</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="n-ary-tuples">N-ary Tuples</h2>
+<p>Thats it! Lets take our compiler out for a spin, by using it to write some interesting programs!</p>
+<p>First, lets see how to generalize pairs to allow for</p>
+<ul>
+<li>triples <code>(e1,e2,e3)</code></li>
+<li>quadruples <code>(e1,e2,e3,e4)</code></li>
+<li>pentuples <code>(e1,e2,e3,e4,e5)</code></li>
+</ul>
+<p>and so on.</p>
+<p>We just need a library of functions in our new <code>egg</code> language to</p>
+<ul>
+<li><strong>Construct</strong> such tuples, and</li>
+<li><strong>Access</strong> their fields.</li>
+</ul>
+<h3 id="constructing-tuples">Constructing Tuples</h3>
+<p>We can write a small set of functions to <strong>construct</strong> tuples (up to some given size):</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="kw">def</span> tup3(x1, x2, x3):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a>  (x1, (x2, x3))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true"></a><span class="kw">def</span> tup4(x1, x2, x3, x4):</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true"></a>  (x1, (x2, (x3, x4)))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true"></a><span class="kw">def</span> tup5(x1, x2, x3, x4, x5):</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true"></a>  (x1, (x2, (x3, (x4, x5))))</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="accessing-tuples">Accessing Tuples</h2>
+<p>We can write a single function to access tuples of any size.</p>
+<p>So the below code</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>let yuple <span class="op">=</span> (<span class="dv">10</span>, (<span class="dv">20</span>, (<span class="dv">30</span>, (<span class="dv">40</span>, (<span class="dv">50</span>, false))))) <span class="kw">in</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a>get(yuple, <span class="dv">0</span>) <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a>get(yuple, <span class="dv">1</span>) <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a>get(yuple, <span class="dv">2</span>) <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true"></a>get(yuple, <span class="dv">3</span>) <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true"></a>get(yuple, <span class="dv">4</span>) <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true"></a><span class="kw">def</span> tup3(x1, x2, x3):</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true"></a>  (x1, (x2, x3))</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true"></a><span class="kw">def</span> tup5(x1, x2, x3, x4, x5):</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true"></a>  (x1, (x2, (x3, (x4, x5))))</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true"></a>let t  <span class="op">=</span> tup5(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>) <span class="kw">in</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true"></a>  , x0 <span class="op">=</span> <span class="bu">print</span>(get(t, <span class="dv">0</span>))</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true"></a>  , x1 <span class="op">=</span> <span class="bu">print</span>(get(t, <span class="dv">1</span>))</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true"></a>  , x2 <span class="op">=</span> <span class="bu">print</span>(get(t, <span class="dv">2</span>))</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true"></a>  , x3 <span class="op">=</span> <span class="bu">print</span>(get(t, <span class="dv">3</span>))</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true"></a>  , x4 <span class="op">=</span> <span class="bu">print</span>(get(t, <span class="dv">4</span>))</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true"></a><span class="kw">in</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true"></a>  <span class="dv">99</span></span></code></pre></div>
+<p>should print out:</p>
+<pre><code>0
+1
+2
+3
+4
+99</code></pre>
+<p>How shall we write it?</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="kw">def</span> get(t, i):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a>  TODO<span class="op">-</span>IN<span class="op">-</span>CLASS</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-4">QUIZ</h2>
+<p>Using the above “library” we can write code like:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="kw">let</span> quad <span class="ot">=</span> tup4(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>) <span class="kw">in</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>  get(quad, <span class="dv">0</span>) <span class="op">+</span> get(quad, <span class="dv">1</span>) <span class="op">+</span> get(quad, <span class="dv">2</span>) <span class="op">+</span> get(quad, <span class="dv">3</span>)</span></code></pre></div>
+<p>What will be the result of compiling the above?</p>
+<ol type="1">
+<li>Compile error</li>
+<li>Segmentation fault</li>
+<li>Other run-time error</li>
+<li><code>4</code></li>
+<li><code>10</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="quiz-5">QUIZ</h2>
+<p>Using the above “library” we can write code like:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a>def get(t, i)<span class="op">:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a>  <span class="kw">if</span> i <span class="op">==</span> <span class="dv">0</span><span class="op">:</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a>    t[<span class="dv">0</span>]</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a>  <span class="kw">else</span><span class="op">:</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a>    get(t[<span class="dv">1</span>],i<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a>def tup3(x1, x2, x3)<span class="op">:</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a>  (x1, (x2, (x3, false)))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a><span class="kw">let</span> quad <span class="ot">=</span> tup3(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="kw">in</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a>  get(quad, <span class="dv">0</span>) <span class="op">+</span> get(quad, <span class="dv">1</span>) <span class="op">+</span> get(quad, <span class="dv">2</span>) <span class="op">+</span> get(quad, <span class="dv">3</span>)</span></code></pre></div>
+<p>What will be the result of compiling the above?</p>
+<ol type="1">
+<li>Compile error</li>
+<li>Segmentation fault</li>
+<li>Other run-time error</li>
+<li><code>4</code></li>
+<li><code>10</code></li>
+</ol>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="lists">Lists</h2>
+<p>Once we have pairs, we can start encoding <strong>unbounded lists</strong>.</p>
+<p>To build a list, we need two constructor functions:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="kw">def</span> empty():</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>  false</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a><span class="kw">def</span> cons(h, t):</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a>  (h, t)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>``</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a>We can now encode lists <span class="im">as</span>:</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true"></a>```python</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true"></a>cons(<span class="dv">1</span>, cons(<span class="dv">2</span>, cons(<span class="dv">3</span>, cons(<span class="dv">4</span>, empty()))))</span></code></pre></div>
+<h2 id="access-1">Access</h2>
+<p>To <strong>access</strong> a list, we need to know</p>
+<ol type="1">
+<li>Whether the list <code>isEmpty</code>, and</li>
+<li>A way to access the <code>head</code> and the <code>tail</code> of a non-empty list.</li>
+</ol>
+<div class="sourceCode" id="cb29"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a>def isEmpty(l)<span class="op">:</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a>  l <span class="op">==</span> empty()</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true"></a>def <span class="fu">head</span>(l)<span class="op">:</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true"></a>  l[<span class="dv">0</span>]</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true"></a>def <span class="fu">tail</span>(l)<span class="op">:</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true"></a>  l[<span class="dv">1</span>]</span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="examples">Examples</h2>
+<p>We can now write various functions that build and operate on lists, for example, a function to generate the list of numbers between <code>i</code> and <code>j</code></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="kw">def</span> <span class="bu">range</span>(i, j):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a>  <span class="cf">if</span> (i <span class="op">&lt;</span> j):</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>    cons(i, <span class="bu">range</span>(i<span class="op">+</span><span class="dv">1</span>, j))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a>  <span class="cf">else</span>:</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a>    empty()</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a><span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code></pre></div>
+<p>which should produce the result</p>
+<p><code>(1,(2,(3,(4,false))))</code></p>
+<p>and a function to sum up the elements of a list:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">def</span> <span class="bu">sum</span>(xs):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>  <span class="cf">if</span> (isEmpty(xs)):</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a>    <span class="dv">0</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a>  <span class="cf">else</span>:</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a>    head(xs) <span class="op">+</span> <span class="bu">sum</span>(tail(xs))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a><span class="bu">sum</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">5</span>))</span></code></pre></div>
+<p>which should produce the result <code>10</code>.</p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="recap">Recap</h2>
+<p>We have a pretty serious language now, with:</p>
+<ul>
+<li><strong>Data Structures</strong></li>
+</ul>
+<p>which are implemented using</p>
+<ul>
+<li><strong>Heap Allocation</strong></li>
+<li><strong>Run-time Tags</strong></li>
+</ul>
+<p>which required a bunch of small but subtle changes in the</p>
+<ul>
+<li>runtime and compiler</li>
+</ul>
+<p>In your assignment, you will add <em>native</em> support for n-ary tuples, letting the programmer write code like:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a>(e1, e2, e3, ..., en)  <span class="co"># constructing tuples of arbitrary arity</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a>e1[e2]                 <span class="co"># allowing expressions to be used as fields</span></span></code></pre></div>
+<p>Next, we’ll see how to</p>
+<ul>
+<li><p>use the “tuple” mechanism to implement <strong>higher-order functions</strong> and</p></li>
+<li><p>reclaim unused memory via <strong>garbage collection</strong>.</p></li>
+</ul>	
+                <hr>
+            </div>
+        </div>
+    </div>
+</article>
+
+        </div>
+        <div id="footer">
+        </div>
+      <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://ucsd-cse131.github.io/sp21/feed.xml" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/ranjitjhala" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/u/0/106612421534244742464" data-datatype="json" data-type="GET" data-target="#frame" class="reload" id="clickme" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                     
+                     
+                    <li>
+                        <a href="https://github.com/ucsd-cse131/sp21" target="_blank">
+                            <span class="fa-stack fa-lg">
+
+                              <i class="fa fa-arrow-circle-o-down"></i>
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+		    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Ranjit Jhala 2016-21. 
+      	        Generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+                template by <a href="http://lucumr.pocoo.org">Armin Ronacher</a>,
+		Please suggest fixes <a href="http://github.com/ucsd-cse131/sp21">here.</a><br><br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://ucsd-cse131.github.io/sp21/static/js/jquery.min.js"></script>
+<script src="https://ucsd-cse131.github.io/sp21/static/js/spaceg.stylesheets.min.js"></script> 
+<script src="https://ucsd-cse131.github.io/sp21/static/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://ucsd-cse131.github.io/sp21/static/js/anim.js"></script>
+<script src="https://ucsd-cse131.github.io/sp21/static/js/scripts.js"></script>
+
+
+
+    </body>
+</html>
