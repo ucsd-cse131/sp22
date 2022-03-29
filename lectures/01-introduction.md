@@ -1,14 +1,8 @@
 ---
-title: Hello, world! 
+title: Hello, world!
 headerImg: Eiffel.png
 date: 2021-03-30
 ---
-
-(A) I know OCAML 
-(B) I know HASKELL
-
-
-
 
 ## What *is* a Compiler?
 
@@ -28,16 +22,16 @@ For example, here are some well-known _compilers_
 
 ```haskell
 gcc, clang :: C          -> Binary          -- a.out, .exe
-ghc        :: Haskell    -> Binary                 
+ghc        :: Haskell    -> Binary
 javac      :: Java       -> JvmByteCode     -- .class
-scalac     :: Scala      -> JvmByteCode      
+scalac     :: Scala      -> JvmByteCode
 ocamlc     :: Ocaml      -> OcamlByteCode   -- .cmo
-ocamlopt   :: Ocaml      -> Binary               
+ocamlopt   :: Ocaml      -> Binary
 gwt        :: Java       -> JavaScript      -- .js
 v8         :: JavaScript -> Binary
-nasm       :: X86        -> Binary    
+nasm       :: X86        -> Binary
 pdftex     :: LaTeX      -> PDF
-pandoc     :: Markdown   -> PDF | Html | Doc  
+pandoc     :: Markdown   -> PDF | Html | Doc
 ```
 
 Key Requirements on output program:
@@ -131,43 +125,49 @@ We will
 
 ### Who *are* we?
 
-**Prof:** 
+**Prof:**
 
 * Ranjit Jhala
 
-**TAs:** 
+**TAs:**
 
 * Nico Lehmann
 
-### Hybrid Course Logistics 
+### 131 will be In-Person
 
-**Lectures** 
+**Lectures**
 
-- live in person 
-- also streamed on *zoom* and *canvas*
+- live in person (podcast, but not streamed)
 
-**Exams** 
+**Exams**
 
-- will be synchronous at announced time slot 
-- but *not* in person
+- will be in-person at announced time slot
 
+**Clicker**
+
+- class participation
 ### How will we *grade*?
 
-**(35%) Assignments**
+**(5%) Class Participation**
 
-+ 6-7 assignments, [first one is up, due Wed 4/7](https://classroom.github.com/a/JfYspsS3)
-+ All programming
-+ Groups of up to 2
++ Involves answering questions with the clicker
++ Register your clicker in [this google form](https://docs.google.com/forms/d/e/1FAIpQLScaHmvDr1J59B1wAzGN95SetO2ckxy3qL6MJY2H-tjYDzj9ug/viewform)
 
+**(30%) Assignments**
 
-**(30%) Midterm Tuesday May 4th, from 9:30 – 10:50am**
++ 6-7 programming assignments done in groups of up to 2
 
-+ In-class  
-+ Open everything except humans 
+**(30%) Midterm**
 
-**(35%) Final  Tuesday June 8th, from 8:00 – 11:00am**
++ *In person* Thursday May 5th, from 9:30 – 10:50am
 
-+ Open everything except humans 
+**(35%) Final**
+
++ *In person* Tuesday June 8th, from 8:00 – 11:00am
+
+**Exams are closed book**
+
++ You may use a double-sided cheat sheet.
 
 ## Course Outline
 
@@ -210,14 +210,14 @@ So we will write _many_ compilers:
 
 * How to use types for design
 * How to add new features / refactor
-* How to test & validate   
+* How to test & validate
 
 
 ## What do you *need to know* ?
 
 This 131 **depends very heavily** on CSE 130
 
-* Familiarity with Functional Programming and Ocaml
+* Familiarity with Functional Programming and Haskell
 * Datatypes (e.g. Lists, Trees, ADTs)
 * Polymorphism
 * Recursion
@@ -230,8 +230,8 @@ Also **depends on** CSE 30
 
 ### A few words on the medium of instruction
 
-We will use [Haskell](https://haskell-lang.org/) which, for our
-purposes is like Ocaml but with nicer syntax.
+We will use [Haskell](https://haskell-lang.org/)
++ If you took 130 with Ocaml then [haskell is similar][haskell-for-ocamlers]
 
 Haskell has many advanced features beyond what we saw in 130,
 but we won't be using them; in the few cases we do, I'll explain
@@ -242,11 +242,9 @@ Here are some links to get you started:
 * [Haskell for Ocaml Programmers][haskell-for-ocamlers]
 * [Hoogle: Type-based API Search][hoogle]
 
-### Lets Go! 
+### Lets Go!
 
 
 [hoogle]: https://www.haskell.org/hoogle/
 [haskell-for-ocamlers]: http://science.raphael.poss.name/haskell-for-ocaml-programmers.html
 [soap-fortran-assembly]: http://worrydream.com/dbx/
-
-

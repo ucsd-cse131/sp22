@@ -7,6 +7,7 @@ headerImg: world-map.jpg
 
 - *Lectures:*          Tu-Th 9:30-10:50p in WARREN EAST (Outdoor Tent)
 - *Discussion:*        W 1:00-1:50p      in WLH 2205
+- *Midterm*            Thursday May 5th, from 9:30 -- 10:50am
 - *Final:*             Tuesday June 7th, 8:00-11:00AM
 - *Announcements:*     [Posted on Piazza](https://piazza.com/class/l147j0zwu6v6dy)
 

@@ -232,27 +232,23 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<ol type="A">
-<li>I know OCAML</li>
-<li>I know HASKELL</li>
-</ol>
-<h2 id="what-is-a-compiler">What <em>is</em> a Compiler?</h2>
+			<h2 id="what-is-a-compiler">What <em>is</em> a Compiler?</h2>
 <p>A function that maps an <em>input</em> string to an <em>output</em> string.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ot">compiler ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span></code></pre></div>
 <p>Typically, the <em>input</em> and <em>output</em> strings are <em>“programs”</em></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ot">compiler ::</span> <span class="dt">SourceProgram</span> <span class="ot">-&gt;</span> <span class="dt">TargetProgram</span></span></code></pre></div>
 <p>For example, here are some well-known <em>compilers</em></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>gcc,<span class="ot"> clang ::</span> <span class="dt">C</span>          <span class="ot">-&gt;</span> <span class="dt">Binary</span>          <span class="co">-- a.out, .exe</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ot">ghc        ::</span> <span class="dt">Haskell</span>    <span class="ot">-&gt;</span> <span class="dt">Binary</span>                 </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ot">ghc        ::</span> <span class="dt">Haskell</span>    <span class="ot">-&gt;</span> <span class="dt">Binary</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ot">javac      ::</span> <span class="dt">Java</span>       <span class="ot">-&gt;</span> <span class="dt">JvmByteCode</span>     <span class="co">-- .class</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ot">scalac     ::</span> <span class="dt">Scala</span>      <span class="ot">-&gt;</span> <span class="dt">JvmByteCode</span>      </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ot">scalac     ::</span> <span class="dt">Scala</span>      <span class="ot">-&gt;</span> <span class="dt">JvmByteCode</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ot">ocamlc     ::</span> <span class="dt">Ocaml</span>      <span class="ot">-&gt;</span> <span class="dt">OcamlByteCode</span>   <span class="co">-- .cmo</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="ot">ocamlopt   ::</span> <span class="dt">Ocaml</span>      <span class="ot">-&gt;</span> <span class="dt">Binary</span>               </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="ot">ocamlopt   ::</span> <span class="dt">Ocaml</span>      <span class="ot">-&gt;</span> <span class="dt">Binary</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="ot">gwt        ::</span> <span class="dt">Java</span>       <span class="ot">-&gt;</span> <span class="dt">JavaScript</span>      <span class="co">-- .js</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="ot">v8         ::</span> <span class="dt">JavaScript</span> <span class="ot">-&gt;</span> <span class="dt">Binary</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="ot">nasm       ::</span> <span class="dt">X86</span>        <span class="ot">-&gt;</span> <span class="dt">Binary</span>    </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="ot">nasm       ::</span> <span class="dt">X86</span>        <span class="ot">-&gt;</span> <span class="dt">Binary</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="ot">pdftex     ::</span> <span class="dt">LaTeX</span>      <span class="ot">-&gt;</span> <span class="dt">PDF</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="ot">pandoc     ::</span> <span class="dt">Markdown</span>   <span class="ot">-&gt;</span> <span class="dt">PDF</span> <span class="op">|</span> <span class="dt">Html</span> <span class="op">|</span> <span class="dt">Doc</span>  </span></code></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="ot">pandoc     ::</span> <span class="dt">Markdown</span>   <span class="ot">-&gt;</span> <span class="dt">PDF</span> <span class="op">|</span> <span class="dt">Html</span> <span class="op">|</span> <span class="dt">Doc</span></span></code></pre></div>
 <p>Key Requirements on output program:</p>
 <ol type="1">
 <li>Has the <em>same meaning</em> (“semantics”) as input,</li>
@@ -333,33 +329,39 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <ul>
 <li>Nico Lehmann</li>
 </ul>
-<h3 id="hybrid-course-logistics">Hybrid Course Logistics</h3>
+<h3 id="will-be-in-person">131 will be In-Person</h3>
 <p><strong>Lectures</strong></p>
 <ul>
-<li>live in person</li>
-<li>also streamed on <em>zoom</em> and <em>canvas</em></li>
+<li>live in person (podcast, but not streamed)</li>
 </ul>
 <p><strong>Exams</strong></p>
 <ul>
-<li>will be synchronous at announced time slot</li>
-<li>but <em>not</em> in person</li>
+<li>will be in-person at announced time slot</li>
 </ul>
-<h3 id="how-will-we-grade">How will we <em>grade</em>?</h3>
-<p><strong>(35%) Assignments</strong></p>
+<p><strong>Clicker</strong></p>
 <ul>
-<li>6-7 assignments, <a href="https://classroom.github.com/a/JfYspsS3">first one is up, due Wed 4/7</a></li>
-<li>All programming</li>
-<li>Groups of up to 2</li>
+<li>class participation ### How will we <em>grade</em>?</li>
 </ul>
-<p><strong>(30%) Midterm Tuesday May 4th, from 9:30 – 10:50am</strong></p>
+<p><strong>(5%) Class Participation</strong></p>
 <ul>
-<li>In-class<br />
-</li>
-<li>Open everything except humans</li>
+<li>Involves answering questions with the clicker</li>
+<li>Register your clicker in <a href="https://docs.google.com/forms/d/e/1FAIpQLScaHmvDr1J59B1wAzGN95SetO2ckxy3qL6MJY2H-tjYDzj9ug/viewform">this google form</a></li>
 </ul>
-<p><strong>(35%) Final Tuesday June 8th, from 8:00 – 11:00am</strong></p>
+<p><strong>(30%) Assignments</strong></p>
 <ul>
-<li>Open everything except humans</li>
+<li>6-7 programming assignments done in groups of up to 2</li>
+</ul>
+<p><strong>(30%) Midterm</strong></p>
+<ul>
+<li><em>In person</em> Thursday May 5th, from 9:30 – 10:50am</li>
+</ul>
+<p><strong>(35%) Final</strong></p>
+<ul>
+<li><em>In person</em> Tuesday June 8th, from 8:00 – 11:00am</li>
+</ul>
+<p><strong>Exams are closed book</strong></p>
+<ul>
+<li>You may use a double-sided cheat sheet.</li>
 </ul>
 <h2 id="course-outline">Course Outline</h2>
 <h2 id="what-will-we-do">What will <em>we do</em> ?</h2>
@@ -403,7 +405,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <h2 id="what-do-you-need-to-know">What do you <em>need to know</em> ?</h2>
 <p>This 131 <strong>depends very heavily</strong> on CSE 130</p>
 <ul>
-<li>Familiarity with Functional Programming and Ocaml</li>
+<li>Familiarity with Functional Programming and Haskell</li>
 <li>Datatypes (e.g. Lists, Trees, ADTs)</li>
 <li>Polymorphism</li>
 <li>Recursion</li>
@@ -415,7 +417,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>Experience with some assembly (<code>x86</code>)</li>
 </ul>
 <h3 id="a-few-words-on-the-medium-of-instruction">A few words on the medium of instruction</h3>
-<p>We will use <a href="https://haskell-lang.org/">Haskell</a> which, for our purposes is like Ocaml but with nicer syntax.</p>
+<p>We will use <a href="https://haskell-lang.org/">Haskell</a> + If you took 130 with Ocaml then <a href="http://science.raphael.poss.name/haskell-for-ocaml-programmers.html">haskell is similar</a></p>
 <p>Haskell has many advanced features beyond what we saw in 130, but we won’t be using them; in the few cases we do, I’ll explain them as we go.</p>
 <p>Here are some links to get you started:</p>
 <ul>
