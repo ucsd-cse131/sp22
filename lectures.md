@@ -5,7 +5,9 @@ headerImg: books.jpg
 
 | Date       | Topic                         | Notes                  |  Notes      |  Code          |
 |:----------:|:------------------------------|:----------------------:|:-----------:|:--------------:|
-| 3/30       | Introduction                  | [html][lec1] [md][md1] |             |                |
+| 3/29       | Introduction                  | [html][lec1] [md][md1] |             |                |
+
+<!--
 |            | Crash course in Haskell       | [html][lec2] [md][md2] |             | [code][cod2]   |
 |            | Numbers, UnaryOps, Variables  | [html][lec3] [md][md3] | [pdf][pdf3] | [code][cod3]   |
 | 4/6        | Branches and Binary Operators | [html][lec4] [md][md4] | [pdf][pdf4a] | [code][cod4]   |
@@ -20,7 +22,7 @@ headerImg: books.jpg
 | 5/25       | "" | "" | [pdf][pdf8b]   | "" |
 | 5/27       | "" | "" | [pdf][pdf8c]   | "" |
 | 6/1       | Garbage Collection            | [html][lec9] [md][md9] | [pdf][pdf9] | [code][cod9]   |
-<!-- 
+
 -->
 
 [lec1]: lectures/01-introduction.html

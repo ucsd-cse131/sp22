@@ -1,6 +1,6 @@
-# CSE 131 Spring 2021
+# CSE 131 Spring 2022
 
-Public course materials for [UCSD CSE 131](https://ucsd-cse131.github.io/sp21) 
+Public course materials for [UCSD CSE 131](https://ucsd-cse131.github.io/sp22)
 
 ## Install
 
@@ -42,23 +42,23 @@ cp -r _site/* docs/
 git commit -a -m "update webpage"
 git push origin master
 ```
+
 ## New Class Checklist
 
 - [x] site.hs
 - [x] index.md
 - [x] links.md
 - [x] contact.md
-- [x] lectures.md
-- [-] calendar.md
-- [-] groups
-- [-] seating chart
-
 - [x] grades.md
-- [ ] assignments.md
-- [ ] vscode issues (https://piazza.com/class/kjivoxdgfuc1w2?cid=128)
-
+- [x] lectures.md
 - [ ] CANVAS setup
+- [ ] assignments.md
+- [ ] calendar.md
+- [ ] groups
+- [ ] seating chart
+- [ ] troubleshooting.md (https://piazza.com/class/kjivoxdgfuc1w2?cid=128)
 - [ ] ASSIGNMENT setup on ieng
+
 
 ## ieng6 Setup
 
@@ -89,5 +89,5 @@ cd /software/CSE/cse130/.stack && chmod -R a+rx *
 
 ## Credits
 
-This theme is a fork of [CleanMagicMedium-Jekyll](https://github.com/SpaceG/CleanMagicMedium-Jekyll) 
+This theme is a fork of [CleanMagicMedium-Jekyll](https://github.com/SpaceG/CleanMagicMedium-Jekyll)
 originally published by Lucas Gatsas.
