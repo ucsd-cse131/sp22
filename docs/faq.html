@@ -211,12 +211,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 
         <div id="content">
             <!-- Post Header -->
-<header class="intro-header" style="background-image: url('https://ucsd-cse131.github.io/sp22/static/img/books.jpg')" alt title>
+<header class="intro-header" style="background-image: url('https://ucsd-cse131.github.io/sp22/static/img/sea.jpg')" alt title>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>Lecture Notes</h1>
+                    <h1>Troubleshooting FAQ</h1>
                     
                     <span class="meta">
 		    
@@ -232,43 +232,53 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Date</th>
-<th style="text-align: left;">Topic</th>
-<th style="text-align: center;">Notes</th>
-<th style="text-align: center;">Notes</th>
-<th style="text-align: center;">Code</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">3/29</td>
-<td style="text-align: left;">Introduction</td>
-<td style="text-align: center;"><a href="lectures/01-introduction.html">html</a> <a href="http://github.com/ucsd-cse131/sp21/blob/main/lectures/01-introduction.md">md</a></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<!--
-|            | Crash course in Haskell       | [html][lec2] [md][md2] |             | [code][cod2]   |
-|            | Numbers, UnaryOps, Variables  | [html][lec3] [md][md3] | [pdf][pdf3] | [code][cod3]   |
-| 4/6        | Branches and Binary Operators | [html][lec4] [md][md4] | [pdf][pdf4a] | [code][cod4]   |
-| 4/8        | "" | "" | [pdf][pdf4b] | "" |
-| 4/13       | "" | "" | [pdf][pdf4c] | "" |
-| 4/15       | Data Representation           | [html][lec5] [md][md5] | [pdf][pdf5a] | [code][cod5]   |
-| 4/22       | "" | "" | [pdf][pdf5b]  | ""   |
-| 4/27       | Functions                     | [html][lec6] [md][md6] | [pdf][pdf6]  | [code][cod6]   |
-| 5/13       | Heap Data  | [html][lec7] [md][md7] | [pdf][pdf7a]  | [code][cod7]   |
-| 5/18       | ""         | ""                     | ""  | ""             |
-| 5/20       | Closures   | [html][lec8] [md][md7] | [pdf][pdf8]   | [code][cod8]   |
-| 5/25       | "" | "" | [pdf][pdf8b]   | "" |
-| 5/27       | "" | "" | [pdf][pdf8c]   | "" |
-| 6/1       | Garbage Collection            | [html][lec9] [md][md9] | [pdf][pdf9] | [code][cod9]   |
-
--->	
+			<h1 id="troubleshooting-faq-by-aidan-denlinger">Troubleshooting FAQ (by Aidan Denlinger)</h1>
+<p>Here’s a collection of troubleshooting instructions and threads. Please try the instructions in here before making a new piazza post. We’ll try to keep this post updated, feel free to add any solutions/threads missing from this post in the followups.</p>
+<h2 id="turning-in-homework">Turning in Homework:</h2>
+<ul>
+<li><em>Is it turned in?</em>: your latest commit on the github classroom repo is what we’ll see.</li>
+<li><em>Teammates</em>: edit <code>COLLABORATORS.md</code> with a comma separated list of your teammates. Use the <code>Raw</code> button to check this file on github.</li>
+</ul>
+<h2 id="ieng6-procedure">ieng6 procedure</h2>
+<ul>
+<li><p><strong>Please ssh into <code>ieng6-640.ucsd.edu</code>, <span class="citation" data-cites="235">@235</span>, it seems to work while the other servers don’t.</strong></p></li>
+<li><p>your ieng6 login should be your active directory credentials (your email username and password). (ex <code>ssh student@ieng6-640.ucsd.edu</code>). You can verify your account at the link in <span class="citation" data-cites="15_f8">@15_f8</span></p></li>
+<li><p><strong>immediately prep for this class by running <code>cs130wi21</code></strong>. (if the first one doesn’t work, try <code>prep cs130wi21</code>, if the first two don’t work try <code>module load /home/linux/ieng6/cs130wi21/public/modulefiles/cs130wi21</code>) Not prepping is the main cause of the issues below. You should now be able to clone a repo and work without any problems. Note that prepping will take you to a new folder: this is where you should do your work for this class. If your repo is <em>not</em> in the prepped environment, especially if you’ve tried to run <code>make</code>, follow the instructor steps in <span class="citation" data-cites="122">@122</span>.</p></li>
+<li><p>You may want to consider adding <code>cs130wi21</code> to your <code>.bashrc</code> to prep whenever you log into ieng6.</p></li>
+</ul>
+<h2 id="ieng6-errors">ieng6 errors:</h2>
+<ul>
+<li><p>Quick note: the <code>.stack-work</code> folder in your PA folder is <em>okay</em>, all references to <code>.stack</code> are <em>specifically</em> about a folder called <code>.stack</code>, <em>not</em> <code>.stack-work</code>.</p></li>
+<li><p><em>Read-only file system/permission denied</em>: <span class="citation" data-cites="235">@235</span>, please ssh into <code>ieng6-640.ucsd.edu</code>. It seems to work where the other servers won’t.</p></li>
+<li><p><em>Errors about locks</em>: Make sure you’re on <code>ieng6-640</code>, see bullet point above. If you are, try the steps in <span class="citation" data-cites="237">@237</span> which will use a different build workflow. Make a new post if this doesn’t work.</p></li>
+<li><p><em><code>make</code> says “Preparing to install GHC to an isolated location”</em>: Follow the instructor steps in <span class="citation" data-cites="122">@122</span>. We have already installed GHC for you, we don’t want <code>stack</code> trying to install it again! The goal is to make sure there is no <code>.stack</code> folder.</p></li>
+<li><p><em>error involving “disk quota” or unable to save files in vim</em>: Running out of disk quota means you’re out of space on ieng6. Please go to your home directory (run <code>cd</code>) and try the command in <span class="citation" data-cites="18">@18</span> both before prepping (running cs130wi21) and after prepping: this will show a sorted list of files taking up space, the more space it takes up the higher it is on the list. If you have a <code>.stack</code> folder, follow the bullet point above, this is a GHC/prep issue. In terms of folders that are easy to delete to make space, <code>.eclipse</code> holds your eclipse settings on ieng6 and <code>.mozilla</code> holds ieng6 firefox settings, if you don’t care about those they should be easily deleted. If you’re trying VSCode Remote Development, it seems like deleting <code>.vscode-server</code> helps here (see the VSCode section below). Also, ensure that when you clone your repo, you’ve prepped.</p></li>
+<li><p>"<em>Device or Resource busy" when trying to delete</em>: try <span class="citation" data-cites="196">@196</span>. If that doesn’t work, try to move the busy folder (<code>mv folder new_name</code>) and try deleting it later.</p></li>
+<li><p><em>test suite errors at the end</em>: <span class="citation" data-cites="68">@68</span>, this is expected behavior.</p></li>
+<li><p><em>Elsa syntax highlighting in vim (keep in mind this is an extra, if this doesn’t immediately work I’d just go without)</em>: see <span class="citation" data-cites="114">@114</span></p></li>
+</ul>
+<h2 id="alternatives-to-vscode-remote-development">Alternatives to VSCode Remote Development:</h2>
+<ul>
+<li>work locally by installing
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode">Windows Subsystem for Linux</a> if on Windows, the link shows how to use it with VSCode.</li>
+<li><code>stack</code> using a package manager like <code>apt</code> (<code>sudo apt install haskell-stack</code>), <code>brew</code>, etc or from the <a href="docs.haskellstack.org">stack website</a></li>
+<li>optionally, the Haskell extension for VSCode</li>
+<li>note that we cannot guarantee support for your local environment: we provide ieng6 as a stable environment. However, this should be a relatively stable setup.</li>
+</ul></li>
+<li>editing your files locally, pushing to github, pulling on ieng6 in the terminal, and testing there</li>
+<li>working entirely on ieng6 using vim, nano, or X11 forwarding to access a terminal</li>
+</ul>
+<p>Specifically for elsa/hw 0: - running elsa with the web interface per the README - working locally by installing <code>elsa</code> locally per the README</p>
+<h2 id="vscode-remote-development">VSCode Remote Development:</h2>
+<ul>
+<li><p>Please keep in mind that VSCode Remote Development is an additional bonus, it’s not required for any PA. I’d recommend not spending a lot of time trying to set it up if it’s giving you trouble, there are alternatives above where you can work with your own local vscode and push to github.</p></li>
+<li><p><em>“VS Code server failed to start”</em>: <span class="citation" data-cites="71">@71</span> seems to help some students, deleting <code>.vscode-server</code> from the home folder of ieng6 also seems to help some people in <span class="citation" data-cites="18_f1">@18_f1</span>. You should also check the disk quota issues above: if you’re out of space, vscode can’t move the server files it needs to into ieng6.</p></li>
+<li><p><em>Disconnections on windows</em>: go to Settings, search for conpty, unchuck “Windows Enable Conpty”, or try <a href="https://code.visualstudio.com/docs/remote/troubleshooting#_troubleshooting-hanging-or-failing-connections">this support page</a> (see <span class="citation" data-cites="21_f4">@21_f4</span>)</p></li>
+<li><p><em>can’t push to github from within VSCode</em>: Go to Settings, search “Git: Terminal Authentication” and uncheck it. It seems that VSCode is trying to send credentials from the local computer that don’t exist</p></li>
+<li><p><em>doesn’t work on VSCodium/VS Code compiled from source</em>: <a href="https://github.com/VSCodium/vscodium/issues/240">Remote Development is a closed source extension that can only be used with Microsoft binaries of VSCode.</a>. Either use the alternatives above or use the Microsoft versions.</p></li>
+<li><p><em>Haskell syntax highlighting</em>: Install the Haskell extension for VSCode.</p></li>
+</ul>	
                 <hr>
             </div>
         </div>

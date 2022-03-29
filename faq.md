@@ -1,4 +1,10 @@
-# Troubleshooting FAQ by Aidan Denlinger
+---
+title: Troubleshooting FAQ
+headerImg: sea.jpg
+---
+
+
+# Troubleshooting FAQ (by Aidan Denlinger)
 
 
 Here's a collection of troubleshooting instructions and threads. Please try the instructions in here before making a new piazza 
