@@ -6,7 +6,7 @@ headerImg: books.jpg
 | Date       | Topic                         | Notes                  |  Notes      |  Code          |
 |:----------:|:------------------------------|:----------------------:|:-----------:|:--------------:|
 | 3/29       | Introduction                  | [html][lec1] [md][md1] |             |                |
-|            | Numbers, UnaryOps, Variables  | [html][lec3] [md][md3] | [pdf][pdf3] | [code][cod3]   |
+|            | Numbers, UnaryOps, Variables  | [html][lec3] [md][md3] |             | [code][cod3]   |
 
 <!--
 |            | Crash course in Haskell       | [html][lec2] [md][md2] |             | [code][cod2]   |
