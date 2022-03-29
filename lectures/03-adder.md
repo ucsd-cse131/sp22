@@ -1,6 +1,6 @@
 ---
 title: Numbers, Unary Operations, Variables
-date: 2016-09-30
+date: 2022-03-29
 headerImg: adder.jpg
 ---
 
@@ -138,11 +138,15 @@ int main(int argc, char** argv) {
 }
 ```
 
-* `main` just calls `our_code` and prints its return value,
-* `our_code` is (to be) implemented in assembly,
-  * Starting at **label** `our_code_label`,
-  * With the desired _return_ value stored in register `EAX`
-  * per, the `C` [calling convention][x86-64-guide]  
+`main` just calls `our_code` and prints its return value
+
+`our_code` is (to be) implemented in assembly,
+
+* Starting at **label** `our_code_label`,
+
+* With the desired _return_ value stored in register `RAX`
+
+* per, the `C` [calling convention][x86-64-guide]
 
 <br>
 <br>
@@ -181,9 +185,9 @@ file `forty_two.s` that looks like:
 section .text
 global our_code_label
 our_code_label:
-  mov eax, 42
+  mov rax, 42
   ret
-```  
+```
 
 For now, lets just
 
@@ -233,6 +237,20 @@ Hooray!
 
 Recall, that compilers were invented to [avoid writing assembly by hand](01-introduction.md/#a-bit-of-history)
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## First Step: Types
 
 To go from source to assembly, we must do:
@@ -243,7 +261,7 @@ Our first step will be to **model** the problem domain using **types**.
 
 ![Simplified Pipeline with Types](/static/img/simplified-pipeline-short-types.png)
 
-Lets create types that represent each intermediate value:
+Lets *create types* that represent each intermediate value:
 
 * `Text` for the raw input source
 * `Expr` for the AST
@@ -269,7 +287,7 @@ Lets create types that represent each intermediate value:
 
 ```haskell
 texts :: [Text]
-texts =  
+texts =
   [ "It was a dark and stormy night..."
   , "I wanna hold your hand..."
   , "12"
@@ -321,9 +339,9 @@ Recall, we need to represent
 section .text
 global our_code_label
 our_code_label:
-  mov eax, 42
+  mov rax, 42
   ret
-```  
+```
 
 An `Asm` program is a **list of instructions** each of which can:
 
@@ -344,7 +362,7 @@ Where we have
 
 ```haskell
 data Register
-  = EAX
+  = RAX
 
 data Arg
   = Const Int       -- a fixed number
@@ -382,7 +400,7 @@ parse    = parseWith expr
 
 compile :: Expr -> Asm
 compile (Number n) =
-  [ IMov (Reg EAX) (Const n)
+  [ IMov (Reg RAX) (Const n)
   , IRet
   ]
 
@@ -401,7 +419,7 @@ arg (Const n) = printf "%d" n
 arg (Reg r)   = reg r
 
 reg :: Register -> Text
-reg EAX = "eax"
+reg RAX = "rax"
 ```
 
 <br>
@@ -415,7 +433,7 @@ reg EAX = "eax"
 <br>
 <br>
 
-### Brief digression: Typeclasses
+### Brief digression: Type-Classes
 
 Note that above we have _four_ separate functions that crunch
 different types to the `Text` representation of x86 assembly:
@@ -430,7 +448,7 @@ reg   :: Register -> Text
 Remembering names is _hard_.
 
 We can write an **overloaded** function, and let the compiler figure
-out the correct implementation from the type, using **Typeclasses**.
+out the correct implementation from the type, using **Type-Classes**.
 
 The following defines an _interface_ for all those types `a` that
 can be converted to x86 assembly:
@@ -456,7 +474,7 @@ instance ToX86 Arg where
   asm (Reg r)   = asm r
 
 instance ToX86 Register where
-  asm EAX = "eax"
+  asm RAX = "rax"
 ```
 
 **Note** in each case above, the compiler figures out the _correct_ implementation,
@@ -523,14 +541,14 @@ add1(7)
 
 In English
 
-1. Move `7` into the `eax` register
-2. Add  `1` to the contents of `eax`
+1. Move `7` into the `rax` register
+2. Add  `1` to the contents of `rax`
 
 In ASM
 
 ```asm
-mov eax, 7
-add eax, 1    
+mov rax, 7
+add rax, 1
 ```
 
 Aha, note that `add` is a new kind of `Instruction`
@@ -558,16 +576,16 @@ add1(add1(12))
 
 In English
 
-1. Move `12` into the `eax` register
-2. Add  `1`  to the contents of `eax`
-3. Add  `1`  to the contents of `eax`
+1. Move `12` into the `rax` register
+2. Add  `1`  to the contents of `rax`
+3. Add  `1`  to the contents of `rax`
 
 In ASM
 
 ```asm
-mov eax, 12
-add eax, 1
-add eax, 1
+mov rax, 12
+add rax, 1
+add rax, 1
 ```
 
 <br>
@@ -593,7 +611,7 @@ Note correspondence between sub-expressions of _source_ and _assembly_
 We will write compiler in **compositional** manner
 
 * Generating `Asm` for each _sub-expression_ (AST subtree) independently,
-* Generating `Asm` for _super-expression_, assuming the value of sub-expression is in `EAX`
+* Generating `Asm` for _super-expression_, assuming the value of sub-expression is in `RAX`
 
 <br>
 <br>
@@ -661,8 +679,8 @@ src1 = "add1(7)"
 
 exp1 = Add1 (Number 7)
 
-asm1 = [ IMov (Reg EAX) (Const 7)
-       , IAdd (Reg EAX) (Const 1)
+asm1 = [ IMov (Reg RAX) (Const 7)
+       , IAdd (Reg RAX) (Const 1)
        ]
 ```
 
@@ -684,9 +702,9 @@ src2 = "add1(add1(12))"
 
 exp2 = Add1 (Add1 (Number 12))
 
-asm2 = [ IMov (Reg EAX) (Const 12)
-       , IAdd (Reg EAX) (Const 1)
-       , IAdd (Reg EAX) (Const 1)
+asm2 = [ IMov (Reg RAX) (Const 12)
+       , IAdd (Reg RAX) (Const 1)
+       , IAdd (Reg RAX) (Const 1)
        ]
 ```
 
@@ -721,7 +739,7 @@ parse = parseWith expr
 
 expr :: Parser Expr
 expr =  try primExpr
-    <|> integer  
+    <|> integer
 
 primExpr :: Parser Expr
 primExpr = Add1 <$> rWord "add1" *> parens expr
@@ -736,7 +754,7 @@ primExpr = Add1 <$> rWord "add1" *> parens expr
 <br>
 <br>
 <br>
-<br>  
+<br>
 
 ### Asm
 
@@ -771,12 +789,12 @@ Finally, the key step is
 ```haskell
 compile :: Expr -> Asm
 compile (Number n)
-  = [ IMov (Reg EAX) (Const n)
-    , IRet
+  = [ IMov (Reg RAX) (Const n)
     ]
+
 compile (Add1 e)
-  = compile e                    -- EAX holds value of result of `e` ...
- ++ [ IAdd (Reg EAX) (Const 1) ] -- ... so just increment it.
+  = compile e                    -- RAX holds value of result of `e` ...
+ ++ [ IAdd (Reg RAX) (Const 1) ] -- ... so just increment it.
 ```
 
 <br>
@@ -796,17 +814,17 @@ Lets check that compile behaves as desired:
 
 ```haskell
 >>> (compile (Number 12)
-[ IMov (Reg EAX) (Const 12) ]
+[ IMov (Reg RAX) (Const 12) ]
 
 >>> compile (Add1 (Number 12))
-[ IMov (Reg EAX) (Const 12)
-, IAdd (Reg EAX) (Const 1)
+[ IMov (Reg RAX) (Const 12)
+, IAdd (Reg RAX) (Const 1)
 ]
 
 >>> compile (Add1 (Add1 (Number 12)))
-[ IMov (Reg EAX) (Const 12)
-, IAdd (Reg EAX) (Const 1)
-, IAdd (Reg EAX) (Const 1)
+[ IMov (Reg RAX) (Const 12)
+, IAdd (Reg RAX) (Const 1)
+, IAdd (Reg RAX) (Const 1)
 ]
 ```
 
@@ -930,7 +948,7 @@ Need to store 3 variables -- `a`, `b`, `c` -- but **at most 2 at a time**
 
 ### Problem: Registers are Not Enough
 
-A single register `eax` is useless:
+A single register `rax` is useless:
 
   * May need 2 or 3 or 4 or 5 ... values.
 
@@ -966,11 +984,15 @@ Lets zoom into the stack region, which when we start looks like this:
 
 The stack **grows downward** (i.e. to **smaller** addresses)
 
-We have *lots* of 4-byte slots on the stack at offsets from the "stack pointer" at addresses:
+We have *lots* of 8-byte slots on the stack at offsets from the "stack pointer" at addresses:
 
-* `[RBP - 4 * 1]`, `[RBP - 4 * 2]`, `[RBP - 4 * 3]` ...,
+* `[RBP - 8 * 1]`, `[RBP - 8 * 2]`, `[RBP - 8 * 3]` ...,
 
-**Note:** On 32-bit machines the "base" is the `EBP` register (not `RBP`).
+**Note:** On 32-bit machines
+
+* We'd use the `eax` register (vs `rax` in 64-bit)
+* The "base" is the `ebp` register (vs `rbp` in 64-bit)
+* Each slot is `4`-bytes (vs `8` in 64-bit)
 
 <br>
 <br>
@@ -990,7 +1012,7 @@ We have *lots* of 4-byte slots on the stack at offsets from the "stack pointer" 
 
 ### How to compute mapping from _variables_ to _slots_ ?
 
-The `i`-th _stack-variable_ lives at address `[RBP - 4 * i]`
+The `i`-th _stack-variable_ lives at address `[RBP - 8 * i]`
 
 **Required** A mapping
 
@@ -1023,7 +1045,7 @@ The `i`-th _stack-variable_ lives at address `[RBP - 4 * i]`
 
 ```haskell
                     -- []
-let x = 1 
+let x = 1
 in                  -- [ x |-> 1 ]
     x
 ```
@@ -1048,13 +1070,13 @@ in                  -- [ x |-> 1 ]
 
 ```haskell
                           -- []
-let x = 1           
+let x = 1
                           -- [x |-> 1]
-  , y = add1(x)     
+  , y = add1(x)
                           -- [y |-> 2, x |-> 1]
-  , z = add1(y)     
+  , z = add1(y)
 in                        -- [z |- 3, y |-> 2, x |-> 1]
-    add1(z)              
+    add1(z)
 ```
 
 <br>
@@ -1115,9 +1137,9 @@ in
 
 ```haskell
               -- ENV(n)
-let x = E1 
+let x = E1
 in            -- [x |-> n+1, ENV(n)]
-   E2 
+   E2
               -- ENV(n)
 ```
 
@@ -1144,8 +1166,8 @@ At each point, we have `env` that maps (previously defined) `Id` to `StackPositi
 
 To compile `let x = e1 in e2` we
 
-1. Compile `e1` using `env` (i.e. resulting value will be stored in `eax`)
-2. Move `eax` into `[RBP - 4 * i]`
+1. Compile `e1` using `env` (i.e. resulting value will be stored in `rax`)
+2. Move `rax` into `[RBP - 8 * i]`
 3. Compile `e2` using `env'`
 
 (where `env'` be `env` with `x |-> i` i.e. push `x` onto `env` at position `i`)
@@ -1169,7 +1191,7 @@ To compile `let x = e1 in e2` we
 
 To compile `x` given `env`
 
-1. Move `[RBP - 4 * i]` into `eax`
+1. Move `[RBP - 8 * i]` into `rax`
 
 (where `env` maps `x |-> i`)
 
@@ -1214,8 +1236,8 @@ Lets see how our strategy works by example:
 
 When we compile
 
-```haskell 
-let x = 10 
+```haskell
+let x = 10
   , y = add1(x)
 in
   add1(y)
@@ -1224,26 +1246,26 @@ in
 The assembly looks like
 
 ```asm
-mov eax, 10                ; LHS of let x = 10
-mov [RBP - 4*1], eax       ; save x on the stack 
-mov eax, [RBP - 4*1]       ; LHS of   , y = add1(x) 
-add eax, 1                 ; "" 
+mov rax, 10                ; LHS of let x = 10
+mov [RBP - 8*1], rax       ; save x on the stack
+mov rax, [RBP - 8*1]       ; LHS of   , y = add1(x)
+add rax, 1                 ; ""
 ???
-add eax, 1
+add rax, 1
 ```
 
-What .asm instructions shall we fill in for `???` 
+What .asm instructions shall we fill in for `???`
 
 ```asm
-mov [RBP - 4 * 1], eax    ; A  
-mov eax, [RBP - 4 * 1]
+mov [RBP - 8 * 1], rax    ; A
+mov rax, [RBP - 8 * 1]
 
-mov [RBP - 4 * 1], eax    ; B  
+mov [RBP - 8 * 1], rax    ; B
 
-mov [RBP - 4 * 2], eax    ; C  
+mov [RBP - 8 * 2], rax    ; C
 
-mov [RBP - 4 * 2], eax    ; D  
-mov eax, [RBP - 4 * 2]
+mov [RBP - 8 * 2], rax    ; D
+mov rax, [RBP - 8 * 2]
 
                           ; E  (empty! no instructions)
 ```
@@ -1268,10 +1290,10 @@ mov eax, [RBP - 4 * 2]
 
 Lets compile
 
-```haskell 
-let a = 10 
+```haskell
+let a = 10
   , c = let b = add1(a)
-        in 
+        in
             add1(b)
 in
     add1(c)
@@ -1280,11 +1302,11 @@ in
 Lets figure out what the assembly looks like!
 
 ```asm
-mov eax, 10                ; LHS of let a = 10
-mov [RBP - 4*1], eax       ; save a on the stack 
-??? 
+mov rax, 10                ; LHS of let a = 10
+mov [RBP - 8*1], rax       ; save a on the stack
+???
 ```
-<!-- ![Convert let3 to Assembly](/static/img/let-3-to-asm.png) --> 
+<!-- ![Convert let3 to Assembly](/static/img/let-3-to-asm.png) -->
 
 <br>
 <br>
@@ -1311,16 +1333,16 @@ type Id   = Text
 
 data Expr = ...
           | Let Id Expr Expr    -- `let x = e1 in e2` represented as `Let x e1 e2`
-          | Var Id              -- `x` represented as `Var x` 
+          | Var Id              -- `x` represented as `Var x`
 ```
 
 **Assembly Instructions**
 
-Lets enrich the `Instruction` to include the register-offset `[RBP - 4*i]`
+Lets enrich the `Instruction` to include the register-offset `[RBP - 8*i]`
 
 ```haskell
 data Arg = ...
-         | RegOffset Reg Int    -- `[RBP - 4*i]` modeled as `RegOffset RBP i`
+         | RegOffset Reg Int    -- `[RBP - 8*i]` modeled as `RegOffset RBP i`
 ```
 
 <br>
@@ -1353,7 +1375,7 @@ push x env = (i, (x, i) : env)
 lookup :: Id -> Env -> Maybe Int
 lookup x ((y, i) : env)
   | x == y              = Just i
-  | otherwise           = lookup x env   
+  | otherwise           = lookup x env
 lookup x []             = Nothing
 ```
 
@@ -1378,7 +1400,7 @@ Almost done: just write code formalizing the [above strategy](#strategy)
 ### Code: Variable Use
 
 ```haskell
-compileEnv env (Var x) = [ IMov (Reg EAX) (RegOffset RBP i) ]
+compileEnv env (Var x) = [ IMov (Reg RAX) (RegOffset RBP i) ]
   where
     i                  = fromMaybe err (lookup x env)
     err                = error (printf "Error: Variable '%s' is unbound" x)
@@ -1401,8 +1423,8 @@ compileEnv env (Var x) = [ IMov (Reg EAX) (RegOffset RBP i) ]
 ### Code: Variable Definition
 
 ```haskell
-compileEnv env (Let x e1 e2 l)  = compileEnv env  e1  
-                               ++ IMov (RegOffset RBP i) (Reg EAX)
+compileEnv env (Let x e1 e2 l)  = compileEnv env  e1
+                               ++ IMov (RegOffset RBP i) (Reg RAX)
                                 : compileEnv env' e2
       where
         (i, env')               = pushEnv x env

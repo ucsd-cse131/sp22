@@ -309,14 +309,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>  printf(<span class="st">&quot;%d</span><span class="sc">\n</span><span class="st">&quot;</span>, result);</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>  <span class="cf">return</span> <span class="dv">0</span>;</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>}</span></code></pre></div>
+<p><code>main</code> just calls <code>our_code</code> and prints its return value</p>
+<p><code>our_code</code> is (to be) implemented in assembly,</p>
 <ul>
-<li><code>main</code> just calls <code>our_code</code> and prints its return value,</li>
-<li><code>our_code</code> is (to be) implemented in assembly,
-<ul>
-<li>Starting at <strong>label</strong> <code>our_code_label</code>,</li>
-<li>With the desired <em>return</em> value stored in register <code>EAX</code></li>
-<li>per, the <code>C</code> <a href="https://web.stanford.edu/class/cs107/guide/x86-64.html">calling convention</a></li>
-</ul></li>
+<li><p>Starting at <strong>label</strong> <code>our_code_label</code>,</p></li>
+<li><p>With the desired <em>return</em> value stored in register <code>RAX</code></p></li>
+<li><p>per, the <code>C</code> <a href="https://web.stanford.edu/class/cs107/guide/x86-64.html">calling convention</a></p></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="test-systems-in-isolation">Test Systems in Isolation</h2>
@@ -332,7 +330,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <div class="sourceCode" id="cb4"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="bu">section</span> .text</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>global our_code_label</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="fu">our_code_label:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  <span class="bu">mov</span> <span class="kw">eax</span>, <span class="dv">42</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>  <span class="bu">mov</span> <span class="kw">rax</span>, <span class="dv">42</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  <span class="bu">ret</span></span></code></pre></div>
 <p>For now, lets just</p>
 <ul>
@@ -353,6 +351,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="the-compiler">The “Compiler”</h2>
 <p>Recall, that compilers were invented to <a href="01-introduction.md/#a-bit-of-history">avoid writing assembly by hand</a></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="first-step-types">First Step: Types</h2>
 <p>To go from source to assembly, we must do:</p>
 <figure>
@@ -362,7 +361,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <figure>
 <img src="../static/img/simplified-pipeline-short-types.png" alt /><figcaption>Simplified Pipeline with Types</figcaption>
 </figure>
-<p>Lets create types that represent each intermediate value:</p>
+<p>Lets <em>create types</em> that represent each intermediate value:</p>
 <ul>
 <li><code>Text</code> for the raw input source</li>
 <li><code>Expr</code> for the AST</li>
@@ -372,7 +371,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <h2 id="defining-the-types-text">Defining the Types: <code>Text</code></h2>
 <p><code>Text</code> is raw strings, i.e. sequences of characters</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="ot">texts ::</span> [<span class="dt">Text</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>texts <span class="ot">=</span>  </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>texts <span class="ot">=</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>  [ <span class="st">&quot;It was a dark and stormy night...&quot;</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>  , <span class="st">&quot;I wanna hold your hand...&quot;</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>  , <span class="st">&quot;12&quot;</span></span>
@@ -389,7 +388,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <div class="sourceCode" id="cb10"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="bu">section</span> .text</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>global our_code_label</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="fu">our_code_label:</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>  <span class="bu">mov</span> <span class="kw">eax</span>, <span class="dv">42</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>  <span class="bu">mov</span> <span class="kw">rax</span>, <span class="dv">42</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>  <span class="bu">ret</span></span></code></pre></div>
 <p>An <code>Asm</code> program is a <strong>list of instructions</strong> each of which can:</p>
 <ul>
@@ -405,7 +404,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>  <span class="op">|</span> <span class="dt">IRet</span></span></code></pre></div>
 <p>Where we have</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Register</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="dt">EAX</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  <span class="ot">=</span> <span class="dt">RAX</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Arg</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a>  <span class="ot">=</span> <span class="dt">Const</span> <span class="dt">Int</span>       <span class="co">-- a fixed number</span></span>
@@ -424,7 +423,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="ot">compile ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a>compile (<span class="dt">Number</span> n) <span class="ot">=</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a>  [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> n)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a>  [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> n)</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a>  , <span class="dt">IRet</span></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a>  ]</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true"></a></span>
@@ -439,16 +438,16 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>arg (<span class="dt">Reg</span> r)   <span class="ot">=</span> reg r</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="ot">reg ::</span> <span class="dt">Register</span> <span class="ot">-&gt;</span> <span class="dt">Text</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>reg <span class="dt">EAX</span> <span class="ot">=</span> <span class="st">&quot;eax&quot;</span></span></code></pre></div>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true"></a>reg <span class="dt">RAX</span> <span class="ot">=</span> <span class="st">&quot;rax&quot;</span></span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h3 id="brief-digression-typeclasses">Brief digression: Typeclasses</h3>
+<h3 id="brief-digression-type-classes">Brief digression: Type-Classes</h3>
 <p>Note that above we have <em>four</em> separate functions that crunch different types to the <code>Text</code> representation of x86 assembly:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="ot">asm   ::</span> <span class="dt">Asm</span> <span class="ot">-&gt;</span> <span class="dt">Text</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a><span class="ot">instr ::</span> <span class="dt">Instruction</span> <span class="ot">-&gt;</span> <span class="dt">Text</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a><span class="ot">arg   ::</span> <span class="dt">Arg</span> <span class="ot">-&gt;</span> <span class="dt">Text</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a><span class="ot">reg   ::</span> <span class="dt">Register</span> <span class="ot">-&gt;</span> <span class="dt">Text</span></span></code></pre></div>
 <p>Remembering names is <em>hard</em>.</p>
-<p>We can write an <strong>overloaded</strong> function, and let the compiler figure out the correct implementation from the type, using <strong>Typeclasses</strong>.</p>
+<p>We can write an <strong>overloaded</strong> function, and let the compiler figure out the correct implementation from the type, using <strong>Type-Classes</strong>.</p>
 <p>The following defines an <em>interface</em> for all those types <code>a</code> that can be converted to x86 assembly:</p>
 <pre><code>class ToX86 a where
   asm :: a -&gt; Text</code></pre>
@@ -464,7 +463,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a>  asm (<span class="dt">Reg</span> r)   <span class="ot">=</span> asm r</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a></span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a><span class="kw">instance</span> <span class="dt">ToX86</span> <span class="dt">Register</span> <span class="kw">where</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a>  asm <span class="dt">EAX</span> <span class="ot">=</span> <span class="st">&quot;eax&quot;</span></span></code></pre></div>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a>  asm <span class="dt">RAX</span> <span class="ot">=</span> <span class="st">&quot;rax&quot;</span></span></code></pre></div>
 <p><strong>Note</strong> in each case above, the compiler figures out the <em>correct</em> implementation, from the types…</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h1 id="adder-2">Adder-2</h1>
@@ -491,12 +490,12 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <pre><code>add1(7)</code></pre>
 <p>In English</p>
 <ol type="1">
-<li>Move <code>7</code> into the <code>eax</code> register</li>
-<li>Add <code>1</code> to the contents of <code>eax</code></li>
+<li>Move <code>7</code> into the <code>rax</code> register</li>
+<li>Add <code>1</code> to the contents of <code>rax</code></li>
 </ol>
 <p>In ASM</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">eax</span>, <span class="dv">7</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">eax</span>, <span class="dv">1</span>    </span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">rax</span>, <span class="dv">7</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">rax</span>, <span class="dv">1</span></span></code></pre></div>
 <p>Aha, note that <code>add</code> is a new kind of <code>Instruction</code></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="example-2">Example 2</h2>
@@ -504,14 +503,14 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <pre><code>add1(add1(12))</code></pre>
 <p>In English</p>
 <ol type="1">
-<li>Move <code>12</code> into the <code>eax</code> register</li>
-<li>Add <code>1</code> to the contents of <code>eax</code></li>
-<li>Add <code>1</code> to the contents of <code>eax</code></li>
+<li>Move <code>12</code> into the <code>rax</code> register</li>
+<li>Add <code>1</code> to the contents of <code>rax</code></li>
+<li>Add <code>1</code> to the contents of <code>rax</code></li>
 </ol>
 <p>In ASM</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">eax</span>, <span class="dv">12</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">eax</span>, <span class="dv">1</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">eax</span>, <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">rax</span>, <span class="dv">12</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">rax</span>, <span class="dv">1</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">rax</span>, <span class="dv">1</span></span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="compositional-code-generation">Compositional Code Generation</h2>
 <p>Note correspondence between sub-expressions of <em>source</em> and <em>assembly</em></p>
@@ -521,7 +520,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>We will write compiler in <strong>compositional</strong> manner</p>
 <ul>
 <li>Generating <code>Asm</code> for each <em>sub-expression</em> (AST subtree) independently,</li>
-<li>Generating <code>Asm</code> for <em>super-expression</em>, assuming the value of sub-expression is in <code>EAX</code></li>
+<li>Generating <code>Asm</code> for <em>super-expression</em>, assuming the value of sub-expression is in <code>RAX</code></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="types">2. Types</h2>
@@ -541,8 +540,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a>exp1 <span class="ot">=</span> <span class="dt">Add1</span> (<span class="dt">Number</span> <span class="dv">7</span>)</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a>asm1 <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">7</span>)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a>       , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a>asm1 <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">7</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true"></a>       , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true"></a>       ]</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="example-2-revisited">Example-2 Revisited</h3>
@@ -550,9 +549,9 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a>exp2 <span class="ot">=</span> <span class="dt">Add1</span> (<span class="dt">Add1</span> (<span class="dt">Number</span> <span class="dv">12</span>))</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a>asm2 <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true"></a>       , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true"></a>       , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true"></a>asm2 <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true"></a>       , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true"></a>       , <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true"></a>       ]</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="transforms">3. Transforms</h2>
@@ -567,7 +566,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a><span class="ot">expr ::</span> <span class="dt">Parser</span> <span class="dt">Expr</span></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a>expr <span class="ot">=</span>  try primExpr</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>    <span class="op">&lt;|&gt;</span> integer  </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>    <span class="op">&lt;|&gt;</span> integer</span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a><span class="ot">primExpr ::</span> <span class="dt">Parser</span> <span class="dt">Expr</span></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a>primExpr <span class="ot">=</span> <span class="dt">Add1</span> <span class="op">&lt;$&gt;</span> rWord <span class="st">&quot;add1&quot;</span> <span class="op">*&gt;</span> parens expr</span></code></pre></div>
@@ -587,27 +586,27 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>Finally, the key step is</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="ot">compile ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a>compile (<span class="dt">Number</span> n)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> n)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a>    , <span class="dt">IRet</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a>    ]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> n)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a>    ]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a>compile (<span class="dt">Add1</span> e)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a>  <span class="ot">=</span> compile e                    <span class="co">-- EAX holds value of result of `e` ...</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a> <span class="op">++</span> [ <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>) ] <span class="co">-- ... so just increment it.</span></span></code></pre></div>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a>  <span class="ot">=</span> compile e                    <span class="co">-- RAX holds value of result of `e` ...</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true"></a> <span class="op">++</span> [ <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>) ] <span class="co">-- ... so just increment it.</span></span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="examples-revisited">Examples Revisited</h3>
 <p>Lets check that compile behaves as desired:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> (compile (<span class="dt">Number</span> <span class="dv">12</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>[ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>) ]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true"></a>[ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>) ]</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true"></a></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> compile (<span class="dt">Add1</span> (<span class="dt">Number</span> <span class="dv">12</span>))</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a>[ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a>, <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true"></a>[ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true"></a>, <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true"></a>]</span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true"></a></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> compile (<span class="dt">Add1</span> (<span class="dt">Add1</span> (<span class="dt">Number</span> <span class="dv">12</span>)))</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true"></a>[ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>)</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true"></a>, <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true"></a>, <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true"></a>[ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">12</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true"></a>, <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true"></a>, <span class="dt">IAdd</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">1</span>)</span>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true"></a>]</span></code></pre></div>
 <h1 id="adder-3">Adder-3</h1>
 <p>You do it!</p>
@@ -664,7 +663,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="problem-registers-are-not-enough">Problem: Registers are Not Enough</h3>
-<p>A single register <code>eax</code> is useless:</p>
+<p>A single register <code>rax</code> is useless:</p>
 <ul>
 <li>May need 2 or 3 or 4 or 5 … values.</li>
 </ul>
@@ -685,14 +684,19 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <img src="../static/img/stack-layout.png" alt /><figcaption>Stack Layout</figcaption>
 </figure>
 <p>The stack <strong>grows downward</strong> (i.e. to <strong>smaller</strong> addresses)</p>
-<p>We have <em>lots</em> of 4-byte slots on the stack at offsets from the “stack pointer” at addresses:</p>
+<p>We have <em>lots</em> of 8-byte slots on the stack at offsets from the “stack pointer” at addresses:</p>
 <ul>
-<li><code>[RBP - 4 * 1]</code>, <code>[RBP - 4 * 2]</code>, <code>[RBP - 4 * 3]</code> …,</li>
+<li><code>[RBP - 8 * 1]</code>, <code>[RBP - 8 * 2]</code>, <code>[RBP - 8 * 3]</code> …,</li>
 </ul>
-<p><strong>Note:</strong> On 32-bit machines the “base” is the <code>EBP</code> register (not <code>RBP</code>).</p>
+<p><strong>Note:</strong> On 32-bit machines</p>
+<ul>
+<li>We’d use the <code>eax</code> register (vs <code>rax</code> in 64-bit)</li>
+<li>The “base” is the <code>ebp</code> register (vs <code>rbp</code> in 64-bit)</li>
+<li>Each slot is <code>4</code>-bytes (vs <code>8</code> in 64-bit)</li>
+</ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="how-to-compute-mapping-from-variables-to-slots">How to compute mapping from <em>variables</em> to <em>slots</em> ?</h3>
-<p>The <code>i</code>-th <em>stack-variable</em> lives at address <code>[RBP - 4 * i]</code></p>
+<p>The <code>i</code>-th <em>stack-variable</em> lives at address <code>[RBP - 8 * i]</code></p>
 <p><strong>Required</strong> A mapping</p>
 <ul>
 <li>From <em>source variables</em> (<code>x</code>, <code>y</code>, <code>z</code> …)</li>
@@ -709,19 +713,19 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="let-bindings-and-stacks-example-1">Let-bindings and Stacks: Example-1</h3>
 <div class="sourceCode" id="cb35"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true"></a>                    <span class="co">-- []</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dv">1</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dv">1</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true"></a><span class="kw">in</span>                  <span class="co">-- [ x |-&gt; 1 ]</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true"></a>    x</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="let-bindings-and-stacks-example-2">Let-bindings and Stacks: Example-2</h3>
 <div class="sourceCode" id="cb36"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a>                          <span class="co">-- []</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dv">1</span>           </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dv">1</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a>                          <span class="co">-- [x |-&gt; 1]</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true"></a>  , y <span class="ot">=</span> add1(x)     </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true"></a>  , y <span class="ot">=</span> add1(x)</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true"></a>                          <span class="co">-- [y |-&gt; 2, x |-&gt; 1]</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true"></a>  , z <span class="ot">=</span> add1(y)     </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true"></a>  , z <span class="ot">=</span> add1(y)</span>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true"></a><span class="kw">in</span>                        <span class="co">-- [z |- 3, y |-&gt; 2, x |-&gt; 1]</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true"></a>    add1(z)              </span></code></pre></div>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true"></a>    add1(z)</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="quiz">QUIZ</h3>
 <p>At what position on the stack do we store variable <code>c</code> ?</p>
@@ -739,17 +743,17 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="strategy">Strategy</h3>
 <div class="sourceCode" id="cb38"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a>              <span class="co">-- ENV(n)</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dt">E1</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dt">E1</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a><span class="kw">in</span>            <span class="co">-- [x |-&gt; n+1, ENV(n)]</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a>   <span class="dt">E2</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a>   <span class="dt">E2</span></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true"></a>              <span class="co">-- ENV(n)</span></span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="strategy-variable-definition">Strategy: Variable Definition</h3>
 <p>At each point, we have <code>env</code> that maps (previously defined) <code>Id</code> to <code>StackPosition</code></p>
 <p>To compile <code>let x = e1 in e2</code> we</p>
 <ol type="1">
-<li>Compile <code>e1</code> using <code>env</code> (i.e. resulting value will be stored in <code>eax</code>)</li>
-<li>Move <code>eax</code> into <code>[RBP - 4 * i]</code></li>
+<li>Compile <code>e1</code> using <code>env</code> (i.e. resulting value will be stored in <code>rax</code>)</li>
+<li>Move <code>rax</code> into <code>[RBP - 8 * i]</code></li>
 <li>Compile <code>e2</code> using <code>env'</code></li>
 </ol>
 <p>(where <code>env'</code> be <code>env</code> with <code>x |-&gt; i</code> i.e. push <code>x</code> onto <code>env</code> at position <code>i</code>)</p>
@@ -757,7 +761,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <h3 id="strategy-variable-use">Strategy: Variable Use</h3>
 <p>To compile <code>x</code> given <code>env</code></p>
 <ol type="1">
-<li>Move <code>[RBP - 4 * i]</code> into <code>eax</code></li>
+<li>Move <code>[RBP - 8 * i]</code> into <code>rax</code></li>
 </ol>
 <p>(where <code>env</code> maps <code>x |-&gt; i</code>)</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
@@ -770,43 +774,43 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="quiz-let2">QUIZ: let2</h3>
 <p>When we compile</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dv">10</span> </span>
+<div class="sourceCode" id="cb39"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="kw">let</span> x <span class="ot">=</span> <span class="dv">10</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true"></a>  , y <span class="ot">=</span> add1(x)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true"></a><span class="kw">in</span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true"></a>  add1(y)</span></code></pre></div>
 <p>The assembly looks like</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">eax</span>, <span class="dv">10</span>                <span class="co">; LHS of let x = 10</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">4</span>*<span class="dv">1</span>], <span class="kw">eax</span>       <span class="co">; save x on the stack </span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">eax</span>, [<span class="kw">RBP</span> - <span class="dv">4</span>*<span class="dv">1</span>]       <span class="co">; LHS of   , y = add1(x) </span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">eax</span>, <span class="dv">1</span>                 <span class="co">; &quot;&quot; </span></span>
+<div class="sourceCode" id="cb40"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">rax</span>, <span class="dv">10</span>                <span class="co">; LHS of let x = 10</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">8</span>*<span class="dv">1</span>], <span class="kw">rax</span>       <span class="co">; save x on the stack</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">rax</span>, [<span class="kw">RBP</span> - <span class="dv">8</span>*<span class="dv">1</span>]       <span class="co">; LHS of   , y = add1(x)</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">rax</span>, <span class="dv">1</span>                 <span class="co">; &quot;&quot;</span></span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true"></a>???</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">eax</span>, <span class="dv">1</span></span></code></pre></div>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a><span class="bu">add</span> <span class="kw">rax</span>, <span class="dv">1</span></span></code></pre></div>
 <p>What .asm instructions shall we fill in for <code>???</code></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">4</span> * <span class="dv">1</span>], <span class="kw">eax</span>    <span class="co">; A  </span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">eax</span>, [<span class="kw">RBP</span> - <span class="dv">4</span> * <span class="dv">1</span>]</span>
+<div class="sourceCode" id="cb41"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">8</span> * <span class="dv">1</span>], <span class="kw">rax</span>    <span class="co">; A</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">rax</span>, [<span class="kw">RBP</span> - <span class="dv">8</span> * <span class="dv">1</span>]</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">4</span> * <span class="dv">1</span>], <span class="kw">eax</span>    <span class="co">; B  </span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">8</span> * <span class="dv">1</span>], <span class="kw">rax</span>    <span class="co">; B</span></span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true"></a></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">4</span> * <span class="dv">2</span>], <span class="kw">eax</span>    <span class="co">; C  </span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">8</span> * <span class="dv">2</span>], <span class="kw">rax</span>    <span class="co">; C</span></span>
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true"></a></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">4</span> * <span class="dv">2</span>], <span class="kw">eax</span>    <span class="co">; D  </span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">eax</span>, [<span class="kw">RBP</span> - <span class="dv">4</span> * <span class="dv">2</span>]</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">8</span> * <span class="dv">2</span>], <span class="kw">rax</span>    <span class="co">; D</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">rax</span>, [<span class="kw">RBP</span> - <span class="dv">8</span> * <span class="dv">2</span>]</span>
 <span id="cb41-10"><a href="#cb41-10" aria-hidden="true"></a></span>
 <span id="cb41-11"><a href="#cb41-11" aria-hidden="true"></a>                          <span class="co">; E  (empty! no instructions)</span></span></code></pre></div>
 <!-- ![Convert let2 to Assembly](/static/img/let-2-to-asm.png) -->
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="example-let3-1">Example: let3</h3>
 <p>Lets compile</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true"></a><span class="kw">let</span> a <span class="ot">=</span> <span class="dv">10</span> </span>
+<div class="sourceCode" id="cb42"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true"></a><span class="kw">let</span> a <span class="ot">=</span> <span class="dv">10</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true"></a>  , c <span class="ot">=</span> <span class="kw">let</span> b <span class="ot">=</span> add1(a)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true"></a>        <span class="kw">in</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true"></a>        <span class="kw">in</span></span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true"></a>            add1(b)</span>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true"></a><span class="kw">in</span></span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true"></a>    add1(c)</span></code></pre></div>
 <p>Lets figure out what the assembly looks like!</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">eax</span>, <span class="dv">10</span>                <span class="co">; LHS of let a = 10</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">4</span>*<span class="dv">1</span>], <span class="kw">eax</span>       <span class="co">; save a on the stack </span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true"></a>??? </span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true"></a><span class="bu">mov</span> <span class="kw">rax</span>, <span class="dv">10</span>                <span class="co">; LHS of let a = 10</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true"></a><span class="bu">mov</span> [<span class="kw">RBP</span> - <span class="dv">8</span>*<span class="dv">1</span>], <span class="kw">rax</span>       <span class="co">; save a on the stack</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true"></a>???</span></code></pre></div>
 <!-- ![Convert let3 to Assembly](/static/img/let-3-to-asm.png) -->
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="step-2-types">Step 2: Types</h2>
@@ -816,11 +820,11 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Expr</span> <span class="ot">=</span> <span class="op">...</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true"></a>          <span class="op">|</span> <span class="dt">Let</span> <span class="dt">Id</span> <span class="dt">Expr</span> <span class="dt">Expr</span>    <span class="co">-- `let x = e1 in e2` represented as `Let x e1 e2`</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true"></a>          <span class="op">|</span> <span class="dt">Var</span> <span class="dt">Id</span>              <span class="co">-- `x` represented as `Var x` </span></span></code></pre></div>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true"></a>          <span class="op">|</span> <span class="dt">Var</span> <span class="dt">Id</span>              <span class="co">-- `x` represented as `Var x`</span></span></code></pre></div>
 <p><strong>Assembly Instructions</strong></p>
-<p>Lets enrich the <code>Instruction</code> to include the register-offset <code>[RBP - 4*i]</code></p>
+<p>Lets enrich the <code>Instruction</code> to include the register-offset <code>[RBP - 8*i]</code></p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true"></a><span class="kw">data</span> <span class="dt">Arg</span> <span class="ot">=</span> <span class="op">...</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true"></a>         <span class="op">|</span> <span class="dt">RegOffset</span> <span class="dt">Reg</span> <span class="dt">Int</span>    <span class="co">-- `[RBP - 4*i]` modeled as `RegOffset RBP i`</span></span></code></pre></div>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true"></a>         <span class="op">|</span> <span class="dt">RegOffset</span> <span class="dt">Reg</span> <span class="dt">Int</span>    <span class="co">-- `[RBP - 8*i]` modeled as `RegOffset RBP i`</span></span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="environments">Environments</h3>
 <p>An <code>Env</code> type to track <em>stack-positions</em> of variables with <strong>API</strong></p>
@@ -836,20 +840,20 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb46-6"><a href="#cb46-6" aria-hidden="true"></a><span class="fu">lookup</span><span class="ot"> ::</span> <span class="dt">Id</span> <span class="ot">-&gt;</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span></span>
 <span id="cb46-7"><a href="#cb46-7" aria-hidden="true"></a><span class="fu">lookup</span> x ((y, i) <span class="op">:</span> env)</span>
 <span id="cb46-8"><a href="#cb46-8" aria-hidden="true"></a>  <span class="op">|</span> x <span class="op">==</span> y              <span class="ot">=</span> <span class="dt">Just</span> i</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true"></a>  <span class="op">|</span> <span class="fu">otherwise</span>           <span class="ot">=</span> <span class="fu">lookup</span> x env   </span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true"></a>  <span class="op">|</span> <span class="fu">otherwise</span>           <span class="ot">=</span> <span class="fu">lookup</span> x env</span>
 <span id="cb46-10"><a href="#cb46-10" aria-hidden="true"></a><span class="fu">lookup</span> x []             <span class="ot">=</span> <span class="dt">Nothing</span></span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="step-3-transforms">Step 3: Transforms</h2>
 <p>Almost done: just write code formalizing the <a href="#strategy">above strategy</a></p>
 <h3 id="code-variable-use">Code: Variable Use</h3>
-<div class="sourceCode" id="cb47"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true"></a>compileEnv env (<span class="dt">Var</span> x) <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">RegOffset</span> <span class="dt">RBP</span> i) ]</span>
+<div class="sourceCode" id="cb47"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true"></a>compileEnv env (<span class="dt">Var</span> x) <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">RegOffset</span> <span class="dt">RBP</span> i) ]</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true"></a>  <span class="kw">where</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true"></a>    i                  <span class="ot">=</span> fromMaybe err (<span class="fu">lookup</span> x env)</span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true"></a>    err                <span class="ot">=</span> <span class="fu">error</span> (printf <span class="st">&quot;Error: Variable '%s' is unbound&quot;</span> x)</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="code-variable-definition">Code: Variable Definition</h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true"></a>compileEnv env (<span class="dt">Let</span> x e1 e2 l)  <span class="ot">=</span> compileEnv env  e1  </span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true"></a>                               <span class="op">++</span> <span class="dt">IMov</span> (<span class="dt">RegOffset</span> <span class="dt">RBP</span> i) (<span class="dt">Reg</span> <span class="dt">EAX</span>)</span>
+<div class="sourceCode" id="cb48"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true"></a>compileEnv env (<span class="dt">Let</span> x e1 e2 l)  <span class="ot">=</span> compileEnv env  e1</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true"></a>                               <span class="op">++</span> <span class="dt">IMov</span> (<span class="dt">RegOffset</span> <span class="dt">RBP</span> i) (<span class="dt">Reg</span> <span class="dt">RAX</span>)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true"></a>                                <span class="op">:</span> compileEnv env' e2</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true"></a>      <span class="kw">where</span></span>
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true"></a>        (i, env')               <span class="ot">=</span> pushEnv x env</span></code></pre></div>

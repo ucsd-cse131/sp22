@@ -237,6 +237,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ot">compiler ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span></code></pre></div>
 <p>Typically, the <em>input</em> and <em>output</em> strings are <em>“programs”</em></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ot">compiler ::</span> <span class="dt">SourceProgram</span> <span class="ot">-&gt;</span> <span class="dt">TargetProgram</span></span></code></pre></div>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="what-is-a-compiler-1">What <em>is</em> a Compiler?</h2>
 <p>For example, here are some well-known <em>compilers</em></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>gcc,<span class="ot"> clang ::</span> <span class="dt">C</span>          <span class="ot">-&gt;</span> <span class="dt">Binary</span>          <span class="co">-- a.out, .exe</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ot">ghc        ::</span> <span class="dt">Haskell</span>    <span class="ot">-&gt;</span> <span class="dt">Binary</span></span>
@@ -254,7 +256,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>Has the <em>same meaning</em> (“semantics”) as input,</li>
 <li>Is <em>executable</em> in relevant <em>context</em> (VM, microprocessor, web browser).</li>
 </ol>
-<h3 id="a-bit-of-history">A Bit of History</h3>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="a-bit-of-history">A Bit of History</h2>
 <p>Compilers were invented to <a href="http://worrydream.com/dbx/">avoid writing machine code by hand</a></p>
 <figure>
 <img src="../static/img/binary-soap-fortran.png" alt /><figcaption>From Binary to FORTRAN</figcaption>
@@ -267,7 +270,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <blockquote>
 <p>One of von Neumann’s students at Princeton recalled that graduate students were being used to hand assemble programs into binary for their early machine. This student took time out to build an assembler, but when von Neumann found out about it he was very angry, saying that it was a waste of a valuable scientific computing instrument to use it to do clerical work.</p>
 </blockquote>
-<h3 id="what-does-a-compiler-look-like">What does a Compiler <em>look like</em>?</h3>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="what-does-a-compiler-look-like">What does a Compiler <em>look like</em>?</h2>
 <figure>
 <img src="../static/img/compiler-pipeline.png" alt /><figcaption>Compiler Pipeline</figcaption>
 </figure>
@@ -280,7 +284,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><strong>Generated</strong> into assembly <code>x86</code></li>
 <li><strong>Linked</strong> against a run-time (usually written in C)</li>
 </ul>
-<h3 id="what-is-cse-131">What is CSE 131 ?</h3>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="what-is-cse-131">What is CSE 131 ?</h2>
 <ul>
 <li><p>A <em>bridge</em> between two worlds</p>
 <ul>
@@ -306,7 +311,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><strong>Iterate</strong></li>
 </ol></li>
 </ul>
-<h3 id="how-write-a-compiler">How write a Compiler?</h3>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="how-write-a-compiler">How write a Compiler?</h2>
 <p>General recipe, applies to any large system</p>
 <ul>
 <li><em>gradually, one feature at a time!</em></li>
@@ -319,8 +325,8 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li><strong>Go to</strong> Step 2.</li>
 </ul>
 <p>(Yes, loops forever, but we will hit Ctrl-C in 10 weeks…)</p>
-<h2 id="mechanics">Mechanics</h2>
-<h3 id="who-are-we">Who <em>are</em> we?</h3>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="logistics-who-are-we">Logistics: Who <em>are</em> we?</h2>
 <p><strong>Prof:</strong></p>
 <ul>
 <li>Ranjit Jhala</li>
@@ -329,10 +335,18 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <ul>
 <li>Nico Lehmann</li>
 </ul>
-<h3 id="will-be-in-person">131 will be In-Person</h3>
+<p><strong>Tutors:</strong></p>
+<ul>
+<li>Kyeling Ong</li>
+<li>Benson Vuoung</li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="logistics-131-will-be-in-person">Logistics: 131 will be In-Person</h2>
 <p><strong>Lectures</strong></p>
 <ul>
-<li>live in person (podcast, but not streamed)</li>
+<li>live and in-person</li>
+<li>lectures <em>will</em> be podcasted</li>
+<li>lectures <em>will not</em> streamed)</li>
 </ul>
 <p><strong>Exams</strong></p>
 <ul>
@@ -340,12 +354,13 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 </ul>
 <p><strong>Clicker</strong></p>
 <ul>
-<li>class participation ### How will we <em>grade</em>?</li>
+<li>class participation</li>
 </ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="logistics-how-will-we-grade">Logistics: How will we <em>grade</em>?</h2>
 <p><strong>(5%) Class Participation</strong></p>
 <ul>
-<li>Involves answering questions with the clicker</li>
-<li>Register your clicker in <a href="https://docs.google.com/forms/d/e/1FAIpQLScaHmvDr1J59B1wAzGN95SetO2ckxy3qL6MJY2H-tjYDzj9ug/viewform">this google form</a></li>
+<li>Answering questions with the clicker, register in <a href="https://docs.google.com/forms/d/e/1FAIpQLScaHmvDr1J59B1wAzGN95SetO2ckxy3qL6MJY2H-tjYDzj9ug/viewform">this google form</a></li>
 </ul>
 <p><strong>(30%) Assignments</strong></p>
 <ul>
@@ -363,9 +378,9 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <ul>
 <li>You may use a double-sided cheat sheet.</li>
 </ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="course-outline">Course Outline</h2>
-<h2 id="what-will-we-do">What will <em>we do</em> ?</h2>
-<p>Write <strong>a compiler</strong> for <code>NanoML -&gt; X86</code></p>
+<p>We will <strong>write a compiler</strong> for <code>NanoML -&gt; X86</code></p>
 <p>But Rome wasn’t built in a day … and neither is any serious software.</p>
 <figure>
 <img src="../static/img/Eiffel.jpg" alt /><figcaption>Rome wasn’t built in a day</figcaption>
@@ -382,6 +397,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>Types and Inference</li>
 <li>Garbage Collection</li>
 </ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="what-will-you-learn">What will <em>you learn</em> ?</h2>
 <p><strong>Core principles of compiler construction</strong></p>
 <ul>
@@ -402,6 +418,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>How to add new features / refactor</li>
 <li>How to test &amp; validate</li>
 </ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="what-do-you-need-to-know">What do you <em>need to know</em> ?</h2>
 <p>This 131 <strong>depends very heavily</strong> on CSE 130</p>
 <ul>
@@ -416,15 +433,21 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>Experience with some <code>C</code> programming</li>
 <li>Experience with some assembly (<code>x86</code>)</li>
 </ul>
-<h3 id="a-few-words-on-the-medium-of-instruction">A few words on the medium of instruction</h3>
-<p>We will use <a href="https://haskell-lang.org/">Haskell</a> + If you took 130 with Ocaml then <a href="http://science.raphael.poss.name/haskell-for-ocaml-programmers.html">haskell is similar</a></p>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
+<h2 id="a-few-words-on-the-medium-of-instruction">A few words on the medium of instruction</h2>
+<p>We will use <a href="https://haskell-lang.org/">Haskell</a></p>
+<ul>
+<li>If you took 130 with Ocaml then <a href="http://science.raphael.poss.name/haskell-for-ocaml-programmers.html">haskell is similar</a></li>
+</ul>
 <p>Haskell has many advanced features beyond what we saw in 130, but we won’t be using them; in the few cases we do, I’ll explain them as we go.</p>
 <p>Here are some links to get you started:</p>
 <ul>
+<li><a href="lectures/02-haskell.html">Haskell crash course</a></li>
 <li><a href="http://science.raphael.poss.name/haskell-for-ocaml-programmers.html">Haskell for Ocaml Programmers</a></li>
 <li><a href="https://www.haskell.org/hoogle/">Hoogle: Type-based API Search</a></li>
 </ul>
-<h3 id="lets-go">Lets Go!</h3>	
+<h2 id="lets-begin">Lets Begin!</h2>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>	
                 <hr>
             </div>
         </div>

@@ -1,7 +1,7 @@
 ---
 title: Hello, world!
 headerImg: Eiffel.png
-date: 2021-03-30
+date: 2022-03-29
 ---
 
 ## What *is* a Compiler?
@@ -17,6 +17,23 @@ Typically, the _input_ and _output_ strings are _"programs"_
 ```haskell
 compiler :: SourceProgram -> TargetProgram
 ```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## What *is* a Compiler?
 
 For example, here are some well-known _compilers_
 
@@ -39,7 +56,21 @@ Key Requirements on output program:
 1. Has the _same meaning_ ("semantics") as input,
 2. Is _executable_ in relevant _context_ (VM, microprocessor, web browser).
 
-### A Bit of History
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## A Bit of History
 
 Compilers were invented to [avoid writing machine code by hand][soap-fortran-assembly]
 
@@ -67,8 +98,21 @@ John A.N. Lee, Dept of Computer Science, Virginia Polytechnical Institute
 > a valuable scientific computing instrument to use it to do
 > clerical work.
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-### What does a Compiler *look like*?
+## What does a Compiler *look like*?
 
 ![Compiler Pipeline](/static/img/compiler-pipeline.png)
 
@@ -81,7 +125,23 @@ An input source program is converted to an executable binary in many stages:
 * **Generated** into assembly `x86`
 * **Linked** against a run-time (usually written in C)
 
-### What is CSE 131 ?
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## What is CSE 131 ?
 
 * A *bridge* between two worlds
 
@@ -106,7 +166,25 @@ A sequel to both those classes.
   3. Test
   4. **Iterate**
 
-### How write a Compiler?
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+## How write a Compiler?
 
 General recipe, applies to any large system
 
@@ -121,9 +199,23 @@ We will
 
 (Yes, loops forever, but we will hit Ctrl-C in 10 weeks...)
 
-## Mechanics
 
-### Who *are* we?
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Logistics: Who *are* we?
 
 **Prof:**
 
@@ -133,25 +225,61 @@ We will
 
 * Nico Lehmann
 
-### 131 will be In-Person
+**Tutors:**
+
+* Kyeling Ong
+* Benson Vuoung
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## Logistics: 131 will be In-Person
 
 **Lectures**
 
-- live in person (podcast, but not streamed)
+* live and in-person
+* lectures *will* be podcasted
+* lectures *will not* streamed)
 
 **Exams**
 
-- will be in-person at announced time slot
+* will be in-person at announced time slot
 
 **Clicker**
 
-- class participation
-### How will we *grade*?
+* class participation
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+## Logistics: How will we *grade*?
 
 **(5%) Class Participation**
 
-+ Involves answering questions with the clicker
-+ Register your clicker in [this google form](https://docs.google.com/forms/d/e/1FAIpQLScaHmvDr1J59B1wAzGN95SetO2ckxy3qL6MJY2H-tjYDzj9ug/viewform)
++ Answering questions with the clicker, register in [this google form][clicker-form]
 
 **(30%) Assignments**
 
@@ -167,13 +295,25 @@ We will
 
 **Exams are closed book**
 
-+ You may use a double-sided cheat sheet.
+* You may use a double-sided cheat sheet.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## Course Outline
 
-## What will *we do* ?
-
-Write **a compiler** for `NanoML -> X86`
+We will **write a compiler** for `NanoML -> X86`
 
 But Rome wasn't built in a day ... and neither is any serious software.
 
@@ -190,6 +330,20 @@ So we will write _many_ compilers:
 * Lambdas and closures
 * Types and Inference
 * Garbage Collection
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## What will *you learn* ?
 
@@ -212,6 +366,19 @@ So we will write _many_ compilers:
 * How to add new features / refactor
 * How to test & validate
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 ## What do you *need to know* ?
 
@@ -228,10 +395,26 @@ Also **depends on** CSE 30
 * Experience with some `C` programming
 * Experience with some assembly (`x86`)
 
-### A few words on the medium of instruction
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## A few words on the medium of instruction
 
 We will use [Haskell](https://haskell-lang.org/)
-+ If you took 130 with Ocaml then [haskell is similar][haskell-for-ocamlers]
+
+* If you took 130 with Ocaml then [haskell is similar][haskell-for-ocamlers]
 
 Haskell has many advanced features beyond what we saw in 130,
 but we won't be using them; in the few cases we do, I'll explain
@@ -239,11 +422,28 @@ them as we go.
 
 Here are some links to get you started:
 
+* [Haskell crash course][lec2]
 * [Haskell for Ocaml Programmers][haskell-for-ocamlers]
 * [Hoogle: Type-based API Search][hoogle]
 
-### Lets Go!
+## Lets Begin!
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+[lec2]: lectures/02-haskell.html
+[clicker-form]: https://docs.google.com/forms/d/e/1FAIpQLScaHmvDr1J59B1wAzGN95SetO2ckxy3qL6MJY2H-tjYDzj9ug/viewform
 
 [hoogle]: https://www.haskell.org/hoogle/
 [haskell-for-ocamlers]: http://science.raphael.poss.name/haskell-for-ocaml-programmers.html
