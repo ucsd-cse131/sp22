@@ -828,12 +828,38 @@ Lets check that compile behaves as desired:
 ]
 ```
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 # Adder-3
 
 You do it!
 
 3. Numbers + Increment + Double
   * e.g. `add1(7)`, `twice(add1(12))`, `twice(twice(add1(42)))`
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
 # Adder-4
 
