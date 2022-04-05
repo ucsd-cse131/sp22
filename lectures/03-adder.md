@@ -990,7 +990,7 @@ We have *lots* of 8-byte slots on the stack at offsets from the "stack pointer" 
 
 **Note:** On 32-bit machines
 
-* We'd use the `eax` register (vs `rax` in 64-bit)
+* We'd use the `rax` register (vs `rax` in 64-bit)
 * The "base" is the `ebp` register (vs `rbp` in 64-bit)
 * Each slot is `4`-bytes (vs `8` in 64-bit)
 
