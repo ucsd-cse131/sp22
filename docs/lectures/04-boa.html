@@ -308,20 +308,27 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <h3 id="labels">Labels</h3>
 <div class="sourceCode" id="cb4"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">our_code_label:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  ...</span></code></pre></div>
-<p>Labels are <em>“landmarks”</em> - from which execution (control-flow) can be <em>started</em>, or - to which it can be <em>diverted</em></p>
-<p><br> <br> <br> <br> <br> <br> <br> <br></p>
+<p>Labels are <em>“landmarks”</em></p>
+<ul>
+<li><p>from which execution (control-flow) can be <em>started</em>, or</p></li>
+<li><p>to which it can be <em>diverted</em></p></li>
+</ul>
+<p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="comparisons">Comparisons</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="bu">cmp</span> a1, a2</span></code></pre></div>
 <ul>
-<li>Perform a (numeric) <strong>comparison</strong> between the values <code>a1</code> and <code>a2</code>, and</li>
-<li>Store the result in a special <strong>processor flag</strong></li>
+<li><p>Perform a (numeric) <strong>comparison</strong> between the values <code>a1</code> and <code>a2</code>, and</p></li>
+<li><p>Store the result in a special <strong>processor flag</strong></p></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h3 id="jumps">Jumps</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode asm"><code class="sourceCode fasm"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="bu">jmp</span> <span class="pp">LABEL</span>     # jump unconditionally (i.e. always)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="bu">je</span>  <span class="pp">LABEL</span>     # jump <span class="pp">if</span> previous comparison result was EQUAL  </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="bu">jne</span> <span class="pp">LABEL</span>     # jump <span class="pp">if</span> previous comparison result was <span class="bu">NOT</span>-EQUAL  </span></code></pre></div>
-<p>Use the result of the <strong>flag</strong> set by the most recent <code>cmp</code> * To <em>continue execution</em> from the given <code>LABEL</code></p>
+<p>Use the result of the <strong>flag</strong> set by the <em>most recent</em> <code>cmp</code></p>
+<ul>
+<li>To <em>continue execution</em> from the given <code>LABEL</code></li>
+</ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="quiz">QUIZ</h2>
 <p>Which of the following is a valid x86 encoding of</p>
