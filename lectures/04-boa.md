@@ -280,7 +280,7 @@ else:
 We will:
 
 1. Compile `eCond`
-2. Compare the result (in `eax`) against `0`
+2. Compare the result (in `rax`) against `0`
 3. Jump if the result _is zero_ to a **special** `"IfFalse"` label
     * At which we will evaluate `eElse`,
     * Ending with a special `"IfExit"` label.
@@ -673,7 +673,7 @@ You know the drill.
 
 Lets look at some expressions and figure out how they would get compiled.
 
-* Recall: We want the result to be in `eax` after the instructions finish.
+* Recall: We want the result to be in `rax` after the instructions finish.
 
 <br>
 <br>
@@ -692,8 +692,8 @@ Lets look at some expressions and figure out how they would get compiled.
 What is the assembly corresponding to `33 - 10` ?
 
 ```nasm
-?1 eax, ?2
-?3 eax, ?4
+?1 rax, ?2
+?3 rax, ?4
 ```
 
 
@@ -723,8 +723,8 @@ Lets start with some easy ones. The source:
 
 **Strategy:** Given `n1 + n2`
 
-* Move `n1` into `eax`,
-* Add `n2` to `eax`.
+* Move `n1` into `rax`,
+* Add `n2` to `rax`.
 
 <br>
 <br>
@@ -742,12 +742,12 @@ What if the first operand is a variable?
 
 ![Example: Bin 2](/static/img/bin-2-to-asm.png)
 
-Simple, just copy the variable off the stack into `eax`
+Simple, just copy the variable off the stack into `rax`
 
 **Strategy:** Given `x + n`
 
-* Move `x` (from stack) into `eax`,
-* Add `n` to `eax`.
+* Move `x` (from stack) into `rax`,
+* Add `n` to `rax`.
 
 <br>
 <br>
@@ -775,8 +775,8 @@ Same thing works if the second operand is a variable.
 
 Strategy: Given `x + n`
 
-* Move `x` (from stack) into `eax`,
-* Add `n` to `eax`.
+* Move `x` (from stack) into `rax`,
+* Add `n` to `rax`.
 
 <br>
 <br>
@@ -794,9 +794,9 @@ Strategy: Given `x + n`
 What is the assembly corresponding to `(10 + 20) * 30` ?
 
 ```nasm
-mov eax, 10
-?1  eax, ?2
-?3  eax, ?4
+mov rax, 10
+?1  rax, ?2
+?3  rax, ?4
 ```
 
 * **A.** `?1 = add`, `?2 = 30`, `?3 = mul`, `?4 = 20`
@@ -823,8 +823,8 @@ In general, to compile `e + n` we can do
 
 ```haskell
      compile e      
-  ++              -- result of e is in eax
-     [add eax, n]
+  ++              -- result of e is in rax
+     [add rax, n]
 ```
 
 <br>
@@ -845,8 +845,8 @@ But what if we have _nested_ expressions
 (1 + 2) * (3 + 4)
 ```
 
-* Can compile `1 + 2` with result in `eax` ...
-* .. but then need to _reuse_ `eax` for `3 + 4`
+* Can compile `1 + 2` with result in `rax` ...
+* .. but then need to _reuse_ `rax` for `3 + 4`
 
 Need to **save** `1 + 2` somewhere!
 
@@ -1270,8 +1270,8 @@ Strategy: Given `v1 + v2` (where `v1` and `v2` are **immediate expressions**)
 <br>
 <br>
 
-* Move `v1` into `eax`,
-* Add `v2` to `eax`.
+* Move `v1` into `rax`,
+* Add `v2` to `rax`.
 
 ```haskell
 compile :: Env -> TagE -> Asm
@@ -1786,19 +1786,19 @@ in
 
 
 ```nasm
-mov eax, 10
-mov [ebp - 4*1], eax    ; put x on stack
-mov eax, 20
-mov [ebp - 4*2], eax    ; put y on stack
-mov eax, 30
-mov [ebp - 4*3], eax    ; put z on stack
+mov rax, 10
+mov [ebp - 8*1], rax    ; put x on stack
+mov rax, 20
+mov [ebp - 8*2], rax    ; put y on stack
+mov rax, 30
+mov [ebp - 8*3], rax    ; put z on stack
 
-mov eax, [ebp - 4*2]    ; grab y 
-mul eax, [ebp - 4*3]    ; mul by z 
-mov [ebp - 4*4], eax    ; put tmp on stack
+mov rax, [ebp - 8*2]    ; grab y 
+mul rax, [ebp - 8*3]    ; mul by z 
+mov [ebp - 8*4], rax    ; put tmp on stack
 
-mov eax, [ebp - 4*1]    ; grab x
-add eax, [ebp - 4*4]
+mov rax, [ebp - 8*1]    ; grab x
+add rax, [ebp - 8*4]
 ```
 
 -->
