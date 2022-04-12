@@ -180,9 +180,14 @@ our_code_label:
 ```
 
 Labels are _"landmarks"_ 
+
 - from which execution (control-flow) can be _started_, or 
+
 - to which it can be _diverted_
 
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -201,6 +206,7 @@ cmp a1, a2
 ```
 
 - Perform a (numeric) **comparison** between the values `a1` and `a2`, and 
+
 - Store the result in a special **processor flag**
 
 <br>
@@ -221,8 +227,9 @@ je  LABEL     # jump if previous comparison result was EQUAL
 jne LABEL     # jump if previous comparison result was NOT-EQUAL  
 ```
 
-Use the result of the **flag** set by the most recent `cmp` 
-* To _continue execution_ from the given `LABEL`
+Use the result of the **flag** set by the _most recent_ `cmp` 
+
+- To _continue execution_ from the given `LABEL`
 
 <br>
 <br>
