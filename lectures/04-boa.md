@@ -501,7 +501,7 @@ The key work is done by `doTag i e`
 <br>
 
 
-**QUIZ**
+## QUIZ 
 
 ```haskell
 doTag :: Int -> BareE -> (Int, TagE)
@@ -602,7 +602,7 @@ Now that we have the tags we lets implement our [compilation strategy](#strategy
 ```haskell
 compile env (If eCond eTrue eFalse i)
   =   compile env eCond ++          -- compile `eCond`
-    [ ICmp (Reg EAX) (Const 0)      -- compare result to 0
+    [ ICmp (Reg RAX) (Const 0)      -- compare result to 0
     , IJe (BranchFalse i)           -- if-zero then jump to 'False'-block
     ]
    ++ compile env eTrue  ++         -- code for `True`-block
@@ -1276,8 +1276,8 @@ Strategy: Given `v1 + v2` (where `v1` and `v2` are **immediate expressions**)
 ```haskell
 compile :: Env -> TagE -> Asm
 compile env (Prim2 o v1 v2)
-  = [ IMov      (Reg EAX) (immArg env v1)
-    , (prim2 o) (Reg EAX) (immArg env v2)
+  = [ IMov      (Reg RAX) (immArg env v1)
+    , (prim2 o) (Reg RAX) (immArg env v2)
     ]
 ```
 

@@ -455,7 +455,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <li>Return a pair <code>(i', e')</code> of <em>updated counter</em> <code>i'</code> and tagged expression <code>e'</code></li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<p><strong>QUIZ</strong></p>
+<h2 id="quiz-1">QUIZ</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="ot">doTag ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">BareE</span> <span class="ot">-&gt;</span> (<span class="dt">Int</span>, <span class="dt">TagE</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>doTag i (<span class="dt">Number</span> n _)    <span class="ot">=</span> (i <span class="op">+</span> <span class="dv">1</span> , <span class="dt">Number</span> n i)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a>doTag i (<span class="dt">Var</span>    x _)    <span class="ot">=</span> (i <span class="op">+</span> <span class="dv">1</span> , <span class="dt">Var</span>     x i)</span>
@@ -517,7 +517,7 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 <p>Now that we have the tags we lets implement our <a href="#strategy">compilation strategy</a></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>compile env (<span class="dt">If</span> eCond eTrue eFalse i)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>  <span class="ot">=</span>   compile env eCond <span class="op">++</span>          <span class="co">-- compile `eCond`</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>    [ <span class="dt">ICmp</span> (<span class="dt">Reg</span> <span class="dt">EAX</span>) (<span class="dt">Const</span> <span class="dv">0</span>)      <span class="co">-- compare result to 0</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>    [ <span class="dt">ICmp</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (<span class="dt">Const</span> <span class="dv">0</span>)      <span class="co">-- compare result to 0</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>    , <span class="dt">IJe</span> (<span class="dt">BranchFalse</span> i)           <span class="co">-- if-zero then jump to 'False'-block</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>    ]</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a>   <span class="op">++</span> compile env eTrue  <span class="op">++</span>         <span class="co">-- code for `True`-block</span></span>
@@ -552,7 +552,7 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 <li>Recall: We want the result to be in <code>rax</code> after the instructions finish.</li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-1">QUIZ</h2>
+<h2 id="quiz-2">QUIZ</h2>
 <p>What is the assembly corresponding to <code>33 - 10</code> ?</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>?<span class="dv">1</span> <span class="kw">rax</span>, ?<span class="dv">2</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>?<span class="dv">3</span> <span class="kw">rax</span>, ?<span class="dv">4</span></span></code></pre></div>
@@ -597,7 +597,7 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 <li>Add <code>n</code> to <code>rax</code>.</li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-2">QUIZ</h2>
+<h2 id="quiz-3">QUIZ</h2>
 <p>What is the assembly corresponding to <code>(10 + 20) * 30</code> ?</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="kw">mov</span> <span class="kw">rax</span>, <span class="dv">10</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a>?<span class="dv">1</span>  <span class="kw">rax</span>, ?<span class="dv">2</span></span>
@@ -653,7 +653,7 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 <li><code>v1 * v2</code></li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-3">QUIZ</h2>
+<h2 id="quiz-4">QUIZ</h2>
 <blockquote>
 <p>ANF means all <strong>primitive operations</strong> have <strong>immediate</strong> arguments.</p>
 </blockquote>
@@ -721,7 +721,7 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 <div class="sourceCode" id="cb31"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true"></a><span class="kw">type</span> <span class="dt">ImmExpr</span> <span class="ot">=</span> {e<span class="op">:</span><span class="dt">Expr</span> <span class="op">|</span> isImm e <span class="op">==</span> <span class="dt">True</span>}</span></code></pre></div>
 <p>The <em>subset</em> of <code>Expr</code> <em>such that</em> <code>isImm</code> returns <code>True</code></p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-4">QUIZ</h2>
+<h2 id="quiz-5">QUIZ</h2>
 <p>Similarly, lets write a function that describes <strong>ANF</strong> expressions</p>
 <blockquote>
 <p>ANF means all <strong>primitive operations</strong> have <strong>immediate</strong> arguments.</p>
@@ -739,7 +739,7 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true"></a><span class="co">{- D -}</span> isImm e1 <span class="op">&amp;&amp;</span> isImm e2</span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true"></a><span class="co">{- E -}</span> isImm e2</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h3 id="quiz-5">QUIZ</h3>
+<h3 id="quiz-6">QUIZ</h3>
 <p>Similarly, lets write a function that describes <strong>ANF</strong> expressions</p>
 <blockquote>
 <p>ANF means all <strong>primitive operations</strong> have <strong>immediate</strong> arguments.</p>
@@ -786,8 +786,8 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 </ul>
 <div class="sourceCode" id="cb38"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a><span class="ot">compile ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">TagE</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a>compile env (<span class="dt">Prim2</span> o v1 v2)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span>      (<span class="dt">Reg</span> <span class="dt">EAX</span>) (immArg env v1)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a>    , (prim2 o) (<span class="dt">Reg</span> <span class="dt">EAX</span>) (immArg env v2)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span>      (<span class="dt">Reg</span> <span class="dt">RAX</span>) (immArg env v1)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a>    , (prim2 o) (<span class="dt">Reg</span> <span class="dt">RAX</span>) (immArg env v2)</span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true"></a>    ]</span></code></pre></div>
 <p>where we have a helper to find the <code>Asm</code> variant of a <code>Prim2</code> operation</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="ot">prim2 ::</span> <span class="dt">Prim2</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span> <span class="ot">-&gt;</span> <span class="dt">Instruction</span></span>
@@ -802,7 +802,7 @@ doTag i (If e1 e2 e3 _) = (i3 + 1, If e1' e2' e3' i3)
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true"></a>    i                   <span class="ot">=</span> fromMaybe err (<span class="fu">lookup</span> x env)</span>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true"></a>    err                 <span class="ot">=</span> <span class="fu">error</span> (printf <span class="st">&quot;Error: '%s' is unbound&quot;</span> x)</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h2 id="quiz-6">QUIZ</h2>
+<h2 id="quiz-7">QUIZ</h2>
 <p>Which of the below are in ANF ?</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="co">{- 1 -}</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a></span>
