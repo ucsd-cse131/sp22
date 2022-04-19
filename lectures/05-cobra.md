@@ -350,7 +350,7 @@ Lets focus on the `compile` function.
 <br>
 <br>
 
-#### A TypeClass for Representing Constants
+## A TypeClass for Representing Constants
 
 Its convenient to introduce a type class describing Haskell types that can
 be _represented_ as x86 arguments:
@@ -381,7 +381,7 @@ instance Repr Bool where
 <br>
 <br>
 
-#### Immediate Values to Arguments
+## Immediate Values to Arguments
 
 `Boolean b` is an _immediate_ value (like `Number n`).
 
@@ -407,7 +407,7 @@ immArg (Boolean b _) = repr b
 <br>
 <br>
 
-#### Compiling Constants
+## Compiling Constants
 
 Finally, we can easily update the `compile` function as:
 

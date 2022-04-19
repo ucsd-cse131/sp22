@@ -514,7 +514,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 </figure>
 <p>Lets focus on the <code>compile</code> function.</p>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h4 id="a-typeclass-for-representing-constants">A TypeClass for Representing Constants</h4>
+<h2 id="a-typeclass-for-representing-constants">A TypeClass for Representing Constants</h2>
 <p>Its convenient to introduce a type class describing Haskell types that can be <em>represented</em> as x86 arguments:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">class</span> <span class="dt">Repr</span> a <span class="kw">where</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ot">  repr ::</span> a <span class="ot">-&gt;</span> <span class="dt">Arg</span></span></code></pre></div>
@@ -526,7 +526,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>  repr <span class="dt">False</span> <span class="ot">=</span> <span class="dt">HexConst</span> <span class="bn">0x00000001</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  repr <span class="dt">True</span>  <span class="ot">=</span> <span class="dt">HexConst</span> <span class="bn">0x80000001</span></span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h4 id="immediate-values-to-arguments">Immediate Values to Arguments</h4>
+<h2 id="immediate-values-to-arguments">Immediate Values to Arguments</h2>
 <p><code>Boolean b</code> is an <em>immediate</em> value (like <code>Number n</code>).</p>
 <p>Lets extend <code>immArg</code> that transforms an immediate expression to an x86 argument.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="ot">immArg ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">ImmTag</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span></span>
@@ -534,7 +534,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>immArg (<span class="dt">Number</span> n _)  <span class="ot">=</span> repr n</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>immArg (<span class="dt">Boolean</span> b _) <span class="ot">=</span> repr b</span></code></pre></div>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
-<h4 id="compiling-constants">Compiling Constants</h4>
+<h2 id="compiling-constants">Compiling Constants</h2>
 <p>Finally, we can easily update the <code>compile</code> function as:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="ot">compileEnv ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">AnfTagE</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>compileEnv _ e<span class="op">@</span>(<span class="dt">Number</span> _ _)  <span class="ot">=</span> [<span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (immArg env e)]</span>
