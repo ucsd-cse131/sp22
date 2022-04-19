@@ -8,6 +8,7 @@ headerImg: books.jpg
 | 3/29       | Introduction                  | [html][lec1] [md][md1] |             |                |
 |            | Numbers, UnaryOps, Variables  | [html][lec3] [md][md3] | [pdf][pdf3] | [code][cod3]   |
 | 4/5        | Branches and Binary Operators | [html][lec4] [md][md4] | [pdf][pdf4] | [code][cod4]   |
+| 4/19       | Data Representation           | [html][lec5] [md][md5] | [pdf][pdf5] | [code][cod5]   |
 
 
 <!--
@@ -15,7 +16,6 @@ headerImg: books.jpg
 | 4/6        | Branches and Binary Operators | [html][lec4] [md][md4] | [pdf][pdf4a] | [code][cod4]   |
 | 4/8        | "" | "" | [pdf][pdf4b] | "" |
 | 4/13       | "" | "" | [pdf][pdf4c] | "" |
-| 4/15       | Data Representation           | [html][lec5] [md][md5] | [pdf][pdf5a] | [code][cod5]   |
 | 4/22       | "" | "" | [pdf][pdf5b]  | ""   |
 | 4/27       | Functions                     | [html][lec6] [md][md6] | [pdf][pdf6]  | [code][cod6]   |
 | 5/13       | Heap Data  | [html][lec7] [md][md7] | [pdf][pdf7a]  | [code][cod7]   |
