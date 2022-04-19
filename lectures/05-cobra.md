@@ -559,12 +559,39 @@ What is the result of
 
 Lets go and fix the code so the above do the right thing!
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 ## 2. Arithmetic Operations
 
 Constants like `2`, `29`, `false` are only useful if we can perform
 computations with them.
 
 First lets see what happens with our arithmetic operators.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
 ### QUIZ: Addition
 
@@ -595,6 +622,8 @@ ghci> exec "12 + 4"
 <br>
 <br>
 <br>
+
+
 
 ## Shifted Representation and Addition
 
