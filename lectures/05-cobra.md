@@ -1,6 +1,6 @@
 ---
 title: Data Representation
-date: 2021-4-15
+date: 2022-4-15
 headerImg: cobra.jpg
 ---
 
@@ -54,7 +54,7 @@ Our plan will be to (start with `boa`) and add the following features:
 
 ### Motivation: Why booleans?
 
-In the year 2021, its a bit silly to use
+In the 21st century, its a bit silly to use
 
 + `0` for `false` and
 + non-zero for `true`.
