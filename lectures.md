@@ -37,20 +37,17 @@ headerImg: books.jpg
 [lec3]: lectures/03-adder.html
 [md3]: http://github.com/ucsd-cse131/sp21/blob/main/lectures/03-adder.md
 [cod3]: https://github.com/ucsd-cse131/01-adder
-[pdf3]: static/img/03-adder-A.pdf
+[pdf3]: static/img/03-adder.pdf
 
 [lec4]: lectures/04-boa.html
 [md4]:  http://github.com/ucsd-cse131/sp21/blob/main/lectures/04-boa.md
 [cod4]: https://github.com/ucsd-cse131/02-boa
-[pdf4a]: static/img/04-boa-A.pdf
-[pdf4b]: static/img/04-boa-B.pdf
-[pdf4c]: static/img/04-boa-C.pdf
+[pdf4]: static/img/04-boa.pdf
 
 [lec5]: lectures/05-cobra.html
 [md5]:  http://github.com/ucsd-cse131/sp21/blob/main/lectures/05-cobra.md
 [cod5]: https://github.com/ucsd-cse131/03-cobra
-[pdf5a]: static/img/05-cobra-A.pdf
-[pdf5b]: static/img/05-cobra-B.pdf
+[pdf5]: static/img/05-cobra.pdf
 
 [lec6]: lectures/06-diamond.html
 [md6]:  http://github.com/ucsd-progsys/131-web/blob/master/lectures/06-diamond.md
