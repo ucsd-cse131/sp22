@@ -1174,9 +1174,9 @@ For example
 
 ```nasm
 mov rax, arg
-mov rbx, rax              ; copy into rbx register
-and rbx, 0x00000001       ; extract lsb
-cmp rbx, 0                ; check if lsb equals 0
+mov rcx, rax              ; copy into rcx register
+and rcx, 0x00000001       ; extract lsb
+cmp rcx, 0                ; check if lsb equals 0
 jne error_non_number      
 ...
 ```
@@ -1230,9 +1230,9 @@ extern print
 global our_code_starts_here
 our_code_starts_here:
   mov rax, 1                ; not a valid number
-  mov rbx, rax              ; copy into rbx register
-  and rbx, 0x00000001       ; extract lsb
-  cmp rbx, 0                ; check if lsb equals 0
+  mov rcx, rax              ; copy into rcx register
+  and rcx, 0x00000001       ; extract lsb
+  cmp rcx, 0                ; check if lsb equals 0
   jne error_non_number      
 error_non_number:
   mov rdi, 0
@@ -1330,9 +1330,9 @@ our_code_starts_here:
   sub rsp, 1600             ; alloc '100' vars
 
   mov rax, 1                ; not a valid number
-  mov rbx, rax              ; copy into rbx register
-  and rbx, 0x00000001       ; extract lsb
-  cmp rbx, 0                ; check if lsb equals 0
+  mov rcx, rax              ; copy into rcx register
+  and rcx, 0x00000001       ; extract lsb
+  cmp rcx, 0                ; check if lsb equals 0
   jne error_non_number      
 
   add rsp, 1600             ; de-alloc '100' vars
@@ -1414,9 +1414,9 @@ The key step in the implementation is to write a function
 assertType :: Env -> IExp -> Ty -> [Instruction]
 assertType env v ty
   = [ IMov (Reg RAX) (immArg env v)
-    , IMov (Reg RBX) (Reg RAX)
-    , IAnd (Reg RBX) (HexConst 0x00000001)
-    , ICmp (Reg RBX) (typeTag  ty)
+    , IMov (Reg RCX) (Reg RAX)
+    , IAnd (Reg RCX) (HexConst 0x00000001)
+    , ICmp (Reg RCX) (typeTag  ty)
     , IJne (TypeError ty)
     ]
 ```

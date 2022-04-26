@@ -952,9 +952,9 @@ ELSE
 </ul>
 <p>For example</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode nasm"><code class="sourceCode nasm"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="kw">mov</span> <span class="kw">rax</span>, arg</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a><span class="kw">mov</span> <span class="kw">rbx</span>, <span class="kw">rax</span>              <span class="co">; copy into rbx register</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a><span class="kw">and</span> <span class="kw">rbx</span><span class="bn">, 0x00000001       </span><span class="co">; extract lsb</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a><span class="kw">cmp</span> <span class="kw">rbx</span>, <span class="dv">0</span>                <span class="co">; check if lsb equals 0</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a><span class="kw">mov</span> <span class="kw">rcx</span>, <span class="kw">rax</span>              <span class="co">; copy into rcx register</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a><span class="kw">and</span> <span class="kw">rcx</span><span class="bn">, 0x00000001       </span><span class="co">; extract lsb</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a><span class="kw">cmp</span> <span class="kw">rcx</span>, <span class="dv">0</span>                <span class="co">; check if lsb equals 0</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true"></a><span class="kw">jne</span> error_non_number      </span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true"></a>...</span></code></pre></div>
 <p>at <code>error_non_number</code> we can call into a <code>C</code> function:</p>
@@ -984,9 +984,9 @@ ELSE
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true"></a><span class="kw">global</span> our_code_starts_here</span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true"></a><span class="fu">our_code_starts_here:</span></span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rax</span>, <span class="dv">1</span>                <span class="co">; not a valid number</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rbx</span>, <span class="kw">rax</span>              <span class="co">; copy into rbx register</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true"></a>  <span class="kw">and</span> <span class="kw">rbx</span><span class="bn">, 0x00000001       </span><span class="co">; extract lsb</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true"></a>  <span class="kw">cmp</span> <span class="kw">rbx</span>, <span class="dv">0</span>                <span class="co">; check if lsb equals 0</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rcx</span>, <span class="kw">rax</span>              <span class="co">; copy into rcx register</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true"></a>  <span class="kw">and</span> <span class="kw">rcx</span><span class="bn">, 0x00000001       </span><span class="co">; extract lsb</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true"></a>  <span class="kw">cmp</span> <span class="kw">rcx</span>, <span class="dv">0</span>                <span class="co">; check if lsb equals 0</span></span>
 <span id="cb37-10"><a href="#cb37-10" aria-hidden="true"></a>  <span class="kw">jne</span> error_non_number      </span>
 <span id="cb37-11"><a href="#cb37-11" aria-hidden="true"></a><span class="fu">error_non_number:</span></span>
 <span id="cb37-12"><a href="#cb37-12" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rdi</span>, <span class="dv">0</span></span>
@@ -1032,9 +1032,9 @@ ELSE
 <span id="cb41-8"><a href="#cb41-8" aria-hidden="true"></a>  <span class="kw">sub</span> <span class="kw">rsp</span>, <span class="dv">1600</span>             <span class="co">; alloc '100' vars</span></span>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true"></a></span>
 <span id="cb41-10"><a href="#cb41-10" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rax</span>, <span class="dv">1</span>                <span class="co">; not a valid number</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rbx</span>, <span class="kw">rax</span>              <span class="co">; copy into rbx register</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true"></a>  <span class="kw">and</span> <span class="kw">rbx</span><span class="bn">, 0x00000001       </span><span class="co">; extract lsb</span></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true"></a>  <span class="kw">cmp</span> <span class="kw">rbx</span>, <span class="dv">0</span>                <span class="co">; check if lsb equals 0</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true"></a>  <span class="kw">mov</span> <span class="kw">rcx</span>, <span class="kw">rax</span>              <span class="co">; copy into rcx register</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true"></a>  <span class="kw">and</span> <span class="kw">rcx</span><span class="bn">, 0x00000001       </span><span class="co">; extract lsb</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true"></a>  <span class="kw">cmp</span> <span class="kw">rcx</span>, <span class="dv">0</span>                <span class="co">; check if lsb equals 0</span></span>
 <span id="cb41-14"><a href="#cb41-14" aria-hidden="true"></a>  <span class="kw">jne</span> error_non_number      </span>
 <span id="cb41-15"><a href="#cb41-15" aria-hidden="true"></a></span>
 <span id="cb41-16"><a href="#cb41-16" aria-hidden="true"></a>  <span class="kw">add</span> <span class="kw">rsp</span>, <span class="dv">1600</span>             <span class="co">; de-alloc '100' vars</span></span>
@@ -1073,9 +1073,9 @@ ELSE
 <div class="sourceCode" id="cb45"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true"></a><span class="ot">assertType ::</span> <span class="dt">Env</span> <span class="ot">-&gt;</span> <span class="dt">IExp</span> <span class="ot">-&gt;</span> <span class="dt">Ty</span> <span class="ot">-&gt;</span> [<span class="dt">Instruction</span>]</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true"></a>assertType env v ty</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RAX</span>) (immArg env v)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true"></a>    , <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RBX</span>) (<span class="dt">Reg</span> <span class="dt">RAX</span>)</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true"></a>    , <span class="dt">IAnd</span> (<span class="dt">Reg</span> <span class="dt">RBX</span>) (<span class="dt">HexConst</span> <span class="bn">0x00000001</span>)</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true"></a>    , <span class="dt">ICmp</span> (<span class="dt">Reg</span> <span class="dt">RBX</span>) (typeTag  ty)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true"></a>    , <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RCX</span>) (<span class="dt">Reg</span> <span class="dt">RAX</span>)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true"></a>    , <span class="dt">IAnd</span> (<span class="dt">Reg</span> <span class="dt">RCX</span>) (<span class="dt">HexConst</span> <span class="bn">0x00000001</span>)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true"></a>    , <span class="dt">ICmp</span> (<span class="dt">Reg</span> <span class="dt">RCX</span>) (typeTag  ty)</span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true"></a>    , <span class="dt">IJne</span> (<span class="dt">TypeError</span> ty)</span>
 <span id="cb45-8"><a href="#cb45-8" aria-hidden="true"></a>    ]</span></code></pre></div>
 <p>where <code>typeTag</code> is:</p>
