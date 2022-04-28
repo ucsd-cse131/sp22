@@ -9,7 +9,7 @@ headerImg: books.jpg
 |            | Numbers, UnaryOps, Variables  | [html][lec3] [md][md3] | [pdf][pdf3] | [code][cod3]   |
 | 4/5        | Branches and Binary Operators | [html][lec4] [md][md4] | [pdf][pdf4] | [code][cod4]   |
 | 4/19       | Data Representation           | [html][lec5] [md][md5] | [pdf][pdf5] | [code][cod5]   |
-
+| 4/28       | Functions                     | [html][lec6] [md][md6] | [pdf][pdf6] | [code][cod6]   |
 
 <!--
 |            | Crash course in Haskell       | [html][lec2] [md][md2] |             | [code][cod2]   |
