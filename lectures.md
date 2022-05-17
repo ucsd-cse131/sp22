@@ -10,6 +10,7 @@ headerImg: books.jpg
 | 4/5        | Branches and Binary Operators | [html][lec4] [md][md4] | [pdf][pdf4] | [code][cod4]   |
 | 4/19       | Data Representation           | [html][lec5] [md][md5] | [pdf][pdf5] | [code][cod5]   |
 | 4/28       | Functions                     | [html][lec6] [md][md6] | [pdf][pdf6] | [code][cod6]   |
+| 5/17       | Heap Data  		     | [html][lec7] [md][md7] | [pdf][pdf7] | [code][cod7]   |
 
 <!--
 |            | Crash course in Haskell       | [html][lec2] [md][md2] |             | [code][cod2]   |
@@ -18,7 +19,6 @@ headerImg: books.jpg
 | 4/13       | "" | "" | [pdf][pdf4c] | "" |
 | 4/22       | "" | "" | [pdf][pdf5b]  | ""   |
 | 4/27       | Functions                     | [html][lec6] [md][md6] | [pdf][pdf6]  | [code][cod6]   |
-| 5/13       | Heap Data  | [html][lec7] [md][md7] | [pdf][pdf7a]  | [code][cod7]   |
 | 5/18       | ""         | ""                     | ""  | ""             |
 | 5/20       | Closures   | [html][lec8] [md][md7] | [pdf][pdf8]   | [code][cod8]   |
 | 5/25       | "" | "" | [pdf][pdf8b]   | "" |
@@ -57,7 +57,7 @@ headerImg: books.jpg
 [lec7]: lectures/07-egg-eater.html
 [md7]: http://github.com/ucsd-progsys/131-web/blob/master/lectures/07-egg-eater.md
 [cod7]: https://github.com/ucsd-cse131/05-egg-eater
-[pdf7a]: static/img/07-egg-A.pdf
+[pdf7]: static/img/07-egg.pdf
 
 [lec8]: lectures/08-fer-de-lance.html
 [md8]: http://github.com/ucsd-progsys/131-web/blob/master/lectures/08-fer-de-lance.md
