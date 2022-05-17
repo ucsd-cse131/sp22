@@ -780,8 +780,8 @@ all the data into a fixed number of 1- or 2- word slots.
 </ul>
 <div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="ot">pairCopy ::</span> <span class="dt">Field</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>pairCopy fld arg</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RBX</span>)      arg</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>    , <span class="dt">IMov</span> (pairAddr fld) (<span class="dt">Reg</span> <span class="dt">RBX</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>  <span class="ot">=</span> [ <span class="dt">IMov</span> (<span class="dt">Reg</span> <span class="dt">RCX</span>)      arg</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>    , <span class="dt">IMov</span> (pairAddr fld) (<span class="dt">Reg</span> <span class="dt">RCX</span>)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>    ]</span></code></pre></div>
 <p>Recall, the field’s slot is either <code>[rax]</code> or <code>[rax + 8]</code> depending on whether the field is <code>First</code> or <code>Second</code>.</p>
 <h2 id="quiz-3">QUIZ</h2>

@@ -944,8 +944,8 @@ We copy an `Arg` into a `Field` by
 ```haskell
 pairCopy :: Field -> Arg -> Asm
 pairCopy fld arg
-  = [ IMov (Reg RBX)      arg
-    , IMov (pairAddr fld) (Reg RBX)
+  = [ IMov (Reg RCX)      arg
+    , IMov (pairAddr fld) (Reg RCX)
     ]
 ```
 
