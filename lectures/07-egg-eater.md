@@ -156,7 +156,7 @@ Recall that we [represent all values:](05-cobra.md/#option-2-use-a-tag-bit)
 as a **single word** either
 
 * 8 bytes on the stack, or
-* a single register `rax`, `rbx` etc.
+* a single register `rax`, `rcx` etc.
 
 <br>
 <br>
@@ -489,9 +489,9 @@ Finally, to **access** the elements of a pair
 Lets compile `e[0]` to get the first or `e[1]` to get the second element
 
 1. **Check** that immediate value `e` is a pointer
-2. **Load** `e` into `rbx`
-3. **Remove** the tag bit from `rbx`
-4. **Copy** the value in `[rbx]` (resp. `[rbx + 8]`) into `rbx`.
+2. **Load** `e` into `rcx`
+3. **Remove** the tag bit from `rcx`
+4. **Copy** the value in `[rcx]` (resp. `[rcx + 8]`) into `rcx`.
 
 <br>
 <br>
@@ -937,9 +937,9 @@ pairAlloc
 
 We copy an `Arg` into a `Field` by
 
-* saving the `Arg` into a helper register `rbx`,
+* saving the `Arg` into a helper register `rcx`,
 
-* copying `rbx` into the field's slot on the heap.
+* copying `rcx` into the field's slot on the heap.
 
 ```haskell
 pairCopy :: Field -> Arg -> Asm

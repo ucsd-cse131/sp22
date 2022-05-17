@@ -304,7 +304,7 @@ if (window.navigator.appName == "Microsoft Internet Explorer") {
 <p>as a <strong>single word</strong> either</p>
 <ul>
 <li>8 bytes on the stack, or</li>
-<li>a single register <code>rax</code>, <code>rbx</code> etc.</li>
+<li>a single register <code>rax</code>, <code>rcx</code> etc.</li>
 </ul>
 <p><br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="exercise">EXERCISE</h2>
@@ -531,9 +531,9 @@ all the data into a fixed number of 1- or 2- word slots.
 <p>Lets compile <code>e[0]</code> to get the first or <code>e[1]</code> to get the second element</p>
 <ol type="1">
 <li><strong>Check</strong> that immediate value <code>e</code> is a pointer</li>
-<li><strong>Load</strong> <code>e</code> into <code>rbx</code></li>
-<li><strong>Remove</strong> the tag bit from <code>rbx</code></li>
-<li><strong>Copy</strong> the value in <code>[rbx]</code> (resp. <code>[rbx + 8]</code>) into <code>rbx</code>.</li>
+<li><strong>Load</strong> <code>e</code> into <code>rcx</code></li>
+<li><strong>Remove</strong> the tag bit from <code>rcx</code></li>
+<li><strong>Copy</strong> the value in <code>[rcx]</code> (resp. <code>[rcx + 8]</code>) into <code>rcx</code>.</li>
 </ol>
 <p><br> <br> <br> <br> <br> <br> <br> <br> <br> <br></p>
 <h2 id="example-access">Example: Access</h2>
@@ -775,8 +775,8 @@ all the data into a fixed number of 1- or 2- word slots.
 <h2 id="copy">Copy</h2>
 <p>We copy an <code>Arg</code> into a <code>Field</code> by</p>
 <ul>
-<li><p>saving the <code>Arg</code> into a helper register <code>rbx</code>,</p></li>
-<li><p>copying <code>rbx</code> into the field’s slot on the heap.</p></li>
+<li><p>saving the <code>Arg</code> into a helper register <code>rcx</code>,</p></li>
+<li><p>copying <code>rcx</code> into the field’s slot on the heap.</p></li>
 </ul>
 <div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="ot">pairCopy ::</span> <span class="dt">Field</span> <span class="ot">-&gt;</span> <span class="dt">Arg</span> <span class="ot">-&gt;</span> <span class="dt">Asm</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>pairCopy fld arg</span>
